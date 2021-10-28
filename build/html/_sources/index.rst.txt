@@ -10,7 +10,7 @@ Welcome to speech_processing's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   ./test/index
 
 Indices and tables
 ==================
