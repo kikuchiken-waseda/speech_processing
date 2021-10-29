@@ -7,10 +7,10 @@ Welcome to speech_processing's documentation!
 =============================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
-   ./test/index
+   ./nannka/index
 
 Indices and tables
 ==================
