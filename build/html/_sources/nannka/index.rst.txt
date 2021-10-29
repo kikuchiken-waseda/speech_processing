@@ -15,7 +15,9 @@
 
    ./acoustic_feature
    ./fourier
+   ./scale
    ./filter
+   ./mfcc
 
 Indices and tables
 ==================
