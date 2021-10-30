@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "speech_processing"
+project = "音声信号処理の備忘録"
 copyright = "2021, licrum"
 author = "licrum"
 
