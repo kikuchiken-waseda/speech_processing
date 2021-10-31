@@ -22,6 +22,8 @@
    ./mfcc
    ./mgcs
    ./visualization
+   ./nbsphinx
+
 
 Indices and tables
 ==================

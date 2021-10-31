@@ -11,6 +11,9 @@
    :caption: Contents:
 
    ./pachouli/index
+   ./paper/index
+   ./implementation/index
+
 
 Indices and tables
 ==================
