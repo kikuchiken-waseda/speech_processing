@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cepstrum解析実装 &mdash; 音声信号処理の備忘録  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="pytorchaudioを試す" href="test_torch.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 音声信号処理の備忘録
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">実装</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="test.html">test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_torch.html">pytorchaudioを試す</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cepstrum解析実装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#音声の準備">音声の準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#DFT">DFT</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">音声信号処理の備忘録</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">実装</a> &raquo;</li>
+      <li>cepstrum解析実装</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/implementation/cepstrum.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="cepstrum解析実装">
+<h1>cepstrum解析実装<a class="headerlink" href="#cepstrum解析実装" title="Permalink to this headline">¶</a></h1>
+<section id="音声の準備">
+<h2>音声の準備<a class="headerlink" href="#音声の準備" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">arange</span><span class="p">,</span> <span class="n">sin</span>
+<span class="kn">import</span> <span class="nn">cmath</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">0.01</span>                 <span class="c1"># 最大振幅</span>
+<span class="n">f_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">220</span><span class="p">,</span> <span class="mi">440</span><span class="p">]</span>  <span class="c1"># まぜる周波数</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">16000</span>                 <span class="c1"># サンプリング周波数</span>
+<span class="n">sec</span> <span class="o">=</span> <span class="mf">0.1</span>                   <span class="c1"># サイン波の持続時間</span>
+
+<span class="n">amp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">f_list</span><span class="p">)</span> <span class="c1"># まぜる時の振幅</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">arange</span><span class="p">(</span><span class="n">sec</span> <span class="o">*</span> <span class="n">fs</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">f_list</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="n">amp</span> <span class="o">*</span> <span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">cmath</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">n</span> <span class="o">/</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">time</span> <span class="o">=</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="n">fs</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">size</span><span class="p">)]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">160</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">160</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time[t]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/implementation_cepstrum_4_0.png" src="../_images/implementation_cepstrum_4_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">IPython.display</span>
+<span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<audio  controls="controls" >
+    <source src="data:audio/wav;base64,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" type="audio/wav" />
+    Your browser does not support the audio element.
+</audio></div>
+</div>
+</section>
+<section id="DFT">
+<h2>DFT<a class="headerlink" href="#DFT" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">dft</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 行列演算形式になっているがwikiの数式そのまま</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">cmath</span><span class="o">.</span><span class="n">e</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">cmath</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">k</span> <span class="o">*</span> <span class="n">t</span>  <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;振幅スペクトラム&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dft</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+振幅スペクトラム
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/implementation_cepstrum_8_1.png" src="../_images/implementation_cepstrum_8_1.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="test_torch.html" class="btn btn-neutral float-left" title="pytorchaudioを試す" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, licrum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -8,3 +8,4 @@
 
    ./test
    ./test_torch
+   ./cepstrum
