@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ケプストラム解析 &mdash; 音声信号処理の備忘録  documentation</title>
+  <title>信号処理 &mdash; 音声信号処理の備忘録  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="聴覚尺度" href="scale.html" />
-    <link rel="prev" title="スペクトラム" href="spectrum.html" /> 
+    <link rel="next" title="音声信号処理に向けたフーリエ変換の学び" href="fourier.html" />
+    <link rel="prev" title="cepstrum解析実装" href="../implementation/cepstrum.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,22 +40,14 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">書きたいものまとめ</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="acoustic_feature.html">音響特徴量</a></li>
-<li class="toctree-l2"><a class="reference internal" href="spectrum.html">スペクトラム</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ケプストラム解析</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scale.html">聴覚尺度</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filter.html">フィルタ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mfcc.html">extract mfcc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mgcs.html">mgcs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visualization.html">音声の可視化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="convolution.html">畳み込み</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nbsphinx.html">nbsphinx使いやすいよって話</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">実装</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../processing/index.html">信号処理</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">信号処理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fourier.html">音声信号処理に向けたフーリエ変換の学び</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace.html">ラプラス変換</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -72,10 +64,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">書きたいものまとめ</a> &raquo;</li>
-      <li>ケプストラム解析</li>
+      <li>信号処理</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/pachouli/cepstrum.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/processing/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -108,23 +99,38 @@
 }
 </style>
 <section id="id1">
-<h1><a class="toc-backref" href="#id3">ケプストラム解析</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="contents topic" id="id2">
-<p class="topic-title">目次</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id3">ケプストラム解析</a></p></li>
+<h1>信号処理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>しっかり勉強する人は
+<a class="reference external" href="http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html">http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html</a>
+をみてください</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fourier.html">音声信号処理に向けたフーリエ変換の学び</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fourier.html#id3">フーリエ変換のお気持ち</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fourier.html#id4">フーリエ級数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fourier.html#id5">フーリエ変換</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fourier.html#id6">離散時間フーリエ変換</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fourier.html#id7">離散フーリエ変換</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fourier.html#id9">高速フーリエ変換</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fourier.html#id10">短時間フーリエ変換</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="laplace.html">ラプラス変換</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="laplace.html#id3">ラプラス変換とは</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace.html#z">z変換とは</a></li>
+</ul>
+</li>
 </ul>
 </div>
-<p><a class="reference external" href="https://ja.wikipedia.org/wiki/%E3%82%B1%E3%83%97%E3%82%B9%E3%83%88%E3%83%A9%E3%83%A0">https://ja.wikipedia.org/wiki/%E3%82%B1%E3%83%97%E3%82%B9%E3%83%88%E3%83%A9%E3%83%A0</a></p>
-<p><a class="reference external" href="https://www.onosokki.co.jp/HP-WK/eMM_back/emm185.pdf">https://www.onosokki.co.jp/HP-WK/eMM_back/emm185.pdf</a></p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="spectrum.html" class="btn btn-neutral float-left" title="スペクトラム" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="scale.html" class="btn btn-neutral float-right" title="聴覚尺度" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../implementation/cepstrum.html" class="btn btn-neutral float-left" title="cepstrum解析実装" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fourier.html" class="btn btn-neutral float-right" title="音声信号処理に向けたフーリエ変換の学び" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

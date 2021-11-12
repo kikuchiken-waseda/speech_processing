@@ -21,9 +21,28 @@ http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html
 ==============================================================================
 周期信号を分解するでー
 
+:math:`\Omega_0 = 2\pi/T_0`
+
+フーリエ係数の計算
+
+.. math::
+    X_k = \int^{T_0/2}_{-T_0/2} x(t)e^{-j\Omega_0kt}dt
+
+フーリエ級数
+
+.. math::
+    x(t) = \sum^{\infty}_{n=-\infty} X_ke^{j\Omega_0kt}
+
+
 フーリエ変換
 ==============================================================================
 非周期信号も分解しちゃうでー
+
+.. math::
+    X(\Omega) = \int^{\infty}_{-\infty} x(t)e^{-j\Omega t}dt
+
+.. math::
+    x(t) =\frac{1}{2\pi} \int^{\infty}_{-\infty} X(\Omega)e^{j\Omega t}d\Omega
 
 離散時間フーリエ変換
 ==============================================================================
@@ -46,7 +65,11 @@ http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html
 正規化角周波数: :math:`\omega = \Omega /f_s [rad/sample]`
 
 
+.. math::
+    X(\omega) = \sum^{\infty}_{n=-\infty} x(n)e^{-j\omega n}
 
+.. math::
+    x(t) =\frac{1}{2\pi} \int^{\pi}_{-\pi} X(\omega)e^{j\omega n}d\omega
 
 
 離散フーリエ変換
@@ -62,7 +85,8 @@ http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html
 
 で表す。(kで離散周波数を表してるので、離散時間フーリエ変換での表し方を考えて、書き方を考え直す)
 
-離散フーリエ変換と三角関数の性質を考えれば、サンプリング定理とミラーリングの説明ができます。
+.. math::
+    x(n) = \frac{1}{N}\sum^{N-1}_{n=0} X(k)e^{j\frac{2\pi}{N} kn}
 
 
 離散コサイン変換
@@ -70,6 +94,11 @@ http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html
 DCTは信号をy軸で折り返して偶関数化してDFTすることと等価であり、実際にそう計算することが多い。
 
 https://ja.wikipedia.org/wiki/%E9%9B%A2%E6%95%A3%E3%82%B3%E3%82%B5%E3%82%A4%E3%83%B3%E5%A4%89%E6%8F%9B
+
+
+
+
+
 
 
 高速フーリエ変換

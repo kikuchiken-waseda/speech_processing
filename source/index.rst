@@ -13,11 +13,9 @@
    ./pachouli/index
    ./paper/index
    ./implementation/index
+   ./processing/index
 
 
-Indices and tables
-==================
+こんなサイトが出来たら最高だわ
+https://cognicull.com/ja
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

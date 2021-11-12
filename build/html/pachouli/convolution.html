@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ケプストラム解析 &mdash; 音声信号処理の備忘録  documentation</title>
+  <title>畳み込み &mdash; 音声信号処理の備忘録  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -16,11 +16,13 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="聴覚尺度" href="scale.html" />
-    <link rel="prev" title="スペクトラム" href="spectrum.html" /> 
+    <link rel="next" title="nbsphinx使いやすいよって話" href="nbsphinx.html" />
+    <link rel="prev" title="音声の可視化" href="visualization.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,13 +45,13 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">書きたいものまとめ</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="acoustic_feature.html">音響特徴量</a></li>
 <li class="toctree-l2"><a class="reference internal" href="spectrum.html">スペクトラム</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ケプストラム解析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cepstrum.html">ケプストラム解析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scale.html">聴覚尺度</a></li>
 <li class="toctree-l2"><a class="reference internal" href="filter.html">フィルタ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mfcc.html">extract mfcc</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mgcs.html">mgcs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="visualization.html">音声の可視化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="convolution.html">畳み込み</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">畳み込み</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nbsphinx.html">nbsphinx使いやすいよって話</a></li>
 </ul>
 </li>
@@ -73,9 +75,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">書きたいものまとめ</a> &raquo;</li>
-      <li>ケプストラム解析</li>
+      <li>畳み込み</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/pachouli/cepstrum.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/pachouli/convolution.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -108,23 +110,24 @@
 }
 </style>
 <section id="id1">
-<h1><a class="toc-backref" href="#id3">ケプストラム解析</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="contents topic" id="id2">
-<p class="topic-title">目次</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id3">ケプストラム解析</a></p></li>
-</ul>
-</div>
-<p><a class="reference external" href="https://ja.wikipedia.org/wiki/%E3%82%B1%E3%83%97%E3%82%B9%E3%83%88%E3%83%A9%E3%83%A0">https://ja.wikipedia.org/wiki/%E3%82%B1%E3%83%97%E3%82%B9%E3%83%88%E3%83%A9%E3%83%A0</a></p>
-<p><a class="reference external" href="https://www.onosokki.co.jp/HP-WK/eMM_back/emm185.pdf">https://www.onosokki.co.jp/HP-WK/eMM_back/emm185.pdf</a></p>
+<h1>畳み込み<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>畳み込み積</p>
+<div class="math notranslate nohighlight">
+\[(f*g)(t) =\int f(\tau)g(t-\tau)d\tau\]</div>
+<p>畳み込み和(Conv1d)</p>
+<div class="math notranslate nohighlight">
+\[(f*g)(m) =\sum_{n} f(n)g(m-n)\]</div>
+<p>Conv2d</p>
+<div class="math notranslate nohighlight">
+\[(I*K)(i,j) =\sum_{m}\sum_{n} I(i,j)K(i-m,j-n)\]</div>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="spectrum.html" class="btn btn-neutral float-left" title="スペクトラム" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="scale.html" class="btn btn-neutral float-right" title="聴覚尺度" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="visualization.html" class="btn btn-neutral float-left" title="音声の可視化" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nbsphinx.html" class="btn btn-neutral float-right" title="nbsphinx使いやすいよって話" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

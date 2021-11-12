@@ -14,7 +14,6 @@
    :caption: Contents:
 
    ./acoustic_feature
-   ./fourier
    ./spectrum
    ./cepstrum
    ./scale
@@ -22,12 +21,7 @@
    ./mfcc
    ./mgcs
    ./visualization
+   ./convolution
    ./nbsphinx
 
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
