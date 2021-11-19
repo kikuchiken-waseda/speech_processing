@@ -12,10 +12,11 @@
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
+   ./acostic_wave
    ./acoustic_feature
    ./spectrum
    ./cepstrum
+   ./level
    ./scale
    ./filter
    ./mfcc
