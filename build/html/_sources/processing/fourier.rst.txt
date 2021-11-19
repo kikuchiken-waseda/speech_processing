@@ -6,6 +6,8 @@
 http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html
 をみてください
 
+周波数を :math:`v` で表そうかな
+
 .. contents:: 目次
 
 
