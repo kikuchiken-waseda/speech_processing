@@ -14,7 +14,7 @@
    :caption: Contents:
    
    ./acoustic_wave
-   ./acoustic_feature
+   ./acoustic_feature/index
    ./wave_equation
    ./spectrum
    ./cepstrum

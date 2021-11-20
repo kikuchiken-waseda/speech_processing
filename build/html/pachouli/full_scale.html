@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mgcs &mdash; 音声信号処理の備忘録  documentation</title>
+  <title>フルスケール &mdash; 音声信号処理の備忘録  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -16,11 +16,11 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="音声の可視化" href="visualization.html" />
-    <link rel="prev" title="extract mfcc" href="mfcc.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,26 +39,8 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">書きたいものまとめ</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="acoustic_wave.html">音波</a></li>
-<li class="toctree-l2"><a class="reference internal" href="acoustic_feature/index.html">音響特徴量</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wave_equation.html">波動方程式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="spectrum.html">スペクトラム</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cepstrum.html">ケプストラム解析</a></li>
-<li class="toctree-l2"><a class="reference internal" href="level.html">レベル表現</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scale.html">聴覚尺度</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filter.html">フィルタ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mfcc.html">extract mfcc</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">mgcs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">なにこれ</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="visualization.html">音声の可視化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="convolution.html">畳み込み</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nbsphinx.html">nbsphinx使いやすいよって話</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">書きたいものまとめ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">実装</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processing/index.html">信号処理</a></li>
@@ -78,10 +60,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">書きたいものまとめ</a> &raquo;</li>
-      <li>mgcs</li>
+      <li>フルスケール</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/pachouli/mgcs.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/pachouli/full_scale.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -113,32 +94,22 @@
     text-align: unset;
 }
 </style>
-<section id="mgcs">
-<h1><a class="toc-backref" href="#id3">mgcs</a><a class="headerlink" href="#mgcs" title="Permalink to this headline">¶</a></h1>
-<div class="contents topic" id="id1">
-<p class="topic-title">目次</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#mgcs" id="id3">mgcs</a></p>
-<ul>
-<li><p><a class="reference internal" href="#id2" id="id4">なにこれ</a></p></li>
-</ul>
-</li>
-</ul>
-</div>
-<section id="id2">
-<h2><a class="toc-backref" href="#id4">なにこれ</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>lpcとかケプストラムとかを包含するやつ</p>
-<p><a class="reference external" href="https://www.sp.nitech.ac.jp/~tokuda/selected_pub/pdf/paper/tokuda_j75-a_7_1124.pdf">https://www.sp.nitech.ac.jp/~tokuda/selected_pub/pdf/paper/tokuda_j75-a_7_1124.pdf</a></p>
+<section id="id1">
+<h1>フルスケール<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AB%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AB">https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AB%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AB</a></p>
+<p>デジタルシステムにおいて、信号が最大（最小）表現可能値に達したとき、その信号はデジタルフルスケールであるといわれる。</p>
 </section>
+<section id="dbfs">
+<h1>dBFS<a class="headerlink" href="#dbfs" title="Permalink to this headline">¶</a></h1>
+<p>デジタル信号の最大値を0dBとした値</p>
+<div class="math notranslate nohighlight">
+\[dBFS = 10\times \log_{10}(\frac{IN}{FS})^2\]</div>
 </section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="mfcc.html" class="btn btn-neutral float-left" title="extract mfcc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="visualization.html" class="btn btn-neutral float-right" title="音声の可視化" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
