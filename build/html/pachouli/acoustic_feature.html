@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="スペクトラム" href="spectrum.html" />
-    <link rel="prev" title="書きたいものまとめ" href="index.html" /> 
+    <link rel="next" title="波動方程式" href="wave_equation.html" />
+    <link rel="prev" title="音波" href="acoustic_wave.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,6 +43,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">書きたいものまとめ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="acoustic_wave.html">音波</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">音響特徴量</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">音響特徴量とは</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">よく使われる音響特徴量</a><ul>
@@ -51,15 +52,16 @@
 <li class="toctree-l4"><a class="reference internal" href="#id7">音圧</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id8">音圧レベル</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#f0">F0</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9">パワースペクトル</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id10">フォルマント周波数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">パワースペクトル</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">フォルマント周波数</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mfcc">MFCC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#lpc">LPC</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">音響特徴量集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">音響特徴量集</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="wave_equation.html">波動方程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="spectrum.html">スペクトラム</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cepstrum.html">ケプストラム解析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="level.html">レベル表現</a></li>
@@ -127,39 +129,41 @@
 }
 </style>
 <section id="id1">
-<h1><a class="toc-backref" href="#id12">音響特徴量</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id14">音響特徴量</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="id2">
 <p class="topic-title">目次</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id12">音響特徴量</a></p>
+<li><p><a class="reference internal" href="#id1" id="id14">音響特徴量</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id3" id="id13">音響特徴量とは</a></p></li>
-<li><p><a class="reference internal" href="#id4" id="id14">よく使われる音響特徴量</a></p>
+<li><p><a class="reference internal" href="#id3" id="id15">音響特徴量とは</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id16">よく使われる音響特徴量</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id5" id="id15">音響パワー</a></p></li>
-<li><p><a class="reference internal" href="#id6" id="id16">音響パワーレベル</a></p></li>
-<li><p><a class="reference internal" href="#id7" id="id17">音圧</a></p></li>
-<li><p><a class="reference internal" href="#id8" id="id18">音圧レベル</a></p>
+<li><p><a class="reference internal" href="#id5" id="id17">音響パワー</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id18">音響パワーレベル</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id19">音圧</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id20">音圧レベル</a></p>
 <ul>
-<li><p><a class="reference internal" href="#peak" id="id19">Peak</a></p></li>
-<li><p><a class="reference internal" href="#rms" id="id20">RMS</a></p></li>
-<li><p><a class="reference internal" href="#loudness" id="id21">Loudness</a></p></li>
+<li><p><a class="reference internal" href="#peak" id="id21">Peak</a></p></li>
+<li><p><a class="reference internal" href="#rms" id="id22">RMS</a></p></li>
+<li><p><a class="reference internal" href="#loudness" id="id23">Loudness</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id24">Loudnessレベル</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id25">騒音レベル</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#f0" id="id22">F0</a></p></li>
-<li><p><a class="reference internal" href="#id9" id="id23">パワースペクトル</a></p></li>
-<li><p><a class="reference internal" href="#id10" id="id24">フォルマント周波数</a></p></li>
-<li><p><a class="reference internal" href="#mfcc" id="id25">MFCC</a></p></li>
-<li><p><a class="reference internal" href="#lpc" id="id26">LPC</a></p></li>
+<li><p><a class="reference internal" href="#f0" id="id26">F0</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id27">パワースペクトル</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id28">フォルマント周波数</a></p></li>
+<li><p><a class="reference internal" href="#mfcc" id="id29">MFCC</a></p></li>
+<li><p><a class="reference internal" href="#lpc" id="id30">LPC</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id11" id="id27">音響特徴量集</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id31">音響特徴量集</a></p></li>
 </ul>
 </li>
 </ul>
 </div>
 <section id="id3">
-<h2><a class="toc-backref" href="#id13">音響特徴量とは</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">音響特徴量とは</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>音に含まれる物理的な特徴を数値化(MKS単位系で表現可能)したものを指します。
 用は音の物理的な特徴や特性をまとめたものです。</p>
 <p>では物理的とはなんでしょう？</p>
@@ -178,13 +182,13 @@
 <p>音響特徴量ってなんですか？？: <a class="reference external" href="http://abcpedia.acoustics.jp/bs13_a_q4.pdf">abcpedia</a></p>
 </section>
 <section id="id4">
-<h2><a class="toc-backref" href="#id14">よく使われる音響特徴量</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">よく使われる音響特徴量</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <section id="id5">
-<h3><a class="toc-backref" href="#id15">音響パワー</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">音響パワー</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://www.onosokki.co.jp/HP-WK/eMM_back/emm101.pdf">https://www.onosokki.co.jp/HP-WK/eMM_back/emm101.pdf</a></p>
 </section>
 <section id="id6">
-<h3><a class="toc-backref" href="#id16">音響パワーレベル</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">音響パワーレベル</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>音響パワー <span class="math notranslate nohighlight">\(W [W]\)</span> に対し、基準値 <span class="math notranslate nohighlight">\(W_0 = 1 \times 10^{-12} [W]\)</span> を用いて</p>
 <div class="math notranslate nohighlight">
 \[L_w = 10 \times \log_{10} \frac{W}{W_0} [dB]\]</div>
@@ -192,11 +196,11 @@
 <p>実用上はSTFTのフレーム一つ一つのパワーを求めるのがよさそう？</p>
 </section>
 <section id="id7">
-<h3><a class="toc-backref" href="#id17">音圧</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id19">音圧</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>文字通り、音の圧力(pressure)</p>
 </section>
 <section id="id8">
-<h3><a class="toc-backref" href="#id18">音圧レベル</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id20">音圧レベル</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>音量とも呼ばれてたりする。</p>
 <p>可聴域にある音は同じ周波数であれば、音圧が大きいほど大きな音として認識される。また、音圧の単位は圧力を示す単位であるPa（パスカル）であるが、人間が認識しうる音の大きさの範囲は音圧の実値では広範囲にわたる。</p>
 <p>そこで、音響工学の分野では人間の聴覚特性に合わせ、音圧の大きさを基準となる値との比の常用対数によって表現される量（レベル）である音圧レベルを用いて表すことが多い。</p>
@@ -206,35 +210,50 @@
 \[L_p = 10 \times \log_{10} (\frac{p}{p_0})^2[dB]\]</div>
 <p>で表す。</p>
 <section id="peak">
-<h4><a class="toc-backref" href="#id19">Peak</a><a class="headerlink" href="#peak" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id21">Peak</a><a class="headerlink" href="#peak" title="Permalink to this headline">¶</a></h4>
+<p>長さN(サンプル数)のディジタル音声信号 <span class="math notranslate nohighlight">\(x(i)\)</span> におけるPeakは</p>
+<div class="math notranslate nohighlight">
+\[x_{peak} =  \max x(i)\]</div>
 </section>
 <section id="rms">
-<h4><a class="toc-backref" href="#id20">RMS</a><a class="headerlink" href="#rms" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id22">RMS</a><a class="headerlink" href="#rms" title="Permalink to this headline">¶</a></h4>
 <p>波形全体や一部分で計算される</p>
 <p>波形振幅の時間平均値(多分信号の実効値)</p>
-<p>長さN(サンプル数)のディジタル音声信号 <span class="math notranslate nohighlight">\(x(i)\)</span> におけるパワーは</p>
+<p>長さN(サンプル数)のディジタル音声信号 <span class="math notranslate nohighlight">\(x(i)\)</span> におけるRMSは</p>
 <div class="math notranslate nohighlight">
 \[x_{rms} =  \sqrt{\frac{1}{N} \sum^{N}_{i=1} x(i)^2}\]</div>
 </section>
 <section id="loudness">
-<h4><a class="toc-backref" href="#id21">Loudness</a><a class="headerlink" href="#loudness" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id23">Loudness</a><a class="headerlink" href="#loudness" title="Permalink to this headline">¶</a></h4>
+<p>ヒトの聴覚が感じる音の大小を示す心理量</p>
+<p>単位は <span class="math notranslate nohighlight">\([sone]\)</span></p>
+<p>音圧レベル <span class="math notranslate nohighlight">\(40[dB]\)</span> 周波数 <span class="math notranslate nohighlight">\(1[kHz]\)</span> の純音をヒトが聞いたときに感じる音の大きさが
+<span class="math notranslate nohighlight">\(1[sone]\)</span> と定義される</p>
+</section>
+<section id="id9">
+<h4><a class="toc-backref" href="#id24">Loudnessレベル</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<p>そのうち書く</p>
+</section>
+<section id="id10">
+<h4><a class="toc-backref" href="#id25">騒音レベル</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<p>そのうち書く</p>
 </section>
 </section>
 <section id="f0">
-<h3><a class="toc-backref" href="#id22">F0</a><a class="headerlink" href="#f0" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id26">F0</a><a class="headerlink" href="#f0" title="Permalink to this headline">¶</a></h3>
 <p>信号を正弦波の合成で表した時の最も低い周波数成分の周波数を指す</p>
 </section>
-<section id="id9">
-<h3><a class="toc-backref" href="#id23">パワースペクトル</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<section id="id11">
+<h3><a class="toc-backref" href="#id27">パワースペクトル</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 </section>
-<section id="id10">
-<h3><a class="toc-backref" href="#id24">フォルマント周波数</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<section id="id12">
+<h3><a class="toc-backref" href="#id28">フォルマント周波数</a><a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="mfcc">
-<h3><a class="toc-backref" href="#id25">MFCC</a><a class="headerlink" href="#mfcc" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id29">MFCC</a><a class="headerlink" href="#mfcc" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="lpc">
-<h3><a class="toc-backref" href="#id26">LPC</a><a class="headerlink" href="#lpc" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id30">LPC</a><a class="headerlink" href="#lpc" title="Permalink to this headline">¶</a></h3>
 <p>全極型フィルタモデル(自己回帰モデル等)</p>
 <div class="math notranslate nohighlight">
 \[y_t + \sum^{p}_{i=1} a_i y_{t-i} = \varepsilon_t\]</div>
@@ -242,8 +261,8 @@
 <p><a class="reference external" href="https://ocw.u-tokyo.ac.jp/lecture_files/engin_01/3/notes/ja/C1-LPC.PDF">https://ocw.u-tokyo.ac.jp/lecture_files/engin_01/3/notes/ja/C1-LPC.PDF</a></p>
 </section>
 </section>
-<section id="id11">
-<h2><a class="toc-backref" href="#id27">音響特徴量集</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<section id="id13">
+<h2><a class="toc-backref" href="#id31">音響特徴量集</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
 </section>
 </section>
 
@@ -251,8 +270,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="書きたいものまとめ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="spectrum.html" class="btn btn-neutral float-right" title="スペクトラム" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="acoustic_wave.html" class="btn btn-neutral float-left" title="音波" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="wave_equation.html" class="btn btn-neutral float-right" title="波動方程式" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

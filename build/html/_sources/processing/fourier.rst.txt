@@ -6,7 +6,7 @@
 http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html
 をみてください
 
-周波数を :math:`v` で表そうかな
+周波数を :math:`\nu` で表そうかな
 
 .. contents:: 目次
 
@@ -31,12 +31,12 @@ http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html
 フーリエ係数の計算
 
 .. math::
-    X_k = \int^{T_0/2}_{-T_0/2} x(t)e^{-j\Omega_0kt}dt
+    F_k = \int^{T_0/2}_{-T_0/2} f(t)e^{-j\Omega_0kt}dt
 
 フーリエ級数
 
 .. math::
-    x(t) = \sum^{\infty}_{n=-\infty} X_ke^{j\Omega_0kt}
+    f(t) = \sum^{\infty}_{n=-\infty} F_ke^{j\Omega_0kt}
 
 
 フーリエ変換
@@ -44,10 +44,10 @@ http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html
 非周期信号も分解しちゃうでー
 
 .. math::
-    X(\Omega) = \int^{\infty}_{-\infty} x(t)e^{-j\Omega t}dt
+    F(\Omega) = \int^{\infty}_{-\infty} f(t)e^{-j\Omega t}dt
 
 .. math::
-    x(t) =\frac{1}{2\pi} \int^{\infty}_{-\infty} X(\Omega)e^{j\Omega t}d\Omega
+    f(t) =\frac{1}{2\pi} \int^{\infty}_{-\infty} F(\Omega)e^{j\Omega t}d\Omega
 
 離散時間フーリエ変換
 ==============================================================================
@@ -60,38 +60,38 @@ http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html
 
 ここではサンプリング周期を  :math:`T_s[s]` で表す。
 
-サンプリング周波数: :math:`f_s = 1/T_s [Hz]` 
+サンプリング周波数: :math:`\nu _s = 1/T_s [Hz]` 
 
 離散信号では時間をサンプリング周期で割って正規化したものを時間として考えている。
 ここではその時間を正規化時間と呼ぶこととし、正規化時間は無次元量であるが、理解のために単位として :math:`[sample]` を使うことにする。
 
-非正規化角周波数: :math:`\Omega = 2\pi f [rad/s]`
+非正規化角周波数: :math:`\Omega = 2\pi \nu  [rad/s]`
 
-正規化角周波数: :math:`\omega = \Omega /f_s [rad/sample]`
+正規化角周波数: :math:`\omega = \Omega /\nu _s [rad/sample]`
 
-
-.. math::
-    X(\omega) = \sum^{\infty}_{n=-\infty} x(n)e^{-j\omega n}
 
 .. math::
-    x(t) =\frac{1}{2\pi} \int^{\pi}_{-\pi} X(\omega)e^{j\omega n}d\omega
+    F(\omega) = \sum^{\infty}_{n=-\infty} f(n)e^{-j\omega n}
+
+.. math::
+    f(t) =\frac{1}{2\pi} \int^{\pi}_{-\pi} F(\omega)e^{j\omega n}d\omega
 
 
 離散フーリエ変換
 ==============================================================================
 音声長を :math:`t[s]` として
 
-:math:`N = \lfloor tf_s \rfloor [sample]`
+:math:`N = \lfloor t\nu _s \rfloor [sample]`
 
-:math:`x(n)` を離散信号とする。:math:`0 \leq n \leq N-1` を満たす有限長離散信号 :math:`x(n)` の離散フーリエ変換を
+:math:`f(n)` を離散信号とする。:math:`0 \leq n \leq N-1` を満たす有限長離散信号 :math:`f(n)` の離散フーリエ変換を
 
 .. math::
-    X(k) = \sum^{N-1}_{n=0} x(n)e^{-j\frac{2\pi}{N} kn}
+    F(k) = \sum^{N-1}_{n=0} f(n)e^{-j\frac{2\pi}{N} kn}
 
 で表す。(kで離散周波数を表してるので、離散時間フーリエ変換での表し方を考えて、書き方を考え直す)
 
 .. math::
-    x(n) = \frac{1}{N}\sum^{N-1}_{n=0} X(k)e^{j\frac{2\pi}{N} kn}
+    f(n) = \frac{1}{N}\sum^{N-1}_{n=0} F(k)e^{j\frac{2\pi}{N} kn}
 
 
 離散コサイン変換
@@ -116,13 +116,13 @@ https://ja.wikipedia.org/wiki/%E9%9B%A2%E6%95%A3%E3%82%B3%E3%82%B5%E3%82%A4%E3%8
 短い時間間隔でFTして時間構造を見ちゃうでー
 
 
-:math:`x(t)` を短時間の時間区間に分割して、その周波数構造を分析するために、 :math:`0 \leq t \leq N-1` だけで0でない値を持ち、
-この外では0となるような関数 :math:`w_a(t)` を :math:`x(t)` に乗じる。この :math:`w_a(t)` は分析窓関数と呼ばれる。
+:math:`f(t)` を短時間の時間区間に分割して、その周波数構造を分析するために、 :math:`0 \leq t \leq N-1` だけで0でない値を持ち、
+この外では0となるような関数 :math:`w_a(t)` を :math:`f(t)` に乗じる。この :math:`w_a(t)` は分析窓関数と呼ばれる。
 
 短時間フーリエ変換では
 
 .. math:: 
-    x_m(t-mS) = w_a(t-mS)x(t)
+    f_m(t-mS) = w_a(t-mS)f(t)
 
 のように分析窓関数 :math:`w_a(t)` を :math:`mS` だけシフトして乗じることにより、
 :math:`mS \leq t \leq mS+N-1` 部分を切り出し、
@@ -134,11 +134,11 @@ https://ja.wikipedia.org/wiki/%E9%9B%A2%E6%95%A3%E3%82%B3%E3%82%B5%E3%82%A4%E3%8
 
 :math:`N=512, 1024, 2048` がとられることが多い
 
-ここで　:math:`n=t-mS` と置くと、:math:`x_m(n)` は、 :math:`0 \leq t \leq N-1` でのみ :math:`0` でない値を持つ。
+ここで　:math:`n=t-mS` と置くと、:math:`f_m(n)` は、 :math:`0 \leq t \leq N-1` でのみ :math:`0` でない値を持つ。
 こうして分割された有限長信号に離散フーリエ変換を適応することで、短時間フーリエ変換
 
 .. math::
-    X(m, k) = \sum^{N-1}_{n=0} x_m(n)e^{-j\frac{2\pi}{N} kn}
+    F(m, k) = \sum^{N-1}_{n=0} f_m(n)e^{-j\frac{2\pi}{N} kn}
 
 が定義される。
 

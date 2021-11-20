@@ -12,7 +12,7 @@
  :math:`t\geq 0, s\in\mathbb{C}`
 
 .. math::    
-    X(s) = \int^{\infty}_{0}x(t)e^{-st}dt
+    F(s) = \int^{\infty}_{0}f(t)e^{-st}dt
     
     s = c+j\Omega
 
@@ -24,6 +24,6 @@ z変換とは
 と単位ステップ関数 :math:`u_0(n)` をかけて離散時間フーリエ変換したもの
 
 .. math::    
-    X(z) = \sum^{\infty}_{n=0}x(n)z^{-n}
+    F(z) = \sum^{\infty}_{n=0}f(n)z^{-n}
     
     z = e^{c+j\omega}

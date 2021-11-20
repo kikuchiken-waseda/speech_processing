@@ -46,8 +46,8 @@
 <li class="toctree-l2"><a class="reference internal" href="acoustic_wave.html">音波</a></li>
 <li class="toctree-l2"><a class="reference internal" href="acoustic_feature.html">音響特徴量</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">波動方程式</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id3">波動方程式とは</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">波動とは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">波動とは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">波動方程式の導入</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="spectrum.html">スペクトラム</a></li>
@@ -123,32 +123,36 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#id1" id="id5">波動方程式</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id3" id="id6">波動方程式とは</a></p></li>
-<li><p><a class="reference internal" href="#id4" id="id7">波動とは</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id6">波動とは</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id7">波動方程式の導入</a></p></li>
 </ul>
 </li>
 </ul>
 </div>
-<section id="id3">
-<h2><a class="toc-backref" href="#id6">波動方程式とは</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://www.jstage.jst.go.jp/article/jasj/66/9/66_KJ00006579568/_pdf/-char/ja">https://www.jstage.jst.go.jp/article/jasj/66/9/66_KJ00006579568/_pdf/-char/ja</a></p>
 <p><a class="reference external" href="http://www.chem.konan-u.ac.jp/PCSI/web_material/wave_PW.pdf">http://www.chem.konan-u.ac.jp/PCSI/web_material/wave_PW.pdf</a></p>
 <p>わからん</p>
-</section>
-<section id="id4">
-<h2><a class="toc-backref" href="#id7">波動とは</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<section id="id3">
+<h2><a class="toc-backref" href="#id6">波動とは</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>波動は、空間と時間に指定される関数によって表される。</p>
 <p>波の進行方向を <span class="math notranslate nohighlight">\(x\)</span> 方向とし、ある時間 <span class="math notranslate nohighlight">\(t\)</span> 場所 <span class="math notranslate nohighlight">\(x\)</span> での変位を <span class="math notranslate nohighlight">\(u(x, t)\)</span> とする。
 時間 <span class="math notranslate nohighlight">\(t=t_0=0\)</span> での変位を <span class="math notranslate nohighlight">\(f(x)=u(x,0)\)</span> とする。
-この変位は一定の形を保ったまま一定の速度 <span class="math notranslate nohighlight">\(v\)</span> で <span class="math notranslate nohighlight">\(+x\)</span> 方向に伝搬していくとする。</p>
+この変位は一定の形を保ったまま一定の速度(音速) <span class="math notranslate nohighlight">\(c\)</span> で <span class="math notranslate nohighlight">\(+x\)</span> 方向に伝搬していくとする。</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}u(x,\delta t) = f(x - v\delta t)\\u(x,-\delta t) = f(x + v\delta t)\end{aligned}\end{align} \]</div>
+\[ \begin{align}\begin{aligned}u(x,\delta t) = f(x - c\delta t)\\u(x,-\delta t) = f(x + c\delta t)\end{aligned}\end{align} \]</div>
 <p>周期的な波は一般に</p>
 <div class="math notranslate nohighlight">
 \[Ae^{j(kx-\omega t)} = A\cos(kx-\omega t)+jA\sin(kx-\omega t)\]</div>
 <p>で表される。</p>
-<p>波長 <span class="math notranslate nohighlight">\(\lambda\)</span>
-波数 <span class="math notranslate nohighlight">\(k\)</span></p>
+<p>波長 <span class="math notranslate nohighlight">\(\lambda\)</span></p>
+<p>波数 <span class="math notranslate nohighlight">\(k\)</span></p>
+<p>振動数 <span class="math notranslate nohighlight">\(\nu\)</span></p>
+<p>角振動数 <span class="math notranslate nohighlight">\(\omega = 2\pi\nu\)</span></p>
+<p>位相 <span class="math notranslate nohighlight">\(kx-\omega t\)</span></p>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id7">波動方程式の導入</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>微分積分学まともにやったら意味わかると思われる</p>
 </section>
 </section>
 
