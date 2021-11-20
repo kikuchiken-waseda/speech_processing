@@ -37,3 +37,5 @@ https://www.jstage.jst.go.jp/article/souonseigyo1977/24/5/24_5_339/_pdf
     v=\frac{\partial u}{\partial t}
 
 で表せる
+
+
