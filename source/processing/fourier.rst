@@ -49,6 +49,11 @@ http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html
 .. math::
     f(t) =\frac{1}{2\pi} \int^{\infty}_{-\infty} F(\Omega)e^{j\Omega t}d\Omega
 
+.. math::
+    F(\Omega) = \mathcal{F}[f(t)]
+
+    f(t) = \mathcal{F}^{-1}[F(\Omega)]
+
 離散時間フーリエ変換
 ==============================================================================
 離散値でもFTしちゃうでー

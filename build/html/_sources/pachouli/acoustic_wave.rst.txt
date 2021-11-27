@@ -39,4 +39,3 @@ https://www.jstage.jst.go.jp/article/souonseigyo1977/24/5/24_5_339/_pdf
 で表せる
 
 
-:any:`./level` 

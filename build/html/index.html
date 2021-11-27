@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>音声信号処理の備忘録 &mdash; 音声信号処理の備忘録  documentation</title>
+  <title>音声信号処理のための備忘録 &mdash; 音声信号処理のための備忘録  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -27,7 +27,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="#" class="icon icon-home"> 音声信号処理の備忘録
+            <a href="#" class="icon icon-home"> 音声信号処理のための備忘録
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -51,7 +51,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">音声信号処理の備忘録</a>
+          <a href="#">音声信号処理のための備忘録</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -59,7 +59,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>音声信号処理の備忘録</li>
+      <li>音声信号処理のための備忘録</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -94,7 +94,7 @@
 }
 </style>
 <section id="id1">
-<h1>音声信号処理の備忘録<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>音声信号処理のための備忘録<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -106,10 +106,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pachouli/acoustic_feature/index.html">音響特徴量</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pachouli/acoustic_feature/index.html#id3">音響特徴量とは</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pachouli/acoustic_feature/index.html#id4">音の大きさを表す音響特徴量</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pachouli/acoustic_feature/index.html#id11">音の高さを表す音響特徴量</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pachouli/acoustic_feature/index.html#id14">音色を表す音響特徴量</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pachouli/acoustic_feature/index.html#id15">音響特徴量集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/acoustic_feature/index.html#id5">音の大きさを表す音響特徴量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/acoustic_feature/index.html#id12">音の高さを表す音響特徴量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/acoustic_feature/index.html#id15">音色を表す音響特徴量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/acoustic_feature/index.html#id16">音響特徴量集</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pachouli/wave_equation.html">波動方程式</a><ul>
@@ -121,7 +121,10 @@
 <li class="toctree-l3"><a class="reference internal" href="pachouli/spectrum.html#id3">スペクトラムとは</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="pachouli/cepstrum.html">ケプストラム解析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pachouli/cepstrum.html">ケプストラム</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/cepstrum.html#id3">ケプストラムの定義</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="pachouli/level.html">レベル表現</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pachouli/level.html#id3">ベル</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pachouli/level.html#id5">ネーパ</a></li>
@@ -142,8 +145,10 @@
 <li class="toctree-l3"><a class="reference internal" href="pachouli/mfcc.html#id3">前提知識</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="pachouli/mgcs.html">mgcs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pachouli/mgcs.html">mel generalized cepstrum</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pachouli/mgcs.html#id2">なにこれ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/mgcs.html#generalized-logarithmic-function">generalized logarithmic function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/mgcs.html#generalized-cepstrum">generalized cepstrum</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pachouli/visualization.html">音声の可視化</a><ul>
@@ -152,7 +157,23 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pachouli/convolution.html">畳み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pachouli/complex.html">複素関数</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/complex.html#id2">複素数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/complex.html#id3">四則</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/complex.html#id4">オイラーの等式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/complex.html#id5">複素数の指数関数</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="pachouli/nbsphinx.html">nbsphinx使いやすいよって話</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pachouli/index.html#id2">後でまとめる雑多な知識</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/index.html#transfer-function">伝達関数(transfer function)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/index.html#id3">極・零点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/index.html#id4">遅延演算子</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/index.html#rc">RC回路</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/index.html#id5">写像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pachouli/index.html#id6">マクローリン展開</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="paper/index.html">論文まとめ</a><ul>
