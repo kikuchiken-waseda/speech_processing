@@ -56,6 +56,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id2">なにこれ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#generalized-logarithmic-function">generalized logarithmic function</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#generalized-cepstrum">generalized cepstrum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">本編</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="visualization.html">音声の可視化</a></li>
@@ -120,27 +121,29 @@
 }
 </style>
 <section id="mel-generalized-cepstrum">
-<h1><a class="toc-backref" href="#id3">mel generalized cepstrum</a><a class="headerlink" href="#mel-generalized-cepstrum" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id4">mel generalized cepstrum</a><a class="headerlink" href="#mel-generalized-cepstrum" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="id1">
 <p class="topic-title">目次</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#mel-generalized-cepstrum" id="id3">mel generalized cepstrum</a></p>
+<li><p><a class="reference internal" href="#mel-generalized-cepstrum" id="id4">mel generalized cepstrum</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id2" id="id4">なにこれ</a></p></li>
-<li><p><a class="reference internal" href="#generalized-logarithmic-function" id="id5">generalized logarithmic function</a></p></li>
-<li><p><a class="reference internal" href="#generalized-cepstrum" id="id6">generalized cepstrum</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id5">なにこれ</a></p></li>
+<li><p><a class="reference internal" href="#generalized-logarithmic-function" id="id6">generalized logarithmic function</a></p></li>
+<li><p><a class="reference internal" href="#generalized-cepstrum" id="id7">generalized cepstrum</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id8">本編</a></p></li>
 </ul>
 </li>
 </ul>
 </div>
 <section id="id2">
-<h2><a class="toc-backref" href="#id4">なにこれ</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">なにこれ</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>lpcとかケプストラムとかを包含するやつ</p>
 <p><a class="reference external" href="https://www.sp.nitech.ac.jp/~tokuda/selected_pub/pdf/paper/tokuda_j75-a_7_1124.pdf">https://www.sp.nitech.ac.jp/~tokuda/selected_pub/pdf/paper/tokuda_j75-a_7_1124.pdf</a></p>
 <p><a class="reference external" href="https://www.sp.nitech.ac.jp/~tokuda/tokuda_tamkang2002.pdf">https://www.sp.nitech.ac.jp/~tokuda/tokuda_tamkang2002.pdf</a></p>
+<p><a class="reference external" href="https://www.sp.nitech.ac.jp/~tokuda/selected_pub/pdf/conference/tokuda_icslp1994.pdf">https://www.sp.nitech.ac.jp/~tokuda/selected_pub/pdf/conference/tokuda_icslp1994.pdf</a></p>
 </section>
 <section id="generalized-logarithmic-function">
-<h2><a class="toc-backref" href="#id5">generalized logarithmic function</a><a class="headerlink" href="#generalized-logarithmic-function" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">generalized logarithmic function</a><a class="headerlink" href="#generalized-logarithmic-function" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}s_\gamma(w):=
 \begin{cases}
@@ -148,7 +151,16 @@
 \end{cases}\end{aligned}\end{align} \]</div>
 </section>
 <section id="generalized-cepstrum">
-<h2><a class="toc-backref" href="#id6">generalized cepstrum</a><a class="headerlink" href="#generalized-cepstrum" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">generalized cepstrum</a><a class="headerlink" href="#generalized-cepstrum" title="Permalink to this headline">¶</a></h2>
+<p>複素ケプストラムを一般化対数関数で拡張したもの</p>
+<div class="math notranslate nohighlight">
+\[c_{\gamma}(n) := \frac{1}{2\pi} \int^{\pi}_{-\pi} s_\gamma(F(\omega))e^{j\omega n}d\omega\]</div>
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id8">本編</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>実際にはこの定義で出さないらしい</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}c_{\alpha,\gamma}(n) := \frac{1}{2\pi} \int^{\pi}_{-\pi} s_\gamma(F(\omega))e^{j\beta_\alpha(\omega) n}d\omega\\\beta_\alpha(\omega) = \tan^{-1}\frac{(1-\alpha^2)\sin\omega}{(1+\alpha^2)\cos\omega-2\alpha}\end{aligned}\end{align} \]</div>
 </section>
 </section>
 

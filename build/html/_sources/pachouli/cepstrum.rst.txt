@@ -21,10 +21,10 @@ https://support.ptc.com/help/mathcad/ja/index.html#page/PTC_Mathcad_Help/example
 
 音声分析においてケプストラムと呼ばれるものは、たいていの場合対数パワースペクトラム(or振幅スペクトラム)を逆フーリエ変換したもの
 
-離散信号 :math:`f(n)` の振幅スペクトラムケプストラム :math:`c_f(n)` は
+離散信号 :math:`f(n)` の振幅スペクトラムケプストラム :math:`c(n)` は
 
 .. math::
-    c_f(n) = \frac{1}{2\pi} \int^{\pi}_{-\pi} \ln(|F(\omega)|)e^{j\omega n}d\omega
+    c(n) = \frac{1}{2\pi} \int^{\pi}_{-\pi} \ln(|F(\omega)|)e^{j\omega n}d\omega
 
 で表される。( :math:`F(\omega)` は :math:`f(n)` のフーリエ変換)
 
@@ -32,6 +32,6 @@ https://support.ptc.com/help/mathcad/ja/index.html#page/PTC_Mathcad_Help/example
 
 .. math::
     \begin{eqnarray}
-    cc_f(n) &=& \frac{1}{2\pi} \int^{\pi}_{-\pi} \ln(F(\omega))e^{j\omega n}d\omega\\
+    cc(n) &=& \frac{1}{2\pi} \int^{\pi}_{-\pi} \ln(F(\omega))e^{j\omega n}d\omega\\
     &=& \frac{1}{2\pi} \int^{\pi}_{-\pi} (\ln(|F(\omega)|)+j\angle F(\omega))e^{j\omega n}d\omega
     \end{eqnarray}

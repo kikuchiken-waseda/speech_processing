@@ -12,6 +12,7 @@ https://www.sp.nitech.ac.jp/~tokuda/selected_pub/pdf/paper/tokuda_j75-a_7_1124.p
 
 https://www.sp.nitech.ac.jp/~tokuda/tokuda_tamkang2002.pdf
 
+https://www.sp.nitech.ac.jp/~tokuda/selected_pub/pdf/conference/tokuda_icslp1994.pdf
 
 generalized logarithmic function
 ==============================================================================
@@ -25,3 +26,16 @@ generalized logarithmic function
 
 generalized cepstrum
 ==============================================================================
+複素ケプストラムを一般化対数関数で拡張したもの
+
+.. math::
+    c_{\gamma}(n) := \frac{1}{2\pi} \int^{\pi}_{-\pi} s_\gamma(F(\omega))e^{j\omega n}d\omega
+
+本編
+==============================================================================
+実際にはこの定義で出さないらしい
+
+.. math::
+    c_{\alpha,\gamma}(n) := \frac{1}{2\pi} \int^{\pi}_{-\pi} s_\gamma(F(\omega))e^{j\beta_\alpha(\omega) n}d\omega
+
+    \beta_\alpha(\omega) = \tan^{-1}\frac{(1-\alpha^2)\sin\omega}{(1+\alpha^2)\cos\omega-2\alpha}

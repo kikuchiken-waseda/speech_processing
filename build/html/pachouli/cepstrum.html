@@ -137,14 +137,14 @@
 <p>対数スペクトラムをフーリエ変換(または逆フーリエ変換)をしたもの</p>
 <p>使うものによって定義が違うので注意</p>
 <p>音声分析においてケプストラムと呼ばれるものは、たいていの場合対数パワースペクトラム(or振幅スペクトラム)を逆フーリエ変換したもの</p>
-<p>離散信号 <span class="math notranslate nohighlight">\(f(n)\)</span> の振幅スペクトラムケプストラム <span class="math notranslate nohighlight">\(c_f(n)\)</span> は</p>
+<p>離散信号 <span class="math notranslate nohighlight">\(f(n)\)</span> の振幅スペクトラムケプストラム <span class="math notranslate nohighlight">\(c(n)\)</span> は</p>
 <div class="math notranslate nohighlight">
-\[c_f(n) = \frac{1}{2\pi} \int^{\pi}_{-\pi} \ln(|F(\omega)|)e^{j\omega n}d\omega\]</div>
+\[c(n) = \frac{1}{2\pi} \int^{\pi}_{-\pi} \ln(|F(\omega)|)e^{j\omega n}d\omega\]</div>
 <p>で表される。( <span class="math notranslate nohighlight">\(F(\omega)\)</span> は <span class="math notranslate nohighlight">\(f(n)\)</span> のフーリエ変換)</p>
 <p>複素ケプストラム</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{eqnarray}
-cc_f(n) &amp;=&amp; \frac{1}{2\pi} \int^{\pi}_{-\pi} \ln(F(\omega))e^{j\omega n}d\omega\\
+cc(n) &amp;=&amp; \frac{1}{2\pi} \int^{\pi}_{-\pi} \ln(F(\omega))e^{j\omega n}d\omega\\
 &amp;=&amp; \frac{1}{2\pi} \int^{\pi}_{-\pi} (\ln(|F(\omega)|)+j\angle F(\omega))e^{j\omega n}d\omega
 \end{eqnarray}\end{split}\]</div>
 </section>
