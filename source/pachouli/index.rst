@@ -76,19 +76,6 @@ https://ja.wikipedia.org/wiki/%E4%BC%9D%E9%81%94%E9%96%A2%E6%95%B0%E6%B3%95
 
 RC回路
 ---------------------------------------------------------------
-写像
----------------------------------------------------------------
-定義
-
-集合 :math:`X,Y` に対し、 :math:`X` のすべての元に対して :math:`Y` の元が唯一定まる時、その対応を写像と呼ぶ
-
-:math:`f:X\to Y` で、 :math:`f` が :math:`X` から :math:`Y` への写像であることを表す。
-:math:`f:x\mapsto f(x)` で、 写像 :math:`f` によって :math:`x\in X` が :math:`f(x)\in Y` に移ることを表す。
-
-全射は :math:`\forall y\in Y,\exists x\in X\;\mathrm{s.t.}\; y=f(x)`
-
-単射は :math:`\forall x_1,x_2\in X, (f(x_1)=f(x_2)\Rightarrow x_1=x_2)`
-
 
 
 マクローリン展開

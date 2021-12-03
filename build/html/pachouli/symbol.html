@@ -50,8 +50,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#id6">数の集合</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">絶対値</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">ガウス記号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">写像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">関数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">絶対値</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">ガウス記号</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="acoustic_wave.html">音波</a></li>
@@ -127,33 +129,37 @@
 }
 </style>
 <section id="id1">
-<h1><a class="toc-backref" href="#id9">前提となる数学知識や記号</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id11">前提となる数学知識や記号</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="id2">
 <p class="topic-title">目次</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id1" id="id9">前提となる数学知識や記号</a></p>
+<li><p><a class="reference internal" href="#id1" id="id11">前提となる数学知識や記号</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id3" id="id10">論理</a></p></li>
-<li><p><a class="reference internal" href="#id4" id="id11">量化</a></p></li>
-<li><p><a class="reference internal" href="#id5" id="id12">集合</a></p>
+<li><p><a class="reference internal" href="#id3" id="id12">論理</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id13">量化</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id14">集合</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id6" id="id13">数の集合</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id15">数の集合</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id7" id="id14">絶対値</a></p></li>
-<li><p><a class="reference internal" href="#id8" id="id15">ガウス記号</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id16">写像</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id17">関数</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id18">絶対値</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id19">ガウス記号</a></p></li>
 </ul>
 </li>
 </ul>
 </div>
 <section id="id3">
-<h2><a class="toc-backref" href="#id10">論理</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">論理</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>かつ: <span class="math notranslate nohighlight">\(\land\)</span></p>
 <p>または: <span class="math notranslate nohighlight">\(\lor\)</span></p>
-<p><span class="math notranslate nohighlight">\(A := B\)</span> としたら <span class="math notranslate nohighlight">\(A\)</span> を <span class="math notranslate nohighlight">\(B\)</span> で定義する。</p>
+<p><span class="math notranslate nohighlight">\(A := B\)</span> としたら <span class="math notranslate nohighlight">\(A\)</span> を <span class="math notranslate nohighlight">\(B\)</span> で定義する。
+また、集合 <span class="math notranslate nohighlight">\(\{x\in S|x\text{は条件}P\text{を満たす}\}\)</span> に名前をつけることを、
+<span class="math notranslate nohighlight">\(A:=\{x\in S|x\text{は条件}P\text{を満たす}\}\)</span> で表す。</p>
 </section>
 <section id="id4">
-<h2><a class="toc-backref" href="#id11">量化</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">量化</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>全称量化子: <span class="math notranslate nohighlight">\(\forall\)</span></p>
 <p>存在量化子: <span class="math notranslate nohighlight">\(\exists\)</span></p>
 <p>全ての <span class="math notranslate nohighlight">\(x\)</span> が条件 <span class="math notranslate nohighlight">\(P\)</span> を満たす(<span class="math notranslate nohighlight">\(\text{For all }x,P\)</span> )ことを</p>
@@ -168,7 +174,7 @@
 <p><a class="reference external" href="https://ja.wikipedia.org/wiki/%E9%87%8F%E5%8C%96">https://ja.wikipedia.org/wiki/%E9%87%8F%E5%8C%96</a></p>
 </section>
 <section id="id5">
-<h2><a class="toc-backref" href="#id12">集合</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">集合</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>集合とは「ある特定の性質を備えたものの集まり」のことである。集合に含まれる1つ1つの「もの」を、その集合の要素または元という。
 <span class="math notranslate nohighlight">\(a\)</span> が集合 <span class="math notranslate nohighlight">\(A\)</span> の元であることを</p>
 <div class="math notranslate nohighlight">
@@ -208,7 +214,7 @@
 <div class="math notranslate nohighlight">
 \[A^c = \{x\in U |x\notin A\}\]</div>
 <section id="id6">
-<h3><a class="toc-backref" href="#id13">数の集合</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">数の集合</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(\mathbb{C}\)</span> :複素数全体</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbb{R}\)</span> :実数全体</p></li>
@@ -220,7 +226,27 @@
 </section>
 </section>
 <section id="id7">
-<h2><a class="toc-backref" href="#id14">絶対値</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">写像</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>集合 <span class="math notranslate nohighlight">\(A,B\)</span> に対し、 <span class="math notranslate nohighlight">\(A\)</span> のすべての元に対して <span class="math notranslate nohighlight">\(B\)</span> の元が唯一定まる時、その対応を写像と呼ぶ。</p>
+<p><span class="math notranslate nohighlight">\(f:A\to B\)</span> で、 <span class="math notranslate nohighlight">\(f\)</span> が <span class="math notranslate nohighlight">\(A\)</span> から <span class="math notranslate nohighlight">\(B\)</span> への写像であることを表す。
+<span class="math notranslate nohighlight">\(f:a\mapsto b\)</span> で、 写像 <span class="math notranslate nohighlight">\(f\)</span> によって <span class="math notranslate nohighlight">\(a\in A\)</span> が <span class="math notranslate nohighlight">\(b\in B\)</span> に移ることを表す。</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> を <span class="math notranslate nohighlight">\(f\)</span> の始域、 <span class="math notranslate nohighlight">\(B\)</span> を <span class="math notranslate nohighlight">\(f\)</span> の終域という。また <span class="math notranslate nohighlight">\(b\)</span> を <span class="math notranslate nohighlight">\(f\)</span> による <span class="math notranslate nohighlight">\(a\)</span> の像といい、
+<span class="math notranslate nohighlight">\(a\)</span> を <span class="math notranslate nohighlight">\(f\)</span> による <span class="math notranslate nohighlight">\(b\)</span> の原像という。</p>
+<p>全射は <span class="math notranslate nohighlight">\(\forall b\in B,\exists a\in A:b=a\)</span></p>
+<p>単射は <span class="math notranslate nohighlight">\(\forall a_1,a_2\in A:(b_1=b_2\Rightarrow a_1=a_2)\)</span></p>
+<p>後で付け足す。</p>
+</section>
+<section id="id8">
+<h2><a class="toc-backref" href="#id17">関数</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(X=\{x\in\mathbb{R}|X\ne\emptyset\}\)</span> とする。</p>
+<p>写像 <span class="math notranslate nohighlight">\(f:X\to \mathbb{R}\)</span> を関数と言う。</p>
+<p>このとき、 <span class="math notranslate nohighlight">\(x\in X\)</span> について <span class="math notranslate nohighlight">\(f:x\mapsto y\)</span> を満たす <span class="math notranslate nohighlight">\(y\in\mathbb{R}\)</span> を <span class="math notranslate nohighlight">\(y=f(x)\)</span> と表す。
+<span class="math notranslate nohighlight">\(X\)</span> を <span class="math notranslate nohighlight">\(f\)</span> の定義域、 <span class="math notranslate nohighlight">\(f(X)=\{f(x)|x\in X\}\)</span> を <span class="math notranslate nohighlight">\(f\)</span> の値域という。</p>
+<p>関数を <span class="math notranslate nohighlight">\(y=f(x)\)</span> と表したとき、 <span class="math notranslate nohighlight">\(x\)</span> を <span class="math notranslate nohighlight">\(f\)</span> の独立変数、 <span class="math notranslate nohighlight">\(y\)</span> を <span class="math notranslate nohighlight">\(f\)</span> の従属変数という。</p>
+<p>値域 <span class="math notranslate nohighlight">\(f(X)\)</span> の最大値、最小値が存在するとき、それらを関数 <span class="math notranslate nohighlight">\(f\)</span> の最大値、最小値という。</p>
+</section>
+<section id="id9">
+<h2><a class="toc-backref" href="#id18">絶対値</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <p><span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span> の絶対値 <span class="math notranslate nohighlight">\(|x|\)</span> を次のように定める。</p>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}|x| :=
@@ -228,8 +254,8 @@
     x \:\;\;\;\;\text{if  }x\geq0\\    -x \;\;\text{if  }x&lt;0
 \end{cases}\end{aligned}\end{align} \]</div>
 </section>
-<section id="id8">
-<h2><a class="toc-backref" href="#id15">ガウス記号</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<section id="id10">
+<h2><a class="toc-backref" href="#id19">ガウス記号</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
 <p><span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span> に対し、</p>
 <div class="math notranslate nohighlight">
 \[[x] := \text{max}\{n\in\mathbb{Z}|n\leq x\}\]</div>
