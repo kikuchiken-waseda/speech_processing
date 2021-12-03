@@ -26,17 +26,17 @@ http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html
 
 周期信号を分解するでー
 
-:math:`\Omega_0 = 2\pi/T_0`
+:math:`\Omega_0 = \frac{2\pi}{T_0}`
 
 フーリエ係数の計算
 
 .. math::
-    F_k = \int^{T_0/2}_{-T_0/2} f(t)e^{-j\Omega_0kt}dt
+    F_k = \frac{1}{T_0}\int^{T_0/2}_{-T_0/2} f(t)e^{-j\Omega_0kt}dt
 
 フーリエ級数
 
 .. math::
-    f(t) = \sum^{\infty}_{n=-\infty} F_ke^{j\Omega_0kt}
+    f(t) = \sum^{\infty}_{k=-\infty} F_ke^{j\Omega_0kt}
 
 
 フーリエ変換
@@ -63,40 +63,40 @@ http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html
 
 サンプリングするときの時間間隔をサンプリング周期や標本化周期と呼ぶ。
 
-ここではサンプリング周期を  :math:`T_s[s]` で表す。
+ここではサンプリング周期を  :math:`T_s \text{[s]}` で表す。
 
-サンプリング周波数: :math:`\nu _s = 1/T_s [Hz]` 
+サンプリング周波数: :math:`\nu _s = 1/T_s \text{[Hz]}` 
 
 離散信号では時間をサンプリング周期で割って正規化したものを時間として考えている。
-ここではその時間を正規化時間と呼ぶこととし、正規化時間は無次元量であるが、理解のために単位として :math:`[sample]` を使うことにする。
+ここではその時間を正規化時間と呼ぶこととし、正規化時間は無次元量であるが、理解のために単位として :math:`\text{[sample]}` を使うことにする。
 
-非正規化角周波数: :math:`\Omega = 2\pi \nu  [rad/s]`
+非正規化角周波数: :math:`\Omega = 2\pi \nu \text{[rad/s]}`
 
-正規化角周波数: :math:`\omega = \Omega /\nu _s [rad/sample]`
+正規化角周波数: :math:`\omega = \Omega /\nu _s \text{[rad/sample]}`
 
-
-.. math::
-    F(\omega) = \sum^{\infty}_{n=-\infty} f(n)e^{-j\omega n}
 
 .. math::
-    f(t) =\frac{1}{2\pi} \int^{\pi}_{-\pi} F(\omega)e^{j\omega n}d\omega
+    F(\omega) = \sum^{\infty}_{n=-\infty} f[n]e^{-j\omega n}
+
+.. math::
+    f[n] =\frac{1}{2\pi} \int^{\pi}_{-\pi} F(\omega)e^{j\omega n}d\omega
 
 
 離散フーリエ変換
 ==============================================================================
-音声長を :math:`t[s]` として
+音声長を :math:`t\text{[s]}` として
 
-:math:`N = \lfloor t\nu _s \rfloor [sample]`
+:math:`N = [t\nu _s] \text{[sample]}`
 
-:math:`f(n)` を離散信号とする。:math:`0 \leq n \leq N-1` を満たす有限長離散信号 :math:`f(n)` の離散フーリエ変換を
+:math:`f[n]` を離散信号とする。:math:`0 \leq n \leq N-1` を満たす有限長離散信号 :math:`f[n]` の離散フーリエ変換を
 
 .. math::
-    F(k) = \sum^{N-1}_{n=0} f(n)e^{-j\frac{2\pi}{N} kn}
+    F[k] = \sum^{N-1}_{n=0} f[n]e^{-j\frac{2\pi}{N} kn}
 
 で表す。(kで離散周波数を表してるので、離散時間フーリエ変換での表し方を考えて、書き方を考え直す)
 
 .. math::
-    f(n) = \frac{1}{N}\sum^{N-1}_{n=0} F(k)e^{j\frac{2\pi}{N} kn}
+    f[n] = \frac{1}{N}\sum^{N-1}_{n=0} F[k]e^{j\frac{2\pi}{N} kn}
 
 
 離散コサイン変換

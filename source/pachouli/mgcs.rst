@@ -25,7 +25,7 @@ generalized logarithmic function
     \end{cases}
 
 .. math::
-    {s_\gamma}_{-1}(w):=
+    {s_\gamma}^{-1}(w):=
     \begin{cases}
         (1+\gamma w)^(1/\gamma),\text{  if }0<|\gamma|\le 1
 

@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="音波" href="acoustic_wave.html" />
+    <link rel="next" title="前提となる数学知識や記号" href="symbol.html" />
     <link rel="prev" title="音声信号処理のための備忘録" href="../index.html" /> 
 </head>
 
@@ -43,9 +43,10 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">書きたいものまとめ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html">前提となる数学知識や記号</a></li>
 <li class="toctree-l2"><a class="reference internal" href="acoustic_wave.html">音波</a></li>
-<li class="toctree-l2"><a class="reference internal" href="acoustic_feature/index.html">音響特徴量</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wave_equation.html">波動方程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acoustic_feature/index.html">音響特徴量</a></li>
 <li class="toctree-l2"><a class="reference internal" href="spectrum.html">スペクトラム</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cepstrum.html">ケプストラム</a></li>
 <li class="toctree-l2"><a class="reference internal" href="level.html">レベル表現</a></li>
@@ -70,6 +71,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculus/index.html">微分積分学</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processing/index.html">信号処理</a></li>
 </ul>
 
@@ -133,9 +135,23 @@
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="symbol.html">前提となる数学知識や記号</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#id3">論理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#id4">量化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#id5">集合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#id7">絶対値</a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#id8">ガウス記号</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="acoustic_wave.html">音波</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="acoustic_wave.html#id3">音波とは</a></li>
-<li class="toctree-l2"><a class="reference internal" href="acoustic_wave.html#id4">音響粒子速度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acoustic_wave.html#id3">正弦波(サイン波)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acoustic_wave.html#id4">音波とは</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acoustic_wave.html#id5">音響粒子速度</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wave_equation.html">波動方程式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wave_equation.html#id3">波動とは</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wave_equation.html#id4">波動方程式の導入</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="acoustic_feature/index.html">音響特徴量</a><ul>
@@ -144,11 +160,6 @@
 <li class="toctree-l2"><a class="reference internal" href="acoustic_feature/index.html#id12">音の高さを表す音響特徴量</a></li>
 <li class="toctree-l2"><a class="reference internal" href="acoustic_feature/index.html#id15">音色を表す音響特徴量</a></li>
 <li class="toctree-l2"><a class="reference internal" href="acoustic_feature/index.html#id16">音響特徴量集</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="wave_equation.html">波動方程式</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wave_equation.html#id3">波動とは</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wave_equation.html#id4">波動方程式の導入</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="spectrum.html">スペクトラム</a><ul>
@@ -242,7 +253,7 @@
 <p>集合 <span class="math notranslate nohighlight">\(X,Y\)</span> に対し、 <span class="math notranslate nohighlight">\(X\)</span> のすべての元に対して <span class="math notranslate nohighlight">\(Y\)</span> の元が唯一定まる時、その対応を写像と呼ぶ</p>
 <p><span class="math notranslate nohighlight">\(f:X\to Y\)</span> で、 <span class="math notranslate nohighlight">\(f\)</span> が <span class="math notranslate nohighlight">\(X\)</span> から <span class="math notranslate nohighlight">\(Y\)</span> への写像であることを表す。
 <span class="math notranslate nohighlight">\(f:x\mapsto f(x)\)</span> で、 写像 <span class="math notranslate nohighlight">\(f\)</span> によって <span class="math notranslate nohighlight">\(x\in X\)</span> が <span class="math notranslate nohighlight">\(f(x)\in Y\)</span> に移ることを表す。</p>
-<p>全射は <span class="math notranslate nohighlight">\(\forall y\in Y,\exists x\in X\;:\; y=f(x)\)</span></p>
+<p>全射は <span class="math notranslate nohighlight">\(\forall y\in Y,\exists x\in X\;\mathrm{s.t.}\; y=f(x)\)</span></p>
 <p>単射は <span class="math notranslate nohighlight">\(\forall x_1,x_2\in X, (f(x_1)=f(x_2)\Rightarrow x_1=x_2)\)</span></p>
 </section>
 <section id="id6">
@@ -270,7 +281,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../index.html" class="btn btn-neutral float-left" title="音声信号処理のための備忘録" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="acoustic_wave.html" class="btn btn-neutral float-right" title="音波" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="symbol.html" class="btn btn-neutral float-right" title="前提となる数学知識や記号" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

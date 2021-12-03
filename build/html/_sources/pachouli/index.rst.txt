@@ -13,9 +13,10 @@
    :maxdepth: 2
    :caption: Contents:
    
+   ./symbol
    ./acoustic_wave
-   ./acoustic_feature/index
    ./wave_equation
+   ./acoustic_feature/index
    ./spectrum
    ./cepstrum
    ./level
@@ -84,7 +85,7 @@ RC回路
 :math:`f:X\to Y` で、 :math:`f` が :math:`X` から :math:`Y` への写像であることを表す。
 :math:`f:x\mapsto f(x)` で、 写像 :math:`f` によって :math:`x\in X` が :math:`f(x)\in Y` に移ることを表す。
 
-全射は :math:`\forall y\in Y,\exists x\in X\;:\; y=f(x)`
+全射は :math:`\forall y\in Y,\exists x\in X\;\mathrm{s.t.}\; y=f(x)`
 
 単射は :math:`\forall x_1,x_2\in X, (f(x_1)=f(x_2)\Rightarrow x_1=x_2)`
 

@@ -45,6 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculus/index.html">微分積分学</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">信号処理</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">音声信号処理に向けたフーリエ変換の学び</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">フーリエ変換のお気持ち</a></li>
@@ -156,13 +157,13 @@
 <h2><a class="toc-backref" href="#id14">フーリエ級数展開</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>時間軸上の周期波形を同じ周期である基本波と高調波で表すことを、波形をフーリエ級数展開するという。</p>
 <p>周期信号を分解するでー</p>
-<p><span class="math notranslate nohighlight">\(\Omega_0 = 2\pi/T_0\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Omega_0 = \frac{2\pi}{T_0}\)</span></p>
 <p>フーリエ係数の計算</p>
 <div class="math notranslate nohighlight">
-\[F_k = \int^{T_0/2}_{-T_0/2} f(t)e^{-j\Omega_0kt}dt\]</div>
+\[F_k = \frac{1}{T_0}\int^{T_0/2}_{-T_0/2} f(t)e^{-j\Omega_0kt}dt\]</div>
 <p>フーリエ級数</p>
 <div class="math notranslate nohighlight">
-\[f(t) = \sum^{\infty}_{n=-\infty} F_ke^{j\Omega_0kt}\]</div>
+\[f(t) = \sum^{\infty}_{k=-\infty} F_ke^{j\Omega_0kt}\]</div>
 </section>
 <section id="id5">
 <h2><a class="toc-backref" href="#id15">フーリエ変換</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
@@ -179,27 +180,27 @@
 <p>離散値でもFTしちゃうでー</p>
 <p>ちゃんと理解する</p>
 <p>サンプリングするときの時間間隔をサンプリング周期や標本化周期と呼ぶ。</p>
-<p>ここではサンプリング周期を  <span class="math notranslate nohighlight">\(T_s[s]\)</span> で表す。</p>
-<p>サンプリング周波数: <span class="math notranslate nohighlight">\(\nu _s = 1/T_s [Hz]\)</span></p>
+<p>ここではサンプリング周期を  <span class="math notranslate nohighlight">\(T_s \text{[s]}\)</span> で表す。</p>
+<p>サンプリング周波数: <span class="math notranslate nohighlight">\(\nu _s = 1/T_s \text{[Hz]}\)</span></p>
 <p>離散信号では時間をサンプリング周期で割って正規化したものを時間として考えている。
-ここではその時間を正規化時間と呼ぶこととし、正規化時間は無次元量であるが、理解のために単位として <span class="math notranslate nohighlight">\([sample]\)</span> を使うことにする。</p>
-<p>非正規化角周波数: <span class="math notranslate nohighlight">\(\Omega = 2\pi \nu  [rad/s]\)</span></p>
-<p>正規化角周波数: <span class="math notranslate nohighlight">\(\omega = \Omega /\nu _s [rad/sample]\)</span></p>
+ここではその時間を正規化時間と呼ぶこととし、正規化時間は無次元量であるが、理解のために単位として <span class="math notranslate nohighlight">\(\text{[sample]}\)</span> を使うことにする。</p>
+<p>非正規化角周波数: <span class="math notranslate nohighlight">\(\Omega = 2\pi \nu \text{[rad/s]}\)</span></p>
+<p>正規化角周波数: <span class="math notranslate nohighlight">\(\omega = \Omega /\nu _s \text{[rad/sample]}\)</span></p>
 <div class="math notranslate nohighlight">
-\[F(\omega) = \sum^{\infty}_{n=-\infty} f(n)e^{-j\omega n}\]</div>
+\[F(\omega) = \sum^{\infty}_{n=-\infty} f[n]e^{-j\omega n}\]</div>
 <div class="math notranslate nohighlight">
-\[f(t) =\frac{1}{2\pi} \int^{\pi}_{-\pi} F(\omega)e^{j\omega n}d\omega\]</div>
+\[f[n] =\frac{1}{2\pi} \int^{\pi}_{-\pi} F(\omega)e^{j\omega n}d\omega\]</div>
 </section>
 <section id="id7">
 <h2><a class="toc-backref" href="#id17">離散フーリエ変換</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
-<p>音声長を <span class="math notranslate nohighlight">\(t[s]\)</span> として</p>
-<p><span class="math notranslate nohighlight">\(N = \lfloor t\nu _s \rfloor [sample]\)</span></p>
-<p><span class="math notranslate nohighlight">\(f(n)\)</span> を離散信号とする。<span class="math notranslate nohighlight">\(0 \leq n \leq N-1\)</span> を満たす有限長離散信号 <span class="math notranslate nohighlight">\(f(n)\)</span> の離散フーリエ変換を</p>
+<p>音声長を <span class="math notranslate nohighlight">\(t\text{[s]}\)</span> として</p>
+<p><span class="math notranslate nohighlight">\(N = [t\nu _s] \text{[sample]}\)</span></p>
+<p><span class="math notranslate nohighlight">\(f[n]\)</span> を離散信号とする。<span class="math notranslate nohighlight">\(0 \leq n \leq N-1\)</span> を満たす有限長離散信号 <span class="math notranslate nohighlight">\(f[n]\)</span> の離散フーリエ変換を</p>
 <div class="math notranslate nohighlight">
-\[F(k) = \sum^{N-1}_{n=0} f(n)e^{-j\frac{2\pi}{N} kn}\]</div>
+\[F[k] = \sum^{N-1}_{n=0} f[n]e^{-j\frac{2\pi}{N} kn}\]</div>
 <p>で表す。(kで離散周波数を表してるので、離散時間フーリエ変換での表し方を考えて、書き方を考え直す)</p>
 <div class="math notranslate nohighlight">
-\[f(n) = \frac{1}{N}\sum^{N-1}_{n=0} F(k)e^{j\frac{2\pi}{N} kn}\]</div>
+\[f[n] = \frac{1}{N}\sum^{N-1}_{n=0} F[k]e^{j\frac{2\pi}{N} kn}\]</div>
 <section id="id8">
 <h3><a class="toc-backref" href="#id18">離散コサイン変換</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>DCTは信号をy軸で折り返して偶関数化してDFTすることと等価であり、実際にそう計算することが多い。</p>

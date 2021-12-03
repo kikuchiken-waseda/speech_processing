@@ -5,6 +5,16 @@
 .. contents:: 目次
 
 
+正弦波(サイン波)
+================================================================
+時間領域における正弦波の変位 :math:`u(t)` は
+
+.. math::
+    u(t)=A\sin(\omega t+\alpha)
+
+と表される。 :math:`A` は振幅、 :math:`\omega` は角速度、 :math:`\omega t+\alpha` は位相である。
+:math:`t=0` の時の位相 :math:`\alpha` は初期位相と呼ばれる。
+
 音波とは
 ================================================================
 https://ja.wikipedia.org/wiki/%E9%9F%B3%E6%B3%A2
@@ -17,16 +27,20 @@ https://ja.wikipedia.org/wiki/%E9%9F%B3%E6%B3%A2
 ================================================================
 https://www.jstage.jst.go.jp/article/souonseigyo1977/24/5/24_5_339/_pdf
 
+:math:`u` 変位
+
+:math:`x` 場所
+
 :math:`p` 音圧
 
 :math:`\rho` 媒質の密度
 
-:math:`v` 音響粒子速度
+:math:`\mathbf{v}` 音響粒子速度
 
 .. math::
-    -\frac{dp}{dx}=\rho\frac{dv}{dt}
+    -\frac{dp}{dx}=\rho\frac{d\mathbf{v}}{dt}
      
-    v = -\frac{1}{\rho}\int\frac{dp}{dx}dt
+    \mathbf{v} = -\frac{1}{\rho}\int\frac{dp}{dx}dt
 
 
 音の変位と呼ばれているものは(たぶん)音響粒子の変位を指している
@@ -34,7 +48,7 @@ https://www.jstage.jst.go.jp/article/souonseigyo1977/24/5/24_5_339/_pdf
 つまり音響粒子速度 :math:`v` は変位 :math:`u` を用いて
 
 .. math::
-    v=\frac{\partial u}{\partial t}
+    \mathbf{v}=\frac{\partial u}{\partial t}
 
 で表せる
 

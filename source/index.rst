@@ -3,21 +3,18 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-<<<<<<< HEAD
-Welcome to speech_processing's documentation!
-test
-=======
+=============================================
 音声信号処理のための備忘録
->>>>>>> f6dab7e537966c8323c54ca6a4f4615cfedac3ca
 =============================================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Contents:
 
    ./pachouli/index
    ./paper/index
    ./implementation/index
+   ./calculus/index
    ./processing/index
 
 

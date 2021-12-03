@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ここで扱う数学記号 &mdash; 音声信号処理のための備忘録  documentation</title>
+  <title>前提となる数学知識や記号 &mdash; 音声信号処理のための備忘録  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -20,7 +20,9 @@
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="音波" href="acoustic_wave.html" />
+    <link rel="prev" title="書きたいものまとめ" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,10 +41,39 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">書きたいものまとめ</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">書きたいものまとめ</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">前提となる数学知識や記号</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">論理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">量化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">集合</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">数の集合</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">絶対値</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">ガウス記号</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="acoustic_wave.html">音波</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wave_equation.html">波動方程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acoustic_feature/index.html">音響特徴量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spectrum.html">スペクトラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cepstrum.html">ケプストラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="level.html">レベル表現</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scale.html">聴覚尺度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filter.html">フィルタ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mfcc.html">extract mfcc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mgcs.html">mel generalized cepstrum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">音声の可視化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="convolution.html">畳み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="complex.html">複素関数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbsphinx.html">nbsphinx使いやすいよって話</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">後でまとめる雑多な知識</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculus/index.html">微分積分学</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processing/index.html">信号処理</a></li>
 </ul>
 
@@ -60,7 +91,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>ここで扱う数学記号</li>
+          <li><a href="index.html">書きたいものまとめ</a> &raquo;</li>
+      <li>前提となる数学知識や記号</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/pachouli/symbol.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -95,25 +127,123 @@
 }
 </style>
 <section id="id1">
-<h1>ここで扱う数学記号<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<section id="id2">
-<h2>数の集合<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h1><a class="toc-backref" href="#id9">前提となる数学知識や記号</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title">目次</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id9">前提となる数学知識や記号</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id10">論理</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id11">量化</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id12">集合</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id6" id="id13">数の集合</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id7" id="id14">絶対値</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id15">ガウス記号</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="id3">
+<h2><a class="toc-backref" href="#id10">論理</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>かつ: <span class="math notranslate nohighlight">\(\land\)</span></p>
+<p>または: <span class="math notranslate nohighlight">\(\lor\)</span></p>
+<p><span class="math notranslate nohighlight">\(A := B\)</span> としたら <span class="math notranslate nohighlight">\(A\)</span> を <span class="math notranslate nohighlight">\(B\)</span> で定義する。</p>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id11">量化</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>全称量化子: <span class="math notranslate nohighlight">\(\forall\)</span></p>
+<p>存在量化子: <span class="math notranslate nohighlight">\(\exists\)</span></p>
+<p>全ての <span class="math notranslate nohighlight">\(x\)</span> が条件 <span class="math notranslate nohighlight">\(P\)</span> を満たす(<span class="math notranslate nohighlight">\(\text{For all }x,P\)</span> )ことを</p>
+<div class="math notranslate nohighlight">
+\[\forall x : P\]</div>
+<p>で表す。</p>
+<p><span class="math notranslate nohighlight">\(P\)</span> を満たす <span class="math notranslate nohighlight">\(x\)</span> が存在する(<span class="math notranslate nohighlight">\(\text{There exists }x\text{ such that }P\)</span> )ことを</p>
+<div class="math notranslate nohighlight">
+\[\exists x : P\]</div>
+<p>で表す。</p>
+<p>他にも色々示し方があるので注意するように。</p>
+<p><a class="reference external" href="https://ja.wikipedia.org/wiki/%E9%87%8F%E5%8C%96">https://ja.wikipedia.org/wiki/%E9%87%8F%E5%8C%96</a></p>
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id12">集合</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>集合とは「ある特定の性質を備えたものの集まり」のことである。集合に含まれる1つ1つの「もの」を、その集合の要素または元という。
+<span class="math notranslate nohighlight">\(a\)</span> が集合 <span class="math notranslate nohighlight">\(A\)</span> の元であることを</p>
+<div class="math notranslate nohighlight">
+\[a\in A\]</div>
+<p>で表し、 <span class="math notranslate nohighlight">\(a\)</span> は <span class="math notranslate nohighlight">\(A\)</span> に属するという。逆に <span class="math notranslate nohighlight">\(a\)</span> は <span class="math notranslate nohighlight">\(A\)</span> に属さないことは</p>
+<div class="math notranslate nohighlight">
+\[a\notin A\]</div>
+<p>のように表す。</p>
+<p>集合は <span class="math notranslate nohighlight">\(\{2,5,7\}\)</span> のように、属する元を全て書き並べたり、
+<span class="math notranslate nohighlight">\(\{x|x\text{は条件}P\text{を満たす}\}\)</span> のようにある条件を満たす元全体として定めることが多い。</p>
+<p>集合 <span class="math notranslate nohighlight">\(A\)</span> の元のうち、条件 <span class="math notranslate nohighlight">\(P\)</span> を満たす元全体の集合を</p>
+<div class="math notranslate nohighlight">
+\[\{x|x\in A,x\text{は条件}P\text{を満たす}\}\]</div>
+<p>または</p>
+<div class="math notranslate nohighlight">
+\[\{x\in A|x\text{は条件}P\text{を満たす}\}\]</div>
+<p>で表す。</p>
+<p>要素を一つも含まない集合を空集合といい、 <span class="math notranslate nohighlight">\(\emptyset\)</span> で表す。</p>
+<p>元を有限個しか含まない集合および空集合を有限集合といい、そうでない集合を無限集合と呼ぶ。</p>
+<p>二つの集合 <span class="math notranslate nohighlight">\(A,B\)</span> について、 <span class="math notranslate nohighlight">\(\forall a\in A:a\in B\)</span> のとき、
+<span class="math notranslate nohighlight">\(A\)</span> は <span class="math notranslate nohighlight">\(B\)</span> の部分集合であるといい、 <span class="math notranslate nohighlight">\(A\subset B\)</span> で表す。
+この場合、 <span class="math notranslate nohighlight">\(A\)</span> は <span class="math notranslate nohighlight">\(B\)</span> に包まれる、または <span class="math notranslate nohighlight">\(B\)</span> は <span class="math notranslate nohighlight">\(A\)</span> を包むという。
+<span class="math notranslate nohighlight">\(A\subset B\)</span> でないことを <span class="math notranslate nohighlight">\(A\not\subset B\)</span> で表す。</p>
+<p><span class="math notranslate nohighlight">\(A\subset B \land A\ne B\)</span> のとき、 <span class="math notranslate nohighlight">\(A\)</span> は <span class="math notranslate nohighlight">\(B\)</span> の真部分集合であるといい、 <span class="math notranslate nohighlight">\(A\subsetneq B\)</span> で表す。</p>
+<p>二つの集合 <span class="math notranslate nohighlight">\(A,B\)</span> について、</p>
+<div class="math notranslate nohighlight">
+\[A\cup B = \{x|x\in A \lor x\in B\}\]</div>
+<p>を <span class="math notranslate nohighlight">\(A\)</span> と <span class="math notranslate nohighlight">\(B\)</span> の和集合といい、</p>
+<div class="math notranslate nohighlight">
+\[A\cap B = \{x|x\in A \land x\in B\}\]</div>
+<p>を <span class="math notranslate nohighlight">\(A\)</span> と <span class="math notranslate nohighlight">\(B\)</span> の共通部分といい、</p>
+<div class="math notranslate nohighlight">
+\[A\setminus B = \{x|x\in A \land x\notin B\}\]</div>
+<p>を <span class="math notranslate nohighlight">\(A\)</span> と <span class="math notranslate nohighlight">\(B\)</span> の差集合という。</p>
+<p>議論している対象の要素全体の集合を全体集合または不偏集合といい、
+<span class="math notranslate nohighlight">\(U\)</span> を全体集合、 <span class="math notranslate nohighlight">\(A\subset U\)</span> とするとき</p>
+<div class="math notranslate nohighlight">
+\[A^c = \{x\in U |x\notin A\}\]</div>
+<section id="id6">
+<h3><a class="toc-backref" href="#id13">数の集合</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(\mathbb{C}\)</span> :複素数全体</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbb{R}\)</span> :実数全体</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbb{Q}\)</span> :有理数全体</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> :整数全体</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbb{N}\)</span> :自然数全体</p></li>
-<li><p><span class="math notranslate nohighlight">\(\emptyset\)</span> :空集合</p></li>
 </ol>
-<p><span class="math notranslate nohighlight">\(A := B\)</span> としたら <span class="math notranslate nohighlight">\(A\)</span> を <span class="math notranslate nohighlight">\(B\)</span> で定義する。</p>
+<p>で表す。</p>
+</section>
+</section>
+<section id="id7">
+<h2><a class="toc-backref" href="#id14">絶対値</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span> の絶対値 <span class="math notranslate nohighlight">\(|x|\)</span> を次のように定める。</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}|x| :=
+\begin{cases}
+    x \:\;\;\;\;\text{if  }x\geq0\\    -x \;\;\text{if  }x&lt;0
+\end{cases}\end{aligned}\end{align} \]</div>
+</section>
+<section id="id8">
+<h2><a class="toc-backref" href="#id15">ガウス記号</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span> に対し、</p>
+<div class="math notranslate nohighlight">
+\[[x] := \text{max}\{n\in\mathbb{Z}|n\leq x\}\]</div>
+<p>の <span class="math notranslate nohighlight">\([\,\cdot\,]\)</span> をガウス記号という。</p>
 </section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="書きたいものまとめ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="acoustic_wave.html" class="btn btn-neutral float-right" title="音波" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

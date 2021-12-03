@@ -16,7 +16,7 @@ http://www.chem.konan-u.ac.jp/PCSI/web_material/wave_PW.pdf
 
 波の進行方向を :math:`x` 方向とし、ある時間 :math:`t` 場所 :math:`x` での変位を :math:`u(x, t)` とする。
 時間 :math:`t=t_0=0` での変位を :math:`f(x)=u(x,0)` とする。
-この変位は一定の形を保ったまま一定の速度(音速) :math:`c` で :math:`+x` 方向に伝搬していくとする。
+この変位は一定の形を保ったまま一定の位相速度(音速) :math:`c` で :math:`+x` 方向に伝搬していくとする。
 
 .. math::
     u(x,\delta t) = f(x - c\delta t)
@@ -26,7 +26,11 @@ http://www.chem.konan-u.ac.jp/PCSI/web_material/wave_PW.pdf
 周期的な波は一般に
 
 .. math::
-    Ae^{j(kx-\omega t)} = A\cos(kx-\omega t)+jA\sin(kx-\omega t)
+    
+    \begin{eqnarray}
+    u(x,t) &=& A\cos(kx-\omega t+ \alpha)+jA\sin(kx-\omega t+ \alpha)\\
+    &=& Ae^{j(kx-\omega t+ \alpha)}
+    \end{eqnarray}
 
 で表される。
 
@@ -38,7 +42,11 @@ http://www.chem.konan-u.ac.jp/PCSI/web_material/wave_PW.pdf
 
 角振動数 :math:`\omega = 2\pi\nu`
 
-位相 :math:`kx-\omega t`
+位相 :math:`kx-\omega t+ \alpha`
+
+初期位相 :math:`\alpha`
+
+位相速度 :math:`v_p=\omega/k`
 
 波動方程式の導入
 ================================================================

@@ -24,6 +24,14 @@ generalized logarithmic function
         \log w,\text{  if }\gamma =0
     \end{cases}
 
+.. math::
+    {s_\gamma}^{-1}(w):=
+    \begin{cases}
+        (1+\gamma w)^(1/\gamma),\text{  if }0<|\gamma|\le 1
+
+        e^w,\text{  if }\gamma =0
+    \end{cases}
+
 generalized cepstrum
 ==============================================================================
 複素ケプストラムを一般化対数関数で拡張したもの
