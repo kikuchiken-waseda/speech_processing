@@ -21,7 +21,7 @@
    ./cepstrum
    ./level
    ./scale
-   ./filter
+   ./filter/index
    ./mfcc
    ./mgcs
    ./visualization
