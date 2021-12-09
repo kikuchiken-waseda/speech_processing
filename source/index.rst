@@ -14,6 +14,7 @@
    ./pachouli/index
    ./paper/index
    ./implementation/index
+   ./logic/index
    ./calculus/index
    ./processing/index
 

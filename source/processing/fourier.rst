@@ -96,7 +96,7 @@ http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html
 で表す。(kで離散周波数を表してるので、離散時間フーリエ変換での表し方を考えて、書き方を考え直す)
 
 .. math::
-    f[n] = \frac{1}{N}\sum^{N-1}_{n=0} F[k]e^{j\frac{2\pi}{N} kn}
+    f[n] = \frac{1}{N}\sum^{N-1}_{k=0} F[k]e^{j\frac{2\pi}{N} kn}
 
 
 離散コサイン変換
@@ -121,13 +121,13 @@ https://ja.wikipedia.org/wiki/%E9%9B%A2%E6%95%A3%E3%82%B3%E3%82%B5%E3%82%A4%E3%8
 短い時間間隔でFTして時間構造を見ちゃうでー
 
 
-:math:`f(t)` を短時間の時間区間に分割して、その周波数構造を分析するために、 :math:`0 \leq t \leq N-1` だけで0でない値を持ち、
-この外では0となるような関数 :math:`w_a(t)` を :math:`f(t)` に乗じる。この :math:`w_a(t)` は分析窓関数と呼ばれる。
+:math:`f[t]` を短時間の時間区間に分割して、その周波数構造を分析するために、 :math:`0 \leq t \leq N-1` だけで0でない値を持ち、
+この外では0となるような関数 :math:`w_a(t)` を :math:`f[t]` に乗じる。この :math:`w_a(t)` は分析窓関数と呼ばれる。
 
 短時間フーリエ変換では
 
 .. math:: 
-    f_m(t-mS) = w_a(t-mS)f(t)
+    f_m[t-mS] = w_a(t-mS)f[t]
 
 のように分析窓関数 :math:`w_a(t)` を :math:`mS` だけシフトして乗じることにより、
 :math:`mS \leq t \leq mS+N-1` 部分を切り出し、
@@ -139,11 +139,11 @@ https://ja.wikipedia.org/wiki/%E9%9B%A2%E6%95%A3%E3%82%B3%E3%82%B5%E3%82%A4%E3%8
 
 :math:`N=512, 1024, 2048` がとられることが多い
 
-ここで　:math:`n=t-mS` と置くと、:math:`f_m(n)` は、 :math:`0 \leq t \leq N-1` でのみ :math:`0` でない値を持つ。
+ここで　:math:`n=t-mS` と置くと、:math:`f_m[n]` は、 :math:`0 \leq n \leq N-1` でのみ :math:`0` でない値を持つ。
 こうして分割された有限長信号に離散フーリエ変換を適応することで、短時間フーリエ変換
 
 .. math::
-    F(m, k) = \sum^{N-1}_{n=0} f_m(n)e^{-j\frac{2\pi}{N} kn}
+    F[m, k] = \sum^{N-1}_{n=0} f_m[n]e^{-j\frac{2\pi}{N} kn}
 
 が定義される。
 
@@ -151,3 +151,4 @@ https://www.jstage.jst.go.jp/article/jasj/72/12/72_764/_pdf
 
 時間分解能、周波数分解能
 -----------------------------------------------------------------------
+詳しい理解はフィルタの話ガチらないと無理そう。

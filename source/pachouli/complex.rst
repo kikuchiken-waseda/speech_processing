@@ -1,7 +1,7 @@
 ================================================================
 複素関数
 ================================================================
-https://www1.econ.hit-u.ac.jp/kawahira/courses/kansuron.pdf
+http://www.math.nagoya-u.ac.jp/~noby/pdf/cana.pdf
 
 とりあえずオイラーの等式まで
 
@@ -11,6 +11,13 @@ https://www1.econ.hit-u.ac.jp/kawahira/courses/kansuron.pdf
    j := \sqrt{-1}
 
    \mathbb{C} := \{a+bj\;|\; a,b \in \mathbb{R}\}
+
+複素関数
+================================================================
+:math:`Z=\{z\in\mathbb{C}|Z\ne\emptyset\}` とする。
+
+写像 :math:`f:Z\to \mathbb{C}` を複素関数と言う。
+
 
 四則
 ================================================================
@@ -40,6 +47,6 @@ https://www1.econ.hit-u.ac.jp/kawahira/courses/kansuron.pdf
 複素数 :math:`z=x+yj(x,y\in\mathbb{R})` にたいし、
 
 .. math::
-   e^z := e^x(\cos{y}+j\sin{y})
+   e^z = e^x(\cos{y}+j\sin{y})
 
 を :math:`z` の指数関数(exponential function)とよぶ。
