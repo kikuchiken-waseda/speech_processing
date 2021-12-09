@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>音声信号処理に向けたフーリエ変換の学び &mdash; 音声信号処理のための備忘録  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ラプラス変換" href="laplace.html" />
+    <link rel="prev" title="信号処理" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logic/index.html">論理学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculus/index.html">微分積分学</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">信号処理</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">音声信号処理に向けたフーリエ変換の学び</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">フーリエ変換のお気持ち</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">フーリエ級数展開</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">フーリエ変換</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">離散時間フーリエ変換</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">離散フーリエ変換</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">離散コサイン変換</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">高速フーリエ変換</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">短時間フーリエ変換</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id11">時間分解能、周波数分解能</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="laplace.html">ラプラス変換</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">音声信号処理のための備忘録</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">信号処理</a> &raquo;</li>
+      <li>音声信号処理に向けたフーリエ変換の学び</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/processing/fourier.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="id1">
+<h1><a class="toc-backref" href="#id12">音声信号処理に向けたフーリエ変換の学び</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>しっかり勉強する人は
+<a class="reference external" href="http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html">http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html</a>
+をみてください</p>
+<p>周波数を <span class="math notranslate nohighlight">\(\nu\)</span> で表そうかな</p>
+<div class="contents topic" id="id2">
+<p class="topic-title">目次</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id12">音声信号処理に向けたフーリエ変換の学び</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id13">フーリエ変換のお気持ち</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id14">フーリエ級数展開</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id15">フーリエ変換</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id16">離散時間フーリエ変換</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id17">離散フーリエ変換</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id8" id="id18">離散コサイン変換</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id9" id="id19">高速フーリエ変換</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id20">短時間フーリエ変換</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id11" id="id21">時間分解能、周波数分解能</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="id3">
+<h2><a class="toc-backref" href="#id13">フーリエ変換のお気持ち</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>フーリエ変換は、この世の関数は(激キモ関数を除いて)三角関数の和で表せるっていうようなお考えのものです。</p>
+<p>信号を複数の成分に分解するもの</p>
+<p>音声信号においては時間信号を複数の周波数成分に分解するためのものと覚えておくとよい</p>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id14">フーリエ級数展開</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>時間軸上の周期波形を同じ周期である基本波と高調波で表すことを、波形をフーリエ級数展開するという。</p>
+<p>周期信号を分解するでー</p>
+<p><span class="math notranslate nohighlight">\(\Omega_0 = \frac{2\pi}{T_0}\)</span></p>
+<p>フーリエ係数の計算</p>
+<div class="math notranslate nohighlight">
+\[F_k = \frac{1}{T_0}\int^{T_0/2}_{-T_0/2} f(t)e^{-j\Omega_0kt}dt\]</div>
+<p>フーリエ級数</p>
+<div class="math notranslate nohighlight">
+\[f(t) = \sum^{\infty}_{k=-\infty} F_ke^{j\Omega_0kt}\]</div>
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id15">フーリエ変換</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>非周期信号も分解しちゃうでー</p>
+<div class="math notranslate nohighlight">
+\[F(\Omega) = \int^{\infty}_{-\infty} f(t)e^{-j\Omega t}dt\]</div>
+<div class="math notranslate nohighlight">
+\[f(t) =\frac{1}{2\pi} \int^{\infty}_{-\infty} F(\Omega)e^{j\Omega t}d\Omega\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}F(\Omega) = \mathcal{F}[f(t)]\\f(t) = \mathcal{F}^{-1}[F(\Omega)]\end{aligned}\end{align} \]</div>
+</section>
+<section id="id6">
+<h2><a class="toc-backref" href="#id16">離散時間フーリエ変換</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>離散値でもFTしちゃうでー</p>
+<p>ちゃんと理解する</p>
+<p>サンプリングするときの時間間隔をサンプリング周期や標本化周期と呼ぶ。</p>
+<p>ここではサンプリング周期を  <span class="math notranslate nohighlight">\(T_s \text{[s]}\)</span> で表す。</p>
+<p>サンプリング周波数: <span class="math notranslate nohighlight">\(\nu _s = 1/T_s \text{[Hz]}\)</span></p>
+<p>離散信号では時間をサンプリング周期で割って正規化したものを時間として考えている。
+ここではその時間を正規化時間と呼ぶこととし、正規化時間は無次元量であるが、理解のために単位として <span class="math notranslate nohighlight">\(\text{[sample]}\)</span> を使うことにする。</p>
+<p>非正規化角周波数: <span class="math notranslate nohighlight">\(\Omega = 2\pi \nu \text{[rad/s]}\)</span></p>
+<p>正規化角周波数: <span class="math notranslate nohighlight">\(\omega = \Omega /\nu _s \text{[rad/sample]}\)</span></p>
+<div class="math notranslate nohighlight">
+\[F(\omega) = \sum^{\infty}_{n=-\infty} f[n]e^{-j\omega n}\]</div>
+<div class="math notranslate nohighlight">
+\[f[n] =\frac{1}{2\pi} \int^{\pi}_{-\pi} F(\omega)e^{j\omega n}d\omega\]</div>
+</section>
+<section id="id7">
+<h2><a class="toc-backref" href="#id17">離散フーリエ変換</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>音声長を <span class="math notranslate nohighlight">\(t\text{[s]}\)</span> として</p>
+<p><span class="math notranslate nohighlight">\(N = [t\nu _s] \text{[sample]}\)</span></p>
+<p><span class="math notranslate nohighlight">\(f[n]\)</span> を離散信号とする。<span class="math notranslate nohighlight">\(0 \leq n \leq N-1\)</span> を満たす有限長離散信号 <span class="math notranslate nohighlight">\(f[n]\)</span> の離散フーリエ変換を</p>
+<div class="math notranslate nohighlight">
+\[F[k] = \sum^{N-1}_{n=0} f[n]e^{-j\frac{2\pi}{N} kn}\]</div>
+<p>で表す。(kで離散周波数を表してるので、離散時間フーリエ変換での表し方を考えて、書き方を考え直す)</p>
+<div class="math notranslate nohighlight">
+\[f[n] = \frac{1}{N}\sum^{N-1}_{k=0} F[k]e^{j\frac{2\pi}{N} kn}\]</div>
+<section id="id8">
+<h3><a class="toc-backref" href="#id18">離散コサイン変換</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>DCTは信号をy軸で折り返して偶関数化してDFTすることと等価であり、実際にそう計算することが多い。</p>
+<p><a class="reference external" href="https://ja.wikipedia.org/wiki/%E9%9B%A2%E6%95%A3%E3%82%B3%E3%82%B5%E3%82%A4%E3%83%B3%E5%A4%89%E6%8F%9B">https://ja.wikipedia.org/wiki/%E9%9B%A2%E6%95%A3%E3%82%B3%E3%82%B5%E3%82%A4%E3%83%B3%E5%A4%89%E6%8F%9B</a></p>
+</section>
+</section>
+<section id="id9">
+<h2><a class="toc-backref" href="#id19">高速フーリエ変換</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>気合が残ってたら書く</p>
+</section>
+<section id="id10">
+<h2><a class="toc-backref" href="#id20">短時間フーリエ変換</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>短い時間間隔でFTして時間構造を見ちゃうでー</p>
+<p><span class="math notranslate nohighlight">\(f[t]\)</span> を短時間の時間区間に分割して、その周波数構造を分析するために、 <span class="math notranslate nohighlight">\(0 \leq t \leq N-1\)</span> だけで0でない値を持ち、
+この外では0となるような関数 <span class="math notranslate nohighlight">\(w_a(t)\)</span> を <span class="math notranslate nohighlight">\(f[t]\)</span> に乗じる。この <span class="math notranslate nohighlight">\(w_a(t)\)</span> は分析窓関数と呼ばれる。</p>
+<p>短時間フーリエ変換では</p>
+<div class="math notranslate nohighlight">
+\[f_m[t-mS] = w_a(t-mS)f[t]\]</div>
+<p>のように分析窓関数 <span class="math notranslate nohighlight">\(w_a(t)\)</span> を <span class="math notranslate nohighlight">\(mS\)</span> だけシフトして乗じることにより、
+<span class="math notranslate nohighlight">\(mS \leq t \leq mS+N-1\)</span> 部分を切り出し、
+切り出した時間区間の先頭に時間原点を移動した有限長信号を定義する。
+この時間区間、あるいは切り出された有限長信号は、時間フレームあるいは単にフレームと呼ばれ、
+<span class="math notranslate nohighlight">\(m\)</span> は時間フレームのインデックス、
+<span class="math notranslate nohighlight">\(S\)</span> はフレームシフト(hop_length)、
+<span class="math notranslate nohighlight">\(N\)</span> はフレーム長(win_length)と呼ばれる。</p>
+<p><span class="math notranslate nohighlight">\(N=512, 1024, 2048\)</span> がとられることが多い</p>
+<p>ここで　<span class="math notranslate nohighlight">\(n=t-mS\)</span> と置くと、<span class="math notranslate nohighlight">\(f_m[n]\)</span> は、 <span class="math notranslate nohighlight">\(0 \leq n \leq N-1\)</span> でのみ <span class="math notranslate nohighlight">\(0\)</span> でない値を持つ。
+こうして分割された有限長信号に離散フーリエ変換を適応することで、短時間フーリエ変換</p>
+<div class="math notranslate nohighlight">
+\[F[m, k] = \sum^{N-1}_{n=0} f_m[n]e^{-j\frac{2\pi}{N} kn}\]</div>
+<p>が定義される。</p>
+<p><a class="reference external" href="https://www.jstage.jst.go.jp/article/jasj/72/12/72_764/_pdf">https://www.jstage.jst.go.jp/article/jasj/72/12/72_764/_pdf</a></p>
+<section id="id11">
+<h3><a class="toc-backref" href="#id21">時間分解能、周波数分解能</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>Nが小さい:mがいっぱいとれる,kが全然取れない</p>
+<p>Nがでかい:mが全然取れない,kがいっぱいとれる</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="信号処理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="laplace.html" class="btn btn-neutral float-right" title="ラプラス変換" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, licrum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>微分積分学 &mdash; 音声信号処理のための備忘録  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="信号処理" href="../processing/index.html" />
+    <link rel="prev" title="論理学" href="../logic/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logic/index.html">論理学</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">微分積分学</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">区間</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">近傍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">数列の極限</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">級数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/index.html">信号処理</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">音声信号処理のための備忘録</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>微分積分学</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/calculus/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="id1">
+<h1>微分積分学<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://www7b.biglobe.ne.jp/~h-kuroda/pdf/text_calculus.pdf">http://www7b.biglobe.ne.jp/~h-kuroda/pdf/text_calculus.pdf</a></p>
+<section id="id2">
+<h2>区間<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id3">
+<h2>近傍<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id4">
+<h2>数列の極限<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> と <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span> について、</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall\varepsilon&gt;0,\exists N(\varepsilon)\in\mathbb{N}:\\n\geq N(\varepsilon)\Rightarrow|a_n-\alpha|&lt;\varepsilon\end{aligned}\end{align} \]</div>
+<p>このとき、数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> の極限値は <span class="math notranslate nohighlight">\(\alpha\)</span> であるといい、</p>
+<div class="math notranslate nohighlight">
+\[\lim_{n\to\infty}a_n=\alpha\text{ または } a_n\rightarrow\alpha(n\rightarrow\infty)\]</div>
+<p>と表す。このとき、数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> は <span class="math notranslate nohighlight">\(\alpha\)</span> に収束するという。</p>
+<p>数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> がどのような <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span> にも収束しないとき、発散するという。
+さらに、</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall K&gt;0,\exists N(K)\in\mathbb{N}:\\n\geq N(K)\Rightarrow a_n&gt;K\end{aligned}\end{align} \]</div>
+<p>のとき、数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> は <span class="math notranslate nohighlight">\(\infty\)</span> に発散するといい、</p>
+<div class="math notranslate nohighlight">
+\[\lim_{n\to\infty}a_n=\infty\]</div>
+<p>と表し、</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall K&gt;0,\exists N(K)\in\mathbb{N}:\\n\geq N(K)\Rightarrow a_n&lt;K\end{aligned}\end{align} \]</div>
+<p>のとき、数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> は <span class="math notranslate nohighlight">\(-\infty\)</span> に発散するといい、</p>
+<div class="math notranslate nohighlight">
+\[\lim_{n\to\infty}a_n=-\infty\]</div>
+<p>と表す。</p>
+</section>
+<section id="id5">
+<h2>級数<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> の各項を足し合わせた</p>
+<div class="math notranslate nohighlight">
+\[a_1+a_2+a_3+\cdots+a_n+\cdots\]</div>
+<p>を <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> の作る級数と言い、 <span class="math notranslate nohighlight">\(\sum_{n=1}^{\infty}{a_n}\)</span>
+と表す。</p>
+<p><span class="math notranslate nohighlight">\(S_n=\sum^{n}_{k=1}a_k\)</span> を第 <span class="math notranslate nohighlight">\(n\)</span> 部分和といい、
+数列 <span class="math notranslate nohighlight">\(\{S_n\}^{\infty}_{n=1}\)</span> が収束するか発散するかに応じて、
+級数 <span class="math notranslate nohighlight">\(\sum_{n=1}^{\infty}{a_n}\)</span> は収束するまたは発散するという。
+部分和が収束する場合に <span class="math notranslate nohighlight">\(S=\lim_{n\to\infty}S_n\)</span> を級数の和といい、
+<span class="math notranslate nohighlight">\(\sum_{n=1}^{\infty}{a_n}=S\)</span> と書く。
+また、 <span class="math notranslate nohighlight">\(S=\pm\infty\)</span> となる場合も、それぞれ
+<span class="math notranslate nohighlight">\(\sum_{n=1}^{\infty}{a_n}=\pm\infty\)</span> で表す。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../logic/index.html" class="btn btn-neutral float-left" title="論理学" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../processing/index.html" class="btn btn-neutral float-right" title="信号処理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, licrum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
