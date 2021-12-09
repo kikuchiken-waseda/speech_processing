@@ -3,9 +3,15 @@
 
 # You can set these variables from the command line, and also
 # from the environment for the first two.
+
+#SPHINX_ROOTにbuildするための環境を設定する。
+if [-d .venv]; then\
+	SPHINX_ROOT = ./.venv;\
+fi
+
 SPHINXOPTS    ?=
-SPHINXBUILD = .venv/bin/sphinx-build
-SPHINXAUTOBUILD = .venv/bin/sphinx-autobuild
+SPHINXBUILD = $(SPHINX_ROOT)/bin/sphinx-build
+SPHINXAUTOBUILD = $(SPHINX_ROOT)/bin/sphinx-autobuild
 SOURCEDIR = source
 BUILDDIR = build
 
