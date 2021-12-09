@@ -96,7 +96,7 @@ http://www.ic.is.tohoku.ac.jp/~swk/lecture/yaruodsp/main.html
 で表す。(kで離散周波数を表してるので、離散時間フーリエ変換での表し方を考えて、書き方を考え直す)
 
 .. math::
-    f[n] = \frac{1}{N}\sum^{N-1}_{n=0} F[k]e^{j\frac{2\pi}{N} kn}
+    f[n] = \frac{1}{N}\sum^{N-1}_{k=0} F[k]e^{j\frac{2\pi}{N} kn}
 
 
 離散コサイン変換
@@ -151,3 +151,6 @@ https://www.jstage.jst.go.jp/article/jasj/72/12/72_764/_pdf
 
 時間分解能、周波数分解能
 -----------------------------------------------------------------------
+Nが小さい:mがいっぱいとれる,kが全然取れない
+
+Nがでかい:mが全然取れない,kがいっぱいとれる

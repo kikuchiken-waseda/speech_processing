@@ -22,11 +22,11 @@
 
 この時
 
-:math:`|X(\omega)|` を振幅スペクトラム
+:math:`A(\omega)=|X(\omega)|` を振幅スペクトラム
 
-:math:`\angle X(\omega)` を位相スペクトラム
+:math:`\phi(\omega)=\angle X(\omega)` を位相スペクトラム
 
-:math:`|X(\omega)|^2` をパワースペクトラム
+:math:`A^2(\omega)=|X(\omega)|^2` をパワースペクトラム
 
 という
 

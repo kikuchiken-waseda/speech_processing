@@ -16,7 +16,7 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -110,9 +110,9 @@
 </section>
 <section id="id3">
 <h2>音響パワーレベル<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>音響パワー <span class="math notranslate nohighlight">\(W [W]\)</span> に対し、基準値 <span class="math notranslate nohighlight">\(W_0 = 1 \times 10^{-12} [W]\)</span> を用いて</p>
+<p>音響パワー <span class="math notranslate nohighlight">\(W \text{[W]}\)</span> に対し、基準値 <span class="math notranslate nohighlight">\(W_0 = 1 \times 10^{-12} \text{[W]}\)</span> を用いて</p>
 <div class="math notranslate nohighlight">
-\[L_w = 10 \times \log_{10} \frac{W}{W_0} [dB]\]</div>
+\[L_w = 10 \times \log_{10} \frac{W}{W_0} \text{[dB]}\]</div>
 <p>で表す。</p>
 <p>実用上はSTFTのフレーム一つ一つのパワーを求めるのがよさそう？</p>
 </section>
@@ -126,17 +126,17 @@
 <p>可聴域にある音は同じ周波数であれば、音圧が大きいほど大きな音として認識される。また、音圧の単位は圧力を示す単位であるPa（パスカル）であるが、人間が認識しうる音の大きさの範囲は音圧の実値では広範囲にわたる。</p>
 <p>そこで、音響工学の分野では人間の聴覚特性に合わせ、音圧の大きさを基準となる値との比の常用対数によって表現される量（レベル）である音圧レベルを用いて表すことが多い。</p>
 <p><a class="reference external" href="https://ja.wikipedia.org/wiki/%E9%9F%B3%E5%9C%A7%E3%83%AC%E3%83%99%E3%83%AB">https://ja.wikipedia.org/wiki/%E9%9F%B3%E5%9C%A7%E3%83%AC%E3%83%99%E3%83%AB</a></p>
-<p>音圧 <span class="math notranslate nohighlight">\(p [Pa]\)</span> に対し、基準値 <span class="math notranslate nohighlight">\(p_0 = 20 \times 10^{-6} [Pa]\)</span> を用いて</p>
+<p>音圧 <span class="math notranslate nohighlight">\(p \text{[Pa]}\)</span> に対し、基準値 <span class="math notranslate nohighlight">\(p_0 = 20 \times 10^{-6} \text{[Pa]}\)</span> を用いて</p>
 <div class="math notranslate nohighlight">
-\[L_p = 10 \times \log_{10} (\frac{p}{p_0})^2[dB]\]</div>
+\[L_p = 10 \times \log_{10} (\frac{p}{p_0})^2\text{[dB]}\]</div>
 <p>で表す。</p>
 </section>
 <section id="loudness">
 <h2>Loudness<a class="headerlink" href="#loudness" title="Permalink to this headline">¶</a></h2>
 <p>ヒトの聴覚が感じる音の大小を示す心理量</p>
-<p>単位は <span class="math notranslate nohighlight">\([sone]\)</span></p>
-<p>音圧レベル <span class="math notranslate nohighlight">\(40[dB]\)</span> 周波数 <span class="math notranslate nohighlight">\(1[kHz]\)</span> の純音をヒトが聞いたときに感じる音の大きさが
-<span class="math notranslate nohighlight">\(1[sone]\)</span> と定義される</p>
+<p>単位は <span class="math notranslate nohighlight">\(\text{[sone]}\)</span></p>
+<p>音圧レベル <span class="math notranslate nohighlight">\(40\text{[dB]}\)</span> 周波数 <span class="math notranslate nohighlight">\(1\text{[kHz]}\)</span> の純音をヒトが聞いたときに感じる音の大きさが
+<span class="math notranslate nohighlight">\(1\text{[sone]}\)</span> と定義される</p>
 </section>
 <section id="id6">
 <h2>Loudnessレベル<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>

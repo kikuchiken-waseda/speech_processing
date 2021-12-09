@@ -16,7 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -200,7 +200,7 @@
 \[F[k] = \sum^{N-1}_{n=0} f[n]e^{-j\frac{2\pi}{N} kn}\]</div>
 <p>で表す。(kで離散周波数を表してるので、離散時間フーリエ変換での表し方を考えて、書き方を考え直す)</p>
 <div class="math notranslate nohighlight">
-\[f[n] = \frac{1}{N}\sum^{N-1}_{n=0} F[k]e^{j\frac{2\pi}{N} kn}\]</div>
+\[f[n] = \frac{1}{N}\sum^{N-1}_{k=0} F[k]e^{j\frac{2\pi}{N} kn}\]</div>
 <section id="id8">
 <h3><a class="toc-backref" href="#id18">離散コサイン変換</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>DCTは信号をy軸で折り返して偶関数化してDFTすることと等価であり、実際にそう計算することが多い。</p>
@@ -235,6 +235,8 @@
 <p><a class="reference external" href="https://www.jstage.jst.go.jp/article/jasj/72/12/72_764/_pdf">https://www.jstage.jst.go.jp/article/jasj/72/12/72_764/_pdf</a></p>
 <section id="id11">
 <h3><a class="toc-backref" href="#id21">時間分解能、周波数分解能</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>Nが小さい:mがいっぱいとれる,kが全然取れない</p>
+<p>Nがでかい:mが全然取れない,kがいっぱいとれる</p>
 </section>
 </section>
 </section>

@@ -19,10 +19,10 @@ https://www.onosokki.co.jp/HP-WK/eMM_back/emm101.pdf
 
 音響パワーレベル
 ----------------------------------------------------------------
-音響パワー :math:`W [W]` に対し、基準値 :math:`W_0 = 1 \times 10^{-12} [W]` を用いて
+音響パワー :math:`W \text{[W]}` に対し、基準値 :math:`W_0 = 1 \times 10^{-12} \text{[W]}` を用いて
 
 .. math::
-    L_w = 10 \times \log_{10} \frac{W}{W_0} [dB]
+    L_w = 10 \times \log_{10} \frac{W}{W_0} \text{[dB]}
 
 で表す。
 
@@ -44,10 +44,10 @@ https://www.onosokki.co.jp/HP-WK/eMM_back/emm101.pdf
 
 https://ja.wikipedia.org/wiki/%E9%9F%B3%E5%9C%A7%E3%83%AC%E3%83%99%E3%83%AB
 
-音圧 :math:`p [Pa]` に対し、基準値 :math:`p_0 = 20 \times 10^{-6} [Pa]` を用いて
+音圧 :math:`p \text{[Pa]}` に対し、基準値 :math:`p_0 = 20 \times 10^{-6} \text{[Pa]}` を用いて
 
 .. math::
-    L_p = 10 \times \log_{10} (\frac{p}{p_0})^2[dB]
+    L_p = 10 \times \log_{10} (\frac{p}{p_0})^2\text{[dB]}
 
 で表す。
 
@@ -55,10 +55,10 @@ Loudness
 ----------------------------------------------------------------
 ヒトの聴覚が感じる音の大小を示す心理量
 
-単位は :math:`[sone]`
+単位は :math:`\text{[sone]}`
 
-音圧レベル :math:`40[dB]` 周波数 :math:`1[kHz]` の純音をヒトが聞いたときに感じる音の大きさが
-:math:`1[sone]` と定義される
+音圧レベル :math:`40\text{[dB]}` 周波数 :math:`1\text{[kHz]}` の純音をヒトが聞いたときに感じる音の大きさが
+:math:`1\text{[sone]}` と定義される
 
 Loudnessレベル
 ----------------------------------------------------------------
