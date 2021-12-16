@@ -121,6 +121,9 @@ https://ja.wikipedia.org/wiki/%E9%87%8F%E5%8C%96
 :math:`f:A\to B` で、 :math:`f` が :math:`A` から :math:`B` への写像であることを表す。
 :math:`f:a\mapsto b` で、 写像 :math:`f` によって :math:`a\in A` が :math:`b\in B` に移ることを表す。
 
+.. math::
+    \forall a\in A, \exists !b \in B : b=f(a)
+
 :math:`A` を :math:`f` の始域、 :math:`B` を :math:`f` の終域という。また :math:`b` を :math:`f` による :math:`a` の像といい、
 :math:`a` を :math:`f` による :math:`b` の原像という。
 

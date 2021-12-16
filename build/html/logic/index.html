@@ -16,8 +16,8 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -49,10 +49,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#id2">命題論理</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">命題論理の形式言語のボキャブラリー</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">命題論理における論理式(文法)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">論理式の真理値</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">論理式の解釈</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">論理式の真理値</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">トートロジー</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">命題論理における推論規則</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">証明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">命題論理の自然演繹体系</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">述語論理(一階述語論理)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">述語論理(一階述語論理)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../calculus/index.html">微分積分学</a></li>
@@ -111,18 +116,24 @@
 <h1>論理学<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://abelard.flet.keio.ac.jp/person/mitsu/pdf/nyumon_logic.pdf">https://abelard.flet.keio.ac.jp/person/mitsu/pdf/nyumon_logic.pdf</a></p>
 <p><a class="reference external" href="https://fuchino.ddo.jp/kobe/predicate-logic-ss11.pdf">https://fuchino.ddo.jp/kobe/predicate-logic-ss11.pdf</a></p>
+<p><a class="reference external" href="https://wiis.info/math/logic/propositional-logic/">https://wiis.info/math/logic/propositional-logic/</a></p>
 <section id="id2">
 <h2>命題論理<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <section id="id3">
 <h3>命題論理の形式言語のボキャブラリー<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>命題論理の形式言語のボキャブラリーは、論理記号、命題変項、命題定項の3つからなる。
 命題変項及び命題定項は単文を表し、論理記号は文と文をつなぐ接続詞の役割を果たすことが後に示される。</p>
+<ul class="simple">
+<li><p>命題定項: true, false</p></li>
+<li><p>命題変項: P, Q, R, …</p></li>
+<li><p>論理記号: and, or, not, if…then…, if and only if</p></li>
+</ul>
 <ol class="arabic simple">
 <li><p>and <span class="math notranslate nohighlight">\(\land\)</span></p></li>
 <li><p>or <span class="math notranslate nohighlight">\(\lor\)</span></p></li>
 <li><p>not <span class="math notranslate nohighlight">\(\lnot\)</span></p></li>
-<li><p>if…then… <span class="math notranslate nohighlight">\(\Rightarrow\)</span></p></li>
-<li><p>if and only if <span class="math notranslate nohighlight">\(\Leftrightarrow\)</span></p></li>
+<li><p>if…then… <span class="math notranslate nohighlight">\(\rightarrow\)</span></p></li>
+<li><p>if and only if <span class="math notranslate nohighlight">\(\leftrightarrow\)</span></p></li>
 <li><p>true <span class="math notranslate nohighlight">\(\top\)</span></p></li>
 <li><p>false <span class="math notranslate nohighlight">\(\bot\)</span></p></li>
 </ol>
@@ -133,16 +144,96 @@
 <li><p>命題変項は論理式である。</p></li>
 <li><p>命題定項は論理式である。</p></li>
 <li><p>もし、 <span class="math notranslate nohighlight">\(A\)</span> が論理式であるならば、 <span class="math notranslate nohighlight">\((\lnot A)\)</span> も論理式である。</p></li>
-<li><p>もし、 <span class="math notranslate nohighlight">\(A,B\)</span> がともに論理師であるならば、 <span class="math notranslate nohighlight">\((A\land B),(A\lor B),(A\Rightarrow B),(A\Leftrightarrow B)\)</span> は、それぞれ論理式である。</p></li>
+<li><p>もし、 <span class="math notranslate nohighlight">\(A,B\)</span> がともに論理式であるならば、 <span class="math notranslate nohighlight">\((A\land B),(A\lor B),(A\rightarrow B),(A\leftrightarrow B)\)</span> は、それぞれ論理式である。</p></li>
 <li><p>以上で論理式とわかるものだけを論理式とする。</p></li>
 </ol>
 </section>
 <section id="id5">
-<h3>論理式の真理値<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-</section>
+<h3>論理式の解釈<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="id6">
-<h2>述語論理(一階述語論理)<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h3>論理式の真理値<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>命題定項 <span class="math notranslate nohighlight">\(\top\)</span> は、trueという真理値を常に持つ。</p></li>
+<li><p>命題定項 <span class="math notranslate nohighlight">\(\bot\)</span> は、falseという真理値を常に持つ。</p></li>
+<li><p>命題変項 <span class="math notranslate nohighlight">\(P\)</span> は、trueおよびfalseを値として取り得る変項である。</p></li>
+<li><p>論理式 <span class="math notranslate nohighlight">\(A\land B\)</span> がtrueであるのは、 <span class="math notranslate nohighlight">\(A\)</span> がtrue かつ <span class="math notranslate nohighlight">\(B\)</span> がtrueである時に限る。</p></li>
+<li><p>論理式 <span class="math notranslate nohighlight">\(A\lor B\)</span> がtrueであるのは、 <span class="math notranslate nohighlight">\(A\)</span> がtrue または <span class="math notranslate nohighlight">\(B\)</span> がtrueである時に限る。</p></li>
+<li><p>論理式 :math: <cite>lnot A</cite> がtrueであるのは、 <span class="math notranslate nohighlight">\(A\)</span> がfalseである時に限る。</p></li>
+<li><p>論理式 <span class="math notranslate nohighlight">\(A\rightarrow B\)</span> がtrueであるのは、 <span class="math notranslate nohighlight">\(A\)</span> がtrueであれば <span class="math notranslate nohighlight">\(B\)</span> がtrueであること、すなわち、 <span class="math notranslate nohighlight">\(A\)</span> がfalseであるか <span class="math notranslate nohighlight">\(B\)</span> がtrueとなることである。</p></li>
+<li><p>論理式 <span class="math notranslate nohighlight">\(A\leftrightarrow B\)</span> がtrueであるのは、 <span class="math notranslate nohighlight">\(A\)</span> と <span class="math notranslate nohighlight">\(B\)</span> が同じ真理値を取るときに限る。</p></li>
+</ol>
+</section>
+<section id="id7">
+<h3>トートロジー<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>全ての命題変項の可能な真理値に対して、常にtrueとなるような論理式はトートロジーと呼ばれる。</p>
+</section>
+<section id="id8">
+<h3>命題論理における推論規則<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>推論とは、前提に相当する有限個の論理式 <span class="math notranslate nohighlight">\(A_1,\cdots,A_n\)</span> がすべて真であるような任意の解釈において、結論に相当する論理式 <span class="math notranslate nohighlight">\(B\)</span> が必ず真になるという主張であり、これを</p>
+<div class="math notranslate nohighlight">
+\[A_1,\cdots,A_n \therefore B\]</div>
+<p>と表し、推論式と呼ぶ。</p>
+<p>前提を持たず結論 <span class="math notranslate nohighlight">\(B\)</span> だけを持つ推論式を</p>
+<div class="math notranslate nohighlight">
+\[\therefore B\]</div>
+<p>と記述し、これは論理式 <span class="math notranslate nohighlight">\(B\)</span> がトートロジーであるという主張を表す。</p>
+<p>前提 <span class="math notranslate nohighlight">\(A_1,\cdots,A_n\)</span> がすべて真であるような任意の解釈において、結論 <span class="math notranslate nohighlight">\(B\)</span> が必ず真であることが保証される場合、その推論は妥当であるといい、</p>
+<div class="math notranslate nohighlight">
+\[A_1,\cdots,A_n \vDash B\]</div>
+<p>と表し、これを推論規則という。</p>
+<p>前提を持たず結論 <span class="math notranslate nohighlight">\(B\)</span> だけを持つ推論が妥当であることを、</p>
+<div class="math notranslate nohighlight">
+\[\vDash B\]</div>
+<p>と記述し、これは論理式 <span class="math notranslate nohighlight">\(B\)</span> がトートロジーであることを意味する。</p>
+</section>
+<section id="id9">
+<h3>証明<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id10">
+<h3>命題論理の自然演繹体系<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>書くか迷いどころ</p>
+<p>証明構造とは、次のような構造のことと定義する。</p>
+<ol class="arabic simple" start="0">
+<li><p>公理: 任意の論理式 <span class="math notranslate nohighlight">\(A\)</span> はそれ自体が <span class="math notranslate nohighlight">\(A\)</span> の証明構造である。このとき論理式 <span class="math notranslate nohighlight">\(A\)</span> 自体がこの証明構造の開いた前提であると言われる。つまり、この1つの論理式だけから成る証明構造の開いた前提の集合は、この論理式 <span class="math notranslate nohighlight">\(A\)</span> だけから成る一元集合 (1つの元のみからなる集合) である。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\land - \mathrm{I}\)</span> : 次のような <span class="math notranslate nohighlight">\(A\)</span> の証明構造 <span class="math notranslate nohighlight">\(P_1\)</span> と <span class="math notranslate nohighlight">\(B\)</span> の証明構造 <span class="math notranslate nohighlight">\(P_2\)</span> が与えられているとする。ここで <span class="math notranslate nohighlight">\(C_1\cdots C_n\)</span> は <span class="math notranslate nohighlight">\(A\)</span> の証明構造 <span class="math notranslate nohighlight">\(P_1\)</span> に現れる開いた前提の集合とし、 <span class="math notranslate nohighlight">\(D_1\cdots D_n\)</span> は <span class="math notranslate nohighlight">\(B\)</span> の証明構造 <span class="math notranslate nohighlight">\(P_2\)</span> に現れる開いた前提の集合とする。</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[P_1
+\left\{
+    \begin{prooftree}
+        \AxiomC{$C_1\cdots C_n$} \noLine
+        \UnaryInfC{$\strut \vdots$} \noLine
+        \UnaryInfC{$A$}
+    \end{prooftree}
+\right.\]</div>
+<div class="math notranslate nohighlight">
+\[P_2
+\left\{
+    \begin{prooftree}
+        \AxiomC{$D_1\cdots D_n$} \noLine
+        \UnaryInfC{$\strut \vdots$} \noLine
+        \UnaryInfC{$B$}
+    \end{prooftree}
+\right.\]</div>
+<div class="math notranslate nohighlight">
+\[P
+\left\{
+    \begin{prooftree}
+        \AxiomC{$C_1\cdots C_n$}\noLine
+            \UnaryInfC{$\strut \vdots$}\noLine
+                \UnaryInfC{$A$}
+        \AxiomC{$D_1\cdots D_n$}\noLine
+            \UnaryInfC{$\strut \vdots$}\noLine
+                \UnaryInfC{$B$}
+        \RightLabel{$\scriptsize{\land - \mathrm{I}}$}
+        \BinaryInfC{$A\land B$}
+    \end{prooftree}
+\right.\]</div>
+</section>
+</section>
+<section id="id11">
+<h2>述語論理(一階述語論理)<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
 </section>
 </section>
 

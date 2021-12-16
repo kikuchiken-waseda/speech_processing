@@ -16,8 +16,8 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -231,6 +231,8 @@
 <p>集合 <span class="math notranslate nohighlight">\(A,B\)</span> に対し、 <span class="math notranslate nohighlight">\(A\)</span> のすべての元に対して <span class="math notranslate nohighlight">\(B\)</span> の元が唯一定まる時、その対応を写像と呼ぶ。</p>
 <p><span class="math notranslate nohighlight">\(f:A\to B\)</span> で、 <span class="math notranslate nohighlight">\(f\)</span> が <span class="math notranslate nohighlight">\(A\)</span> から <span class="math notranslate nohighlight">\(B\)</span> への写像であることを表す。
 <span class="math notranslate nohighlight">\(f:a\mapsto b\)</span> で、 写像 <span class="math notranslate nohighlight">\(f\)</span> によって <span class="math notranslate nohighlight">\(a\in A\)</span> が <span class="math notranslate nohighlight">\(b\in B\)</span> に移ることを表す。</p>
+<div class="math notranslate nohighlight">
+\[\forall a\in A, \exists !b \in B : b=f(a)\]</div>
 <p><span class="math notranslate nohighlight">\(A\)</span> を <span class="math notranslate nohighlight">\(f\)</span> の始域、 <span class="math notranslate nohighlight">\(B\)</span> を <span class="math notranslate nohighlight">\(f\)</span> の終域という。また <span class="math notranslate nohighlight">\(b\)</span> を <span class="math notranslate nohighlight">\(f\)</span> による <span class="math notranslate nohighlight">\(a\)</span> の像といい、
 <span class="math notranslate nohighlight">\(a\)</span> を <span class="math notranslate nohighlight">\(f\)</span> による <span class="math notranslate nohighlight">\(b\)</span> の原像という。</p>
 <p>全射は <span class="math notranslate nohighlight">\(\forall b\in B,\exists a\in A:b=a\)</span></p>

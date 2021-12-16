@@ -16,8 +16,8 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -49,8 +49,16 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">微分積分学</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">区間</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id3">近傍</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">数列の極限</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">級数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">上限・下限</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">上界・下界</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">最大値・最小値</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">上限・下限</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">数列の極限</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">級数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">単調数列</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#napier">Napier数</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../processing/index.html">信号処理</a></li>
@@ -109,12 +117,48 @@
 <p><a class="reference external" href="http://www7b.biglobe.ne.jp/~h-kuroda/pdf/text_calculus.pdf">http://www7b.biglobe.ne.jp/~h-kuroda/pdf/text_calculus.pdf</a></p>
 <section id="id2">
 <h2>区間<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(a,b\in\mathbb{R}(a&lt;b)\)</span> に対し、次の形の集合を区間という。</p>
+<p>開区間</p>
+<div class="math notranslate nohighlight">
+\[(a,b) :=\{x\in\mathbb{R}\mid a&lt;x&lt;b\}\]</div>
+<p>閉区間</p>
+<div class="math notranslate nohighlight">
+\[[a,b] :=\{x\in\mathbb{R}\mid a\leq x\leq b\}\]</div>
+<p>ただし、 数列 <span class="math notranslate nohighlight">\((-\infty,\infty)\in\mathbb{R}\)</span> は開区間と閉区間でもあると考えることとする。</p>
 </section>
 <section id="id3">
 <h2>近傍<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(\varepsilon&gt;0,a\in\mathbb{R}\)</span> に対して</p>
+<div class="math notranslate nohighlight">
+\[U_{\varepsilon}(a) := \{x\in\mathbb{R}\mid |x-a|&lt;\varepsilon\}=(a-\varepsilon,a+\varepsilon)\]</div>
+<p>とおく。この開区間 <span class="math notranslate nohighlight">\(U_{\varepsilon}(a)\)</span> を点 <span class="math notranslate nohighlight">\(a\)</span> の <span class="math notranslate nohighlight">\(\varepsilon\)</span> 近傍(または単に近傍)という。</p>
 </section>
 <section id="id4">
-<h2>数列の極限<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>上限・下限<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<section id="id5">
+<h3>上界・下界<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall x\in X,\exists a\in\mathbb{R}:\\a\geq x\end{aligned}\end{align} \]</div>
+<p>のとき、 <span class="math notranslate nohighlight">\(a\)</span> が <span class="math notranslate nohighlight">\(X\)</span> の上界であるという。</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall x\in X,\exists a\in\mathbb{R}:\\a\leq x\end{aligned}\end{align} \]</div>
+<p>のとき、 <span class="math notranslate nohighlight">\(a\)</span> が <span class="math notranslate nohighlight">\(X\)</span> の下界であるという。</p>
+</section>
+<section id="id6">
+<h3>最大値・最小値<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(a\in\mathbb{R}\)</span> が <span class="math notranslate nohighlight">\(X\)</span> の上界かつ、 <span class="math notranslate nohighlight">\(a\in X\)</span> を満たすとき、 <span class="math notranslate nohighlight">\(a\)</span> を <span class="math notranslate nohighlight">\(X\)</span> の最大値といい、 <span class="math notranslate nohighlight">\(\max X\)</span> で表す。
+<span class="math notranslate nohighlight">\(a\in\mathbb{R}\)</span> が <span class="math notranslate nohighlight">\(X\)</span> の下界かつ、 <span class="math notranslate nohighlight">\(a\in X\)</span> を満たすとき、 <span class="math notranslate nohighlight">\(a\)</span> を <span class="math notranslate nohighlight">\(X\)</span> の最小値といい、 <span class="math notranslate nohighlight">\(\min X\)</span> で表す。</p>
+</section>
+<section id="id7">
+<h3>上限・下限<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(X\)</span> の上界が空集合でない時、上界の最小値を上限といい、 <span class="math notranslate nohighlight">\(\sup X\)</span> と表す。
+上界が空集合の場合、上限がないといい、 <span class="math notranslate nohighlight">\(\sup X = \infty\)</span> と表すことがある。</p>
+<p><span class="math notranslate nohighlight">\(X\)</span> の下界が空集合でない時、下界の最大値を下限といい、 <span class="math notranslate nohighlight">\(\inf X\)</span> と表す。
+下界が空集合の場合、下限がないといい、 <span class="math notranslate nohighlight">\(\inf X = -\infty\)</span> と表すことがある。</p>
+</section>
+</section>
+<section id="id8">
+<h2>数列の極限<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <p>数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> と <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span> について、</p>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\forall\varepsilon&gt;0,\exists N(\varepsilon)\in\mathbb{N}:\\n\geq N(\varepsilon)\Rightarrow|a_n-\alpha|&lt;\varepsilon\end{aligned}\end{align} \]</div>
@@ -137,8 +181,8 @@
 \[\lim_{n\to\infty}a_n=-\infty\]</div>
 <p>と表す。</p>
 </section>
-<section id="id5">
-<h2>級数<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<section id="id9">
+<h2>級数<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <p>数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> の各項を足し合わせた</p>
 <div class="math notranslate nohighlight">
 \[a_1+a_2+a_3+\cdots+a_n+\cdots\]</div>
@@ -151,6 +195,30 @@
 <span class="math notranslate nohighlight">\(\sum_{n=1}^{\infty}{a_n}=S\)</span> と書く。
 また、 <span class="math notranslate nohighlight">\(S=\pm\infty\)</span> となる場合も、それぞれ
 <span class="math notranslate nohighlight">\(\sum_{n=1}^{\infty}{a_n}=\pm\infty\)</span> で表す。</p>
+</section>
+<section id="id10">
+<h2>単調数列<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> が単調増加であるとは、</p>
+<div class="math notranslate nohighlight">
+\[\forall n\in \mathbb{N} : a_n\leq a_{n+1}\]</div>
+<p>が成り立つことである。特に</p>
+<div class="math notranslate nohighlight">
+\[\forall n\in \mathbb{N} : a_n &lt; a_{n+1}\]</div>
+<p>が成り立つとき、狭義単調増加である。</p>
+<p>数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> が単調減少であるとは、</p>
+<div class="math notranslate nohighlight">
+\[\forall n\in \mathbb{N} : a_n\geq a_{n+1}\]</div>
+<p>が成り立つことである。特に</p>
+<div class="math notranslate nohighlight">
+\[\forall n\in \mathbb{N} : a_n &gt; a_{n+1}\]</div>
+<p>が成り立つとき、狭義単調減少である。</p>
+<p>単調増加または単調減少な数列をまとめて単調数列という。</p>
+</section>
+<section id="napier">
+<h2>Napier数<a class="headerlink" href="#napier" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[e := \lim_{n\to\infty}(1+\frac{1}{n})^n\]</div>
+<p>とし、これをNapier数という。</p>
 </section>
 </section>
 
