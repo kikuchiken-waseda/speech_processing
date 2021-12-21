@@ -17,6 +17,8 @@
    ./logic/index
    ./calculus/index
    ./processing/index
+   ./ml/index
+   ./a
 
 
 こんなサイトが出来たら最高だわ

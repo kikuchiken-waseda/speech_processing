@@ -8,5 +8,9 @@
    :caption: Contents:
 
    ./an_overview
+   ./vqmivc
+   ./autovc
+   ./sscr
+   ./rozs
 
 

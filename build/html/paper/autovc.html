@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AUTOVC: Zero-Shot Voice Style Transfer with Only Autoencoder Loss &mdash; 音声信号処理のための備忘録  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="One-shot Voice Conversion by Separating Speaker and Content Representations with Instance Normalization" href="sscr.html" />
+    <link rel="prev" title="VQMIVC: Vector Quantization and Mutual Information-Based Unsupervised Speech Representation Disentanglement for One-shot Voice Conversion" href="vqmivc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">論文まとめ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="an_overview.html">An Overview of Voice Conversion and its Challenges: From Statistical Modeling to Deep Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vqmivc.html">VQMIVC: Vector Quantization and Mutual Information-Based Unsupervised Speech Representation Disentanglement for One-shot Voice Conversion</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">AUTOVC: Zero-Shot Voice Style Transfer with Only Autoencoder Loss</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#words">words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#abstract">Abstract</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sscr.html">One-shot Voice Conversion by Separating Speaker and Content Representations with Instance Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rozs.html">Training Robust Zero-Shot Voice Conversion Models with Self-supervised Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logic/index.html">論理学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculus/index.html">微分積分学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/index.html">信号処理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/index.html">ml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../a.html">集合と位相</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">音声信号処理のための備忘録</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">論文まとめ</a> &raquo;</li>
+      <li>AUTOVC: Zero-Shot Voice Style Transfer with Only Autoencoder Loss</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/paper/autovc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="autovc-zero-shot-voice-style-transfer-with-only-autoencoder-loss">
+<h1><a class="toc-backref" href="#id2">AUTOVC: Zero-Shot Voice Style Transfer with Only Autoencoder Loss</a><a class="headerlink" href="#autovc-zero-shot-voice-style-transfer-with-only-autoencoder-loss" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://arxiv.org/abs/1905.05879">https://arxiv.org/abs/1905.05879</a></p>
+<div class="contents topic" id="id1">
+<p class="topic-title">目次</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#autovc-zero-shot-voice-style-transfer-with-only-autoencoder-loss" id="id2">AUTOVC: Zero-Shot Voice Style Transfer with Only Autoencoder Loss</a></p>
+<ul>
+<li><p><a class="reference internal" href="#words" id="id3">words</a></p></li>
+<li><p><a class="reference internal" href="#abstract" id="id4">Abstract</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="words">
+<h2><a class="toc-backref" href="#id3">words</a><a class="headerlink" href="#words" title="Permalink to this headline">¶</a></h2>
+<p>Deep style transfer algorithm: “deep” style transfer algorithm?</p>
+<p>what is “zero-shot” ?</p>
+<p>what is “style-transfer(Neural style transfer)” ?</p>
+<p>画風変換の概念を発話スタイルの変換と同一視？</p>
+</section>
+<section id="abstract">
+<h2><a class="toc-backref" href="#id4">Abstract</a><a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+<p>Non-parallel many-to-many voice conversion, as well as zero-shot voice conversion, remain underexplored areas.
+Deep style transfer algorithms, such as GAN based and VAE based, are being applied as new solutions in this field.</p>
+<p>However, <strong>GAN training</strong> is sophisticated and difficult, and there is no strong evidence that its generated speech is of good perceptual quality.</p>
+<p>On the other hand, <strong>CVAE training</strong> is simple but does not come with the distribution-matching property of a GAN.</p>
+<p><strong>In this paper</strong>, we propose a new style transfer scheme that involves only an autoencoder with a carefully designed bottleneck.
+We formally show that this scheme can achieve distribution matching style transfer by training only on a self-reconstruction loss.
+Based on this scheme, we proposed AUTOVC, which achieves state-of-the-art results in many-to-many voice conversion with non-parallel data, and which is the first to perform zero-shot voice conversion.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="vqmivc.html" class="btn btn-neutral float-left" title="VQMIVC: Vector Quantization and Mutual Information-Based Unsupervised Speech Representation Disentanglement for One-shot Voice Conversion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sscr.html" class="btn btn-neutral float-right" title="One-shot Voice Conversion by Separating Speaker and Content Representations with Instance Normalization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, licrum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
