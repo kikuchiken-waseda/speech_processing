@@ -5,9 +5,6 @@
 # from the environment for the first two.
 
 #SPHINX_ROOTにbuildするための環境を設定する。
-if [-d .venv]; then\
-	SPHINX_ROOT = ./.venv;\
-fi
 
 SPHINXOPTS    ?=
 SPHINXBUILD = $(SPHINX_ROOT)/bin/sphinx-build

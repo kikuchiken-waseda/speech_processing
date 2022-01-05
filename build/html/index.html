@@ -45,7 +45,9 @@
 <li class="toctree-l1"><a class="reference internal" href="logic/index.html">論理学</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculus/index.html">微分積分学</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing/index.html">信号処理</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml/index.html">ml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="speech_analysis/index.html">音響解析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml/index.html">machine learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="control_engineering/index.html">制御工学</a></li>
 <li class="toctree-l1"><a class="reference internal" href="a.html">集合と位相</a></li>
 </ul>
 
@@ -108,12 +110,9 @@
 <li class="toctree-l2"><a class="reference internal" href="pachouli/wave_equation.html">波動方程式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pachouli/acoustic_feature/index.html">音響特徴量</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pachouli/spectrum.html">スペクトラム</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pachouli/cepstrum.html">ケプストラム</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pachouli/level.html">レベル表現</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pachouli/scale.html">聴覚尺度</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pachouli/filter/index.html">フィルタ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pachouli/mfcc.html">extract mfcc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pachouli/mgcs.html">mel generalized cepstrum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pachouli/visualization.html">音声の可視化</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pachouli/convolution.html">畳み込み</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pachouli/complex.html">複素関数</a></li>
@@ -127,6 +126,7 @@
 <li class="toctree-l2"><a class="reference internal" href="paper/autovc.html">AUTOVC: Zero-Shot Voice Style Transfer with Only Autoencoder Loss</a></li>
 <li class="toctree-l2"><a class="reference internal" href="paper/sscr.html">One-shot Voice Conversion by Separating Speaker and Content Representations with Instance Normalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="paper/rozs.html">Training Robust Zero-Shot Voice Conversion Models with Self-supervised Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paper/vqvae.html">Neural Discrete Representation Learning</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="implementation/index.html">実装</a><ul>
@@ -142,11 +142,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="calculus/index.html">微分積分学</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="calculus/index.html#id2">実数の集合</a></li>
-<li class="toctree-l2"><a class="reference internal" href="calculus/index.html#id8">数列の極限</a></li>
-<li class="toctree-l2"><a class="reference internal" href="calculus/index.html#id12">関数の極限</a></li>
-<li class="toctree-l2"><a class="reference internal" href="calculus/index.html#id21">微分法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="calculus/index.html#id35">積分法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculus/index.html#id3">実数の集合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculus/index.html#id9">数列の極限</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculus/index.html#id13">関数の極限</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculus/index.html#id22">微分法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calculus/index.html#id37">積分法</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="processing/index.html">信号処理</a><ul>
@@ -154,8 +154,18 @@
 <li class="toctree-l2"><a class="reference internal" href="processing/laplace.html">ラプラス変換</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ml/index.html">ml</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="speech_analysis/index.html">音響解析</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="speech_analysis/cepstrum.html">ケプストラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speech_analysis/mfcc.html">extract mfcc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speech_analysis/mgcs.html">mel generalized cepstrum</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ml/index.html">machine learning</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ml/index.html#what-is-attention">What is “Attention”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="control_engineering/index.html">制御工学</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="control_engineering/index.html#id2">古典制御</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="a.html">集合と位相</a><ul>

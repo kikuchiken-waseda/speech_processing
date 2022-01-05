@@ -12,5 +12,6 @@
    ./autovc
    ./sscr
    ./rozs
+   ./vqvae
 
 

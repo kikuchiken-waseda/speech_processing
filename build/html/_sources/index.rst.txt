@@ -17,7 +17,9 @@
    ./logic/index
    ./calculus/index
    ./processing/index
+   ./speech_analysis/index
    ./ml/index
+   ./control_engineering/index
    ./a
 
 

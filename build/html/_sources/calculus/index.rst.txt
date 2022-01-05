@@ -4,6 +4,10 @@
 
 http://www7b.biglobe.ne.jp/~h-kuroda/pdf/text_calculus.pdf
 
+
+.. contents:: 目次:
+   :depth: 2
+
 実数の集合
 =============================================================================
 
@@ -28,7 +32,7 @@ http://www7b.biglobe.ne.jp/~h-kuroda/pdf/text_calculus.pdf
 :math:`\varepsilon>0,a\in\mathbb{R}` に対して
 
 .. math::
-    U_{\varepsilon}(a) := \{x\in\mathbb{R}\mid |x-a|<\varepsilon\}=(a-\varepsilon,a+\varepsilon)
+    U_{\varepsilon}(a) := \{x\in\mathbb{R}\mid |x-a| <\varepsilon\}=(a-\varepsilon,a+\varepsilon)
 
 とおく。この開区間 :math:`U_{\varepsilon}(a)` を点 :math:`a` の :math:`\varepsilon` 近傍(または単に近傍)という。
 
@@ -174,7 +178,7 @@ Cauchy列
 .. math::
     \forall\varepsilon>0,\exists \delta(\varepsilon)>0:
 
-    0 \neq |x-a|<\delta(\varepsilon) \Rightarrow |f(x)-\alpha|<\varepsilon
+    0 \neq |x-a| <\delta(\varepsilon) \Rightarrow |f(x)-\alpha| <\varepsilon
 
 を満たすとき、関数 :math:`f(x)` の点 :math:`a` での極限値は :math:`\alpha` であるといい
 
@@ -188,7 +192,7 @@ Cauchy列
 .. math::
     \forall K>0,\exists \delta(K)>0:
 
-    0 \neq |x-a|<\delta(K) \Rightarrow f(x)>K
+    0 \neq |x-a| <\delta(K) \Rightarrow f(x)>K
 
 の時、 f(x) は点 :math:`a`で :math:`\infty` で発散するといい
 
@@ -200,7 +204,7 @@ Cauchy列
 .. math::
     \forall K>0,\exists \delta(K)>0:
 
-    0 \neq |x-a|<\delta(K) \Rightarrow f(x)<K
+    0 \neq |x-a| <\delta(K) \Rightarrow f(x)<K
 
 の時、 :math:`f(x)` は点 :math:`a` で :math:`-\infty` で発散するといい
 
@@ -214,7 +218,7 @@ Cauchy列
 .. math::
     \forall\varepsilon>0,\exists L(\varepsilon)>0:
 
-    x>L(\varepsilon) \Rightarrow |f(x)-\alpha|<\varepsilon
+    x>L(\varepsilon) \Rightarrow |f(x)-\alpha| <\varepsilon
 
 を満たすとき、関数 :math:`f(x)` の :math:`x\to\infty` での極限値は :math:`\alpha` であるといい
 
@@ -368,6 +372,10 @@ Cauchy列
 
 テイラー展開・マクローリン展開
 -----------------------------------------------------------------------------
+
+微分方程式
+-----------------------------------------------------------------------------
+:any:`./differential_equation`
 
 積分法
 =============================================================================
