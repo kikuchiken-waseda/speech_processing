@@ -3,7 +3,7 @@ VQMIVC: Vector Quantization and Mutual Information-Based Unsupervised Speech Rep
 =================================================================================================================================================================================================
 
 
-https://arxiv.org/abs/2008.03648
+https://arxiv.org/abs/2106.10132
 
 
 .. contents:: 目次
