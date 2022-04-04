@@ -13,5 +13,6 @@
    ./sscr
    ./rozs
    ./vqvae
+   ./gakkai/index
 
 
