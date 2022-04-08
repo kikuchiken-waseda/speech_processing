@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>machine learning &mdash; 音声信号処理のための備忘録  documentation</title>
+  <title>Generative adversarial network &mdash; 音声信号処理のための備忘録  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -16,11 +16,13 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="What is “Attention”" href="attention.html" />
-    <link rel="prev" title="mel generalized cepstrum" href="../speech_analysis/mgcs.html" /> 
+    <link rel="next" title="制御工学" href="../control_engineering/index.html" />
+    <link rel="prev" title="What is “Attention”" href="attention.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,9 +49,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../calculus/index.html">微分積分学</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processing/index.html">信号処理</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../speech_analysis/index.html">音響解析</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">machine learning</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">machine learning</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="attention.html">What is “Attention”</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gan.html">Generative adversarial network</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Generative adversarial network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">疑問</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">導出</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../control_engineering/index.html">制御工学</a></li>
@@ -70,9 +76,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>machine learning</li>
+          <li><a href="index.html">machine learning</a> &raquo;</li>
+      <li>Generative adversarial network</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/ml/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/ml/gan.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -104,27 +111,32 @@
     text-align: unset;
 }
 </style>
-<section id="machine-learning">
-<h1>machine learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="attention.html">What is “Attention”</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gan.html">Generative adversarial network</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="gan.html#id1">疑問</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gan.html#id2">導出</a></li>
-</ul>
-</li>
-</ul>
-</div>
+<section id="generative-adversarial-network">
+<h1>Generative adversarial network<a class="headerlink" href="#generative-adversarial-network" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://www.bigdata-navi.com/aidrops/2519/">https://www.bigdata-navi.com/aidrops/2519/</a></p>
+<p><a class="reference external" href="https://dreamer-uma.com/gan-theory/">https://dreamer-uma.com/gan-theory/</a></p>
+<section id="id1">
+<h2>疑問<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\mathbb{E}_{x\sim p(x)}[\ln D(x;\phi)]\\\underset{x\sim p}{\mathbb{E}}[\ln D(x;\phi)]\\\mathbb{E}_{p(x)}[\ln D(x;\phi)]\end{aligned}\end{align} \]</div>
+<p>全部一緒っぽい</p>
+</section>
+<section id="id2">
+<h2>導出<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>確率変数 <span class="math notranslate nohighlight">\(x\)</span> に対し、データ分布を <span class="math notranslate nohighlight">\(p_d(x)\)</span> 、モデル分布を <span class="math notranslate nohighlight">\(p_g(x)\)</span> で表す。</p>
+<p>分布 <span class="math notranslate nohighlight">\(p_d(x)\)</span> は分布の形が明示されているわけではないため、どのような分布か分からず、直接尤度を計算することはできない。</p>
+<p>よって天下り的(だと思ったが違うかもしれない)ではあるが、</p>
+<div class="math notranslate nohighlight">
+\[\underset{G}{\min}\underset{D}{\max}V(D, G)\]</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../speech_analysis/mgcs.html" class="btn btn-neutral float-left" title="mel generalized cepstrum" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="attention.html" class="btn btn-neutral float-right" title="What is “Attention”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="attention.html" class="btn btn-neutral float-left" title="What is “Attention”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../control_engineering/index.html" class="btn btn-neutral float-right" title="制御工学" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

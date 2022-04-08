@@ -3,16 +3,10 @@ machine learning
 =============================================
 
 
-What is "Attention"
-=============================================
-特徴量マップに何かしらの処理をして、注目してもらいたい部分のマスク関数を作る
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
 
-特徴量マップにマスクをかける
+   ./attention
+   ./gan
 
-なんかいい感じに特徴が抽出される!w
-
-**cmvcの話者ベクトルの扱いもほぼattentionじゃん**
-
-multi-head attention
-
-多分これがわかりやすい。https://zenn.dev/attentionplease/articles/5510331c45e16a
