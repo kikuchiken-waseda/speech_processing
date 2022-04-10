@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>What is “Attention” &mdash; 音声信号処理のための備忘録  documentation</title>
+  <title>変分推論 &mdash; 音声信号処理のための備忘録  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,9 +18,7 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Generative adversarial network" href="gan.html" />
-    <link rel="prev" title="machine learning" href="index.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,7 +37,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">実装</a></li>
@@ -47,11 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../calculus/index.html">微分積分学</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processing/index.html">信号処理</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../speech_analysis/index.html">音響解析</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">machine learning</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">What is “Attention”</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gan.html">Generative adversarial network</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">machine learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../control_engineering/index.html">制御工学</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../a.html">集合と位相</a></li>
 </ul>
@@ -70,10 +64,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">machine learning</a> &raquo;</li>
-      <li>What is “Attention”</li>
+      <li>変分推論</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/ml/attention.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/ml/variational.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -105,23 +98,15 @@
     text-align: unset;
 }
 </style>
-<section id="what-is-attention">
-<h1>What is “Attention”<a class="headerlink" href="#what-is-attention" title="Permalink to this headline">¶</a></h1>
-<p>特徴量マップに何かしらの処理をして、注目してもらいたい部分のマスク関数を作る</p>
-<p>特徴量マップにマスクをかける</p>
-<p>なんかいい感じに特徴が抽出される!w</p>
-<p><strong>cmvcの話者ベクトルの扱いもほぼattentionじゃん</strong></p>
-<p>multi-head attention</p>
-<p>多分これがわかりやすい。<a class="reference external" href="https://zenn.dev/attentionplease/articles/5510331c45e16a">https://zenn.dev/attentionplease/articles/5510331c45e16a</a></p>
+<section id="id1">
+<h1>変分推論<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://ntacoffee.com/variational-inference/">https://ntacoffee.com/variational-inference/</a></p>
 </section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="machine learning" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="gan.html" class="btn btn-neutral float-right" title="Generative adversarial network" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
