@@ -3,8 +3,6 @@
 ===========================
 
 https://ntacoffee.com/variational-inference/
-<<<<<<< HEAD
-=======
 
 
 
@@ -26,4 +24,3 @@ https://ntacoffee.com/variational-inference/
     }
 
 graphvizと和解できない・・・
->>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936

@@ -7,10 +7,7 @@
   <title>Generative adversarial network &mdash; 音声信号処理のための備忘録  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-<<<<<<< HEAD
-=======
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
->>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -58,10 +55,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Generative adversarial network</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">疑問</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">導出</a></li>
-<<<<<<< HEAD
-=======
 <li class="toctree-l3"><a class="reference internal" href="#id3">なんか</a></li>
->>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#id1">分布</a></li>
@@ -127,14 +121,9 @@
 <section id="id1">
 <h2>疑問<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
-<<<<<<< HEAD
-\[ \begin{align}\begin{aligned}\mathbb{E}_{x\sim p(x)}[\ln D(x;\phi)]\\\underset{x\sim p}{\mathbb{E}}[\ln D(x;\phi)]\\\mathbb{E}_{p(x)}[\ln D(x;\phi)]\end{aligned}\end{align} \]</div>
-<p>全部一緒っぽい</p>
-=======
 \[ \begin{align}\begin{aligned}\mathbf{E}_{x\sim p(x)}[\ln D(x;\phi)]\\\underset{x\sim p}{\mathbf{E}}[\ln D(x;\phi)]\\\mathbf{E}_{p(x)}[\ln D(x;\phi)]\end{aligned}\end{align} \]</div>
 <p>全部一緒っぽい</p>
 <p>違うかも</p>
->>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936
 </section>
 <section id="id2">
 <h2>導出<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
@@ -144,8 +133,6 @@
 <div class="math notranslate nohighlight">
 \[\underset{G}{\min}\underset{D}{\max}V(D, G)\]</div>
 </section>
-<<<<<<< HEAD
-=======
 <section id="id3">
 <h2>なんか<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>確率変数 <span class="math notranslate nohighlight">\(\mathbf{x} \in \mathbb{R}_c, \mathbf{y} \in \mathbb{R}_d\)</span> において、真の確率分布 <span class="math notranslate nohighlight">\(P(\mathbf{x}, \mathbf{y})\)</span> と近似分布 <span class="math notranslate nohighlight">\(Q(\mathbf{x}, \mathbf{y})\)</span> を定めたとき、これの交差エントロピーは</p>
@@ -164,7 +151,6 @@
 &amp;= -\pi\underset{P_d(\mathbf{x})}{\mathbf{E}}[\log(1 - D(\mathbf{x}))] -(1-\pi)\underset{P_g(\mathbf{x})}{\mathbf{E}}[\log D(\mathbf{x})]+ H(P(\mathbf{x}),Q(\mathbf{x}))\\
 &amp;= -\pi\underset{P_d(\mathbf{x})}{\mathbf{E}}[\log(1 - D(\mathbf{x}))] -(1-\pi)\underset{P_g(\mathbf{x})}{\mathbf{E}}[\log D(\mathbf{x})]+ H(P(\mathbf{x}),Q(\mathbf{x}))\\\end{split}\]</div>
 </section>
->>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936
 </section>
 
 

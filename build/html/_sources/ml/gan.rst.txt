@@ -9,16 +9,6 @@ https://dreamer-uma.com/gan-theory/
 疑問
 ==================
 .. math::
-<<<<<<< HEAD
-	\mathbb{E}_{x\sim p(x)}[\ln D(x;\phi)]
-
-	\underset{x\sim p}{\mathbb{E}}[\ln D(x;\phi)]
-
-	\mathbb{E}_{p(x)}[\ln D(x;\phi)]
-
-全部一緒っぽい
-
-=======
 	\mathbf{E}_{x\sim p(x)}[\ln D(x;\phi)]
 
 	\underset{x\sim p}{\mathbf{E}}[\ln D(x;\phi)]
@@ -29,7 +19,6 @@ https://dreamer-uma.com/gan-theory/
 
 違うかも
 
->>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936
 
 導出
 ==================
@@ -41,8 +30,6 @@ https://dreamer-uma.com/gan-theory/
 
 .. math::
 	\underset{G}{\min}\underset{D}{\max}V(D, G)
-<<<<<<< HEAD
-=======
 
 なんか
 ===================
@@ -64,4 +51,3 @@ https://dreamer-uma.com/gan-theory/
    &= -\underset{P(\mathbf{x}|\mathbf{y=0})P(\mathbf{y=0})}{\mathbf{E}}[\log \mathrm{Bern}(\mathbf{y=0}|D(\mathbf{x}))] -\underset{P(\mathbf{x}|\mathbf{y=1})P(\mathbf{y=1})}{\mathbf{E}}[\log \mathrm{Bern}(\mathbf{y=1}|D(\mathbf{x}))]+ H(P(\mathbf{x}),Q(\mathbf{x}))\\
    &= -\pi\underset{P_d(\mathbf{x})}{\mathbf{E}}[\log(1 - D(\mathbf{x}))] -(1-\pi)\underset{P_g(\mathbf{x})}{\mathbf{E}}[\log D(\mathbf{x})]+ H(P(\mathbf{x}),Q(\mathbf{x}))\\
    &= -\pi\underset{P_d(\mathbf{x})}{\mathbf{E}}[\log(1 - D(\mathbf{x}))] -(1-\pi)\underset{P_g(\mathbf{x})}{\mathbf{E}}[\log D(\mathbf{x})]+ H(P(\mathbf{x}),Q(\mathbf{x}))\\
->>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936

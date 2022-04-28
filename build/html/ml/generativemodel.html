@@ -175,6 +175,14 @@
 <p>長所として、目的関数が明示的であるため最適化対象が明確である点、データを潜在変数 <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> で表現するため、それに基づき生成結果をコントロールしやすい点、データを一度に生成できるため、サンプリングコストが低い点が挙げられる。</p>
 <p>短所として、近似分布の推定を行うため理想的な学習ができたとしても学習した生成分布が <span class="math notranslate nohighlight">\(p_r(\mathbf{x})\)</span> と一致するとは限らない点、 <span class="math notranslate nohighlight">\(p_\theta(\mathbf{x}|\mathbf{z})\)</span> の分布形状を陽に定める必要があり、その結果、統計的な平均化が生じ、生成結果に過剰な平滑化が起こり易い点が挙げられる。</p>
 </section>
+<section id="gan">
+<h3>GAN<a class="headerlink" href="#gan" title="Permalink to this headline">¶</a></h3>
+<p>GANは二つのニューラルネットワークによって、生成データの分布、<span class="math notranslate nohighlight">\(p_g(\mathbf{x})\)</span> を得ることが目的である。乱数 <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> から生成器 <span class="math notranslate nohighlight">\(G\)</span> によってデータ空間 <span class="math notranslate nohighlight">\(\mathbf{x}=G(\mathbf{z})\)</span> への写像を行う。もう一つのネットワークは識別器 <span class="math notranslate nohighlight">\(D\)</span> と呼ばれ、データ <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> が <span class="math notranslate nohighlight">\(p_r(\mathbf{x})\)</span> からサンプリングされたものであれば確率 <span class="math notranslate nohighlight">\(p=D(\mathbf{x})\in[0,1]\)</span> を付与し、 <span class="math notranslate nohighlight">\(p_g(\mathbf{x})\)</span> からサンプリングされたものであれば、 確率 <span class="math notranslate nohighlight">\(1-p\)</span> を付与する。<span class="math notranslate nohighlight">\(D\)</span> と <span class="math notranslate nohighlight">\(G\)</span> は以下のMin-Maxの目的関数で最適化が行われる。</p>
+<div class="math notranslate nohighlight">
+\[\min\maxV(D,G) = mathbb{E}_{p_r(\mathbf{x})}[\log D(\mathbf{x})] + mathbb{E}_{p_z(\mathbf{z})}[\log D(G(\mathbf{z}))]\]</div>
+<p>長所としてVAEと同様にデータの潜在的な表現を行うため生成結果をコントロールしやすい点、サンプリングコストがが低い点、またVAEと異なり <span class="math notranslate nohighlight">\(p_g(\mathbf{x})\)</span> は最適な条件下では <span class="math notranslate nohighlight">\(p_r(\mathbf{x})\)</span> に漸近することが示されており、精緻なデータ生成が可能であることが知られている。</p>
+<p>短所として、Min-Max最適化を行うため学習が安定しない点が挙げられる。(モード崩壊)</p>
+</section>
 </section>
 </section>
 
