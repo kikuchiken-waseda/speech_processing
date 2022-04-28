@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>微分積分学 &mdash; 音声信号処理のための備忘録  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="信号処理" href="../processing/index.html" />
+    <link rel="prev" title="論理学" href="../logic/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logic/index.html">論理学</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">微分積分学</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id3">実数の集合</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">区間</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">近傍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">上界・下界</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">最大値・最小値</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">上限・下限</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">数列の極限</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">級数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">単調数列</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#napier">Napier数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">部分列</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cauchy">Cauchy列</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">関数の極限</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">右極限、左極限</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">関数の連続性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">逆関数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">初等関数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id18">指数関数・対数関数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">逆三角関数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20">双曲線関数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">一様連続</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">微分法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">微分係数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">接線</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">右微分・左微分</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">導関数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">高次導関数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#c-n"><span class="math notranslate nohighlight">\(C^n\)</span> 級関数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">極値</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id29">凸関数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id30">テイラーの定理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">一般二項係数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id32">ランダウの記号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id33">漸近展開</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id34">整数級</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id35">テイラー展開・マクローリン展開</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id36">微分方程式</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id37">積分法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id38">区間の分割</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id39">リーマン和</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id40">リーマン積分</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id41">原始関数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id42">不定積分</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id43">微積分学の基本定理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id44">有理関数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id45">広義積分</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id46">無限大・無限小の比較</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id47">ガンマ関数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id48">ベータ関数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id49">面積</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id50">曲線の長さ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id51">回転体の体積と側面積</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id52">有名な極限公式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id53">フーリエ級数展開への準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id54">ラプラス変換と常微分方程式</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/index.html">信号処理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../speech_analysis/index.html">音響解析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/index.html">machine learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../control_engineering/index.html">制御工学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../a.html">集合と位相</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">音声信号処理のための備忘録</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>微分積分学</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/calculus/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="id1">
+<h1><a class="toc-backref" href="#id55">微分積分学</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://www7b.biglobe.ne.jp/~h-kuroda/pdf/text_calculus.pdf">http://www7b.biglobe.ne.jp/~h-kuroda/pdf/text_calculus.pdf</a></p>
+<div class="contents topic" id="id2">
+<p class="topic-title">目次:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id55">微分積分学</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id56">実数の集合</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id57">数列の極限</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id58">関数の極限</a></p></li>
+<li><p><a class="reference internal" href="#id22" id="id59">微分法</a></p></li>
+<li><p><a class="reference internal" href="#id37" id="id60">積分法</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="id3">
+<h2><a class="toc-backref" href="#id56">実数の集合</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<section id="id4">
+<h3>区間<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(a,b\in\mathbb{R}(a&lt;b)\)</span> に対し、次の形の集合を区間という。</p>
+<p>開区間</p>
+<div class="math notranslate nohighlight">
+\[(a,b) :=\{x\in\mathbb{R}\mid a&lt;x&lt;b\}\]</div>
+<p>閉区間</p>
+<div class="math notranslate nohighlight">
+\[[a,b] :=\{x\in\mathbb{R}\mid a\leq x\leq b\}\]</div>
+<p>ただし、 数列 <span class="math notranslate nohighlight">\((-\infty,\infty)\in\mathbb{R}\)</span> は開区間と閉区間でもあると考えることとする。</p>
+</section>
+<section id="id5">
+<h3>近傍<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(\varepsilon&gt;0,a\in\mathbb{R}\)</span> に対して</p>
+<div class="math notranslate nohighlight">
+\[U_{\varepsilon}(a) := \{x\in\mathbb{R}\mid |x-a| &lt;\varepsilon\}=(a-\varepsilon,a+\varepsilon)\]</div>
+<p>とおく。この開区間 <span class="math notranslate nohighlight">\(U_{\varepsilon}(a)\)</span> を点 <span class="math notranslate nohighlight">\(a\)</span> の <span class="math notranslate nohighlight">\(\varepsilon\)</span> 近傍(または単に近傍)という。</p>
+</section>
+<section id="id6">
+<h3>上界・下界<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall x\in X,\exists a\in\mathbb{R}:\\a\geq x\end{aligned}\end{align} \]</div>
+<p>のとき、 <span class="math notranslate nohighlight">\(a\)</span> が <span class="math notranslate nohighlight">\(X\)</span> の上界であるという。</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall x\in X,\exists a\in\mathbb{R}:\\a\leq x\end{aligned}\end{align} \]</div>
+<p>のとき、 <span class="math notranslate nohighlight">\(a\)</span> が <span class="math notranslate nohighlight">\(X\)</span> の下界であるという。</p>
+</section>
+<section id="id7">
+<h3>最大値・最小値<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(a\in\mathbb{R}\)</span> が <span class="math notranslate nohighlight">\(X\)</span> の上界かつ、 <span class="math notranslate nohighlight">\(a\in X\)</span> を満たすとき、 <span class="math notranslate nohighlight">\(a\)</span> を <span class="math notranslate nohighlight">\(X\)</span> の最大値といい、 <span class="math notranslate nohighlight">\(\max X\)</span> で表す。
+<span class="math notranslate nohighlight">\(a\in\mathbb{R}\)</span> が <span class="math notranslate nohighlight">\(X\)</span> の下界かつ、 <span class="math notranslate nohighlight">\(a\in X\)</span> を満たすとき、 <span class="math notranslate nohighlight">\(a\)</span> を <span class="math notranslate nohighlight">\(X\)</span> の最小値といい、 <span class="math notranslate nohighlight">\(\min X\)</span> で表す。</p>
+</section>
+<section id="id8">
+<h3>上限・下限<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(X\)</span> の上界が空集合でない時、上界の最小値を上限といい、 <span class="math notranslate nohighlight">\(\sup X\)</span> と表す。
+上界が空集合の場合、上限がないといい、 <span class="math notranslate nohighlight">\(\sup X = \infty\)</span> と表すことがある。</p>
+<p><span class="math notranslate nohighlight">\(X\)</span> の下界が空集合でない時、下界の最大値を下限といい、 <span class="math notranslate nohighlight">\(\inf X\)</span> と表す。
+下界が空集合の場合、下限がないといい、 <span class="math notranslate nohighlight">\(\inf X = -\infty\)</span> と表すことがある。</p>
+</section>
+</section>
+<section id="id9">
+<h2><a class="toc-backref" href="#id57">数列の極限</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> と <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span> について、</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall\varepsilon&gt;0,\exists N(\varepsilon)\in\mathbb{N}:\\n\geq N(\varepsilon)\Rightarrow|a_n-\alpha|&lt;\varepsilon\end{aligned}\end{align} \]</div>
+<p>このとき、数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> の極限値は <span class="math notranslate nohighlight">\(\alpha\)</span> であるといい、</p>
+<div class="math notranslate nohighlight">
+\[\lim_{n\to\infty}a_n=\alpha\text{ または } a_n\to\alpha(n\to\infty)\]</div>
+<p>と表す。このとき、数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> は <span class="math notranslate nohighlight">\(\alpha\)</span> に収束するという。</p>
+<p>数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> がどのような <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span> にも収束しないとき、発散するという。
+さらに、</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall K&gt;0,\exists N(K)\in\mathbb{N}:\\n\geq N(K)\Rightarrow a_n&gt;K\end{aligned}\end{align} \]</div>
+<p>のとき、数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> は <span class="math notranslate nohighlight">\(\infty\)</span> に発散するといい、</p>
+<div class="math notranslate nohighlight">
+\[\lim_{n\to\infty}a_n=\infty\]</div>
+<p>と表し、</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall K&gt;0,\exists N(K)\in\mathbb{N}:\\n\geq N(K)\Rightarrow a_n&lt;K\end{aligned}\end{align} \]</div>
+<p>のとき、数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> は <span class="math notranslate nohighlight">\(-\infty\)</span> に発散するといい、</p>
+<div class="math notranslate nohighlight">
+\[\lim_{n\to\infty}a_n=-\infty\]</div>
+<p>と表す。</p>
+<section id="id10">
+<h3>級数<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> の各項を足し合わせた</p>
+<div class="math notranslate nohighlight">
+\[a_1+a_2+a_3+\cdots+a_n+\cdots\]</div>
+<p>を <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> の作る級数と言い、 <span class="math notranslate nohighlight">\(\sum_{n=1}^{\infty}{a_n}\)</span>
+と表す。</p>
+<p><span class="math notranslate nohighlight">\(S_n=\sum^{n}_{k=1}a_k\)</span> を第 <span class="math notranslate nohighlight">\(n\)</span> 部分和といい、
+数列 <span class="math notranslate nohighlight">\(\{S_n\}^{\infty}_{n=1}\)</span> が収束するか発散するかに応じて、
+級数 <span class="math notranslate nohighlight">\(\sum_{n=1}^{\infty}{a_n}\)</span> は収束するまたは発散するという。
+部分和が収束する場合に <span class="math notranslate nohighlight">\(S=\lim_{n\to\infty}S_n\)</span> を級数の和といい、
+<span class="math notranslate nohighlight">\(\sum_{n=1}^{\infty}{a_n}=S\)</span> と書く。
+また、 <span class="math notranslate nohighlight">\(S=\pm\infty\)</span> となる場合も、それぞれ
+<span class="math notranslate nohighlight">\(\sum_{n=1}^{\infty}{a_n}=\pm\infty\)</span> で表す。</p>
+</section>
+<section id="id11">
+<h3>単調数列<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> が単調増加であるとは、</p>
+<div class="math notranslate nohighlight">
+\[\forall n\in \mathbb{N} : a_n\leq a_{n+1}\]</div>
+<p>が成り立つことである。特に</p>
+<div class="math notranslate nohighlight">
+\[\forall n\in \mathbb{N} : a_n &lt; a_{n+1}\]</div>
+<p>が成り立つとき、狭義単調増加である。</p>
+<p>数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> が単調減少であるとは、</p>
+<div class="math notranslate nohighlight">
+\[\forall n\in \mathbb{N} : a_n\geq a_{n+1}\]</div>
+<p>が成り立つことである。特に</p>
+<div class="math notranslate nohighlight">
+\[\forall n\in \mathbb{N} : a_n &gt; a_{n+1}\]</div>
+<p>が成り立つとき、狭義単調減少である。</p>
+<p>単調増加または単調減少な数列をまとめて単調数列という。</p>
+</section>
+<section id="napier">
+<h3>Napier数<a class="headerlink" href="#napier" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[e := \lim_{n\to\infty}(1+\frac{1}{n})^n\]</div>
+<p>とし、これをNapier数という。</p>
+</section>
+<section id="id12">
+<h3>部分列<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(n_k \in \mathbb{N}\)</span> を項とする、狭義単調増加数列 <span class="math notranslate nohighlight">\(\{n_k\}^{\infty}_{k=1}\)</span> をとる。
+数列 <span class="math notranslate nohighlight">\(\{a_n\}^{\infty}_{n=1}\)</span> に対して、数列 <span class="math notranslate nohighlight">\(\{a_{n_k}\}^{\infty}_{k=1}\)</span> をその部分列という。</p>
+</section>
+<section id="cauchy">
+<h3>Cauchy列<a class="headerlink" href="#cauchy" title="Permalink to this headline">¶</a></h3>
+<p>多分書く</p>
+</section>
+</section>
+<section id="id13">
+<h2><a class="toc-backref" href="#id58">関数の極限</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>少なくとも、点 <span class="math notranslate nohighlight">\(a\)</span> の近傍から点 <span class="math notranslate nohighlight">\(a\)</span> を除いたところで定義されている関数 <span class="math notranslate nohighlight">\(f(x)\)</span> と定数 <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span> について、</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall\varepsilon&gt;0,\exists \delta(\varepsilon)&gt;0:\\0 \neq |x-a| &lt;\delta(\varepsilon) \Rightarrow |f(x)-\alpha| &lt;\varepsilon\end{aligned}\end{align} \]</div>
+<p>を満たすとき、関数 <span class="math notranslate nohighlight">\(f(x)\)</span> の点 <span class="math notranslate nohighlight">\(a\)</span> での極限値は <span class="math notranslate nohighlight">\(\alpha\)</span> であるといい</p>
+<div class="math notranslate nohighlight">
+\[\lim_{x\to a}f(x)=\alpha\text{ または } f(x)\to\alpha(x\to a)\]</div>
+<p>で表す。このとき、関数 <span class="math notranslate nohighlight">\(f(x)\)</span> は点 <span class="math notranslate nohighlight">\(a\)</span> で <span class="math notranslate nohighlight">\(\alpha\)</span> に収束するという。</p>
+<p>一方、関数 <span class="math notranslate nohighlight">\(f(x)\)</span> が点 <span class="math notranslate nohighlight">\(a\)</span> でどのような定数 <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span> にも収束しない時、発散するという。</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall K&gt;0,\exists \delta(K)&gt;0:\\0 \neq |x-a| &lt;\delta(K) \Rightarrow f(x)&gt;K\end{aligned}\end{align} \]</div>
+<p>の時、 f(x) は点 <span class="math notranslate nohighlight">\(a\)</span>infty` で発散するといい</p>
+<div class="math notranslate nohighlight">
+\[\lim_{x\to a}f(x)=\infty\]</div>
+<p>で表す。また</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall K&gt;0,\exists \delta(K)&gt;0:\\0 \neq |x-a| &lt;\delta(K) \Rightarrow f(x)&lt;K\end{aligned}\end{align} \]</div>
+<p>の時、 <span class="math notranslate nohighlight">\(f(x)\)</span> は点 <span class="math notranslate nohighlight">\(a\)</span> で <span class="math notranslate nohighlight">\(-\infty\)</span> で発散するといい</p>
+<div class="math notranslate nohighlight">
+\[\lim_{x\to a}f(x)=-\infty\]</div>
+<p>で表す。</p>
+<p>少なくとも、ある <span class="math notranslate nohighlight">\(c\)</span> に対し区間 <span class="math notranslate nohighlight">\((c,\infty)\)</span> 定義されている関数 <span class="math notranslate nohighlight">\(f(x)\)</span> と定数 <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span> について、</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall\varepsilon&gt;0,\exists L(\varepsilon)&gt;0:\\x&gt;L(\varepsilon) \Rightarrow |f(x)-\alpha| &lt;\varepsilon\end{aligned}\end{align} \]</div>
+<p>を満たすとき、関数 <span class="math notranslate nohighlight">\(f(x)\)</span> の <span class="math notranslate nohighlight">\(x\to\infty\)</span> での極限値は <span class="math notranslate nohighlight">\(\alpha\)</span> であるといい</p>
+<div class="math notranslate nohighlight">
+\[\lim_{x\to \infty}f(x)=\alpha\text{ または } f(x)\to\alpha(x\to \infty)\]</div>
+<p>で表す。このとき、関数 <span class="math notranslate nohighlight">\(f(x)\)</span> は <span class="math notranslate nohighlight">\(x\to\infty\)</span> で <span class="math notranslate nohighlight">\(\alpha\)</span> に収束するという。</p>
+<p>一方、関数 <span class="math notranslate nohighlight">\(f(x)\)</span> が <span class="math notranslate nohighlight">\(x\to\infty\)</span> でどのような定数 <span class="math notranslate nohighlight">\(\alpha\in\mathbb{R}\)</span> にも収束しない時、発散するという。</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall K&gt;0,\exists L(K)&gt;0:\\x&lt;L(K) \Rightarrow f(x)&gt;K\end{aligned}\end{align} \]</div>
+<p>の時、 f(x) は <span class="math notranslate nohighlight">\(x\to\infty\)</span> で <span class="math notranslate nohighlight">\(\infty\)</span> で発散するといい</p>
+<div class="math notranslate nohighlight">
+\[\lim_{x\to \infty}f(x)=\infty\]</div>
+<p>で表す。また</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall K&gt;0,\exists L(K)&gt;0:\\x&lt;L(K) \Rightarrow f(x)&lt;K\end{aligned}\end{align} \]</div>
+<p>の時、 <span class="math notranslate nohighlight">\(f(x)\)</span> は <span class="math notranslate nohighlight">\(x\to\infty\)</span> で <span class="math notranslate nohighlight">\(-\infty\)</span> で発散するといい</p>
+<div class="math notranslate nohighlight">
+\[\lim_{x\to \infty}f(x)=-\infty\]</div>
+<p>で表す。</p>
+<p><span class="math notranslate nohighlight">\(x\to -\infty\)</span> での極限についても同様に定義する。</p>
+<section id="id14">
+<h3>右極限、左極限<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p>そのうち</p>
+</section>
+<section id="id15">
+<h3>関数の連続性<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<p>そのうち</p>
+</section>
+<section id="id16">
+<h3>逆関数<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<p>そのうち</p>
+</section>
+<section id="id17">
+<h3>初等関数<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<section id="id18">
+<h4>指数関数・対数関数<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="id19">
+<h4>逆三角関数<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="id20">
+<h4>双曲線関数<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+</section>
+</section>
+<section id="id21">
+<h3>一様連続<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="id22">
+<h2><a class="toc-backref" href="#id59">微分法</a><a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<section id="id23">
+<h3>微分係数<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<p>関数 <span class="math notranslate nohighlight">\(f(x)\)</span> が点 <span class="math notranslate nohighlight">\(a\)</span> の近傍で定義されていて、極限値</p>
+<div class="math notranslate nohighlight">
+\[\lim_{x\to a} \frac{f(x)-f(a)}{x-a}\]</div>
+<p>が存在する時、この極限値を <span class="math notranslate nohighlight">\(f(x)\)</span> の点 <span class="math notranslate nohighlight">\(a\)</span> における微分係数といい</p>
+<div class="math notranslate nohighlight">
+\[f'(a) := \lim_{x\to a} \frac{f(x)-f(a)}{x-a}\]</div>
+<p>で表す。この時、 <span class="math notranslate nohighlight">\(f(x)\)</span> は点 <span class="math notranslate nohighlight">\(a\)</span> で微分可能であるという。</p>
+<p><span class="math notranslate nohighlight">\(h = x-a\)</span> とおくと</p>
+<div class="math notranslate nohighlight">
+\[f'(a) = \lim_{h\to 0} \frac{f(a+h)-f(a)}{h}\]</div>
+<p>で表すことができる。</p>
+</section>
+<section id="id24">
+<h3>接線<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<p>関数 math`f(x)` は点 <span class="math notranslate nohighlight">\(a\)</span> で微分可能とする。この時、直線</p>
+<div class="math notranslate nohighlight">
+\[y = f'(a)(x-a) + f(a)\]</div>
+<p>を曲線 <span class="math notranslate nohighlight">\(y=f(x)\)</span> 上の点 <span class="math notranslate nohighlight">\((a,f(a))\)</span> における接線という。</p>
+</section>
+<section id="id25">
+<h3>右微分・左微分<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<p>そのうち</p>
+</section>
+<section id="id26">
+<h3>導関数<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<p>開区間 <span class="math notranslate nohighlight">\(I\)</span> で定義された関数 <span class="math notranslate nohighlight">\(f(x)\)</span> が <span class="math notranslate nohighlight">\(I\)</span> の全ての点で微分可能であるとき、 <span class="math notranslate nohighlight">\(f(x)\)</span> は <span class="math notranslate nohighlight">\(I\)</span> で微分可能であるという。</p>
+<div class="math notranslate nohighlight">
+\[f'(x) := \lim_{h\to 0} \frac{f(x+h)-f(x)}{h} (x\in I)\]</div>
+<p>を <span class="math notranslate nohighlight">\(f(x)\)</span> の導関数という。 1次導関数とも呼ばれる。 <span class="math notranslate nohighlight">\(y=f(x)\)</span> の導関数は</p>
+<div class="math notranslate nohighlight">
+\[f^{(1)}(x),\frac{d}{dx}f(x),y',y^{(1)},\frac{dy}{dx}\]</div>
+<p>のようにも表される。</p>
+<p><span class="math notranslate nohighlight">\(I\)</span> が端点を持つ場合、面倒なので後でかく。</p>
+</section>
+<section id="id27">
+<h3>高次導関数<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<p>区間 <span class="math notranslate nohighlight">\(I\)</span> で定義された関数 <span class="math notranslate nohighlight">\(f(x)\)</span> が <span class="math notranslate nohighlight">\(I\)</span> で微分可能で、<span class="math notranslate nohighlight">\((n-1)\)</span> 次導関数 <span class="math notranslate nohighlight">\(f^{(n-1)}(x)\)</span> も <span class="math notranslate nohighlight">\(I\)</span> で微分可能であるとき、 <span class="math notranslate nohighlight">\(f\)</span> はn回微分可能であるという。
+この時、 <span class="math notranslate nohighlight">\((n-1)\)</span> の導関数を <span class="math notranslate nohighlight">\(f\)</span> の <span class="math notranslate nohighlight">\(n\)</span> 次導関数といい、 <span class="math notranslate nohighlight">\(y=f(x)\)</span> の <span class="math notranslate nohighlight">\(n\)</span> 次導関数を</p>
+<div class="math notranslate nohighlight">
+\[f^{(n)}(x),\frac{d^n}{dx^n}f(x),y^{(n)},\frac{d^ny}{dx^n}\]</div>
+<p>などで表す。</p>
+</section>
+<section id="c-n">
+<h3><span class="math notranslate nohighlight">\(C^n\)</span> 級関数<a class="headerlink" href="#c-n" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id28">
+<h3>極値<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id29">
+<h3>凸関数<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id30">
+<h3>テイラーの定理<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<p>後でかく</p>
+</section>
+<section id="id31">
+<h3>一般二項係数<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id32">
+<h3>ランダウの記号<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id33">
+<h3>漸近展開<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id34">
+<h3>整数級<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id35">
+<h3>テイラー展開・マクローリン展開<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id36">
+<h3>微分方程式<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="differential_equation.html"><span class="doc">Differntial equation</span></a></p>
+</section>
+</section>
+<section id="id37">
+<h2><a class="toc-backref" href="#id60">積分法</a><a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h2>
+<section id="id38">
+<h3>区間の分割<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h3>
+<p>開区間 <span class="math notranslate nohighlight">\(I=[a,b]\)</span> に対して、次のような <span class="math notranslate nohighlight">\(I\)</span> の分点の組</p>
+<div class="math notranslate nohighlight">
+\[\Delta : a = x_0&lt;x_1&lt;x_2&lt;\cdots&lt;x_{n-1}&lt;x_n = b\]</div>
+<p>を <span class="math notranslate nohighlight">\(\Delta = \{x_k\}^{n}_{k=0}\)</span> で表し、 <span class="math notranslate nohighlight">\(I\)</span> の分割という。ここで、<span class="math notranslate nohighlight">\(n\in\mathbb{N}\)</span> も自由に選んで良い。
+また <span class="math notranslate nohighlight">\(I\)</span> の分割 <span class="math notranslate nohighlight">\(\Delta = \{x_k\}^{n}_{k=0}\)</span> に対して</p>
+<div class="math notranslate nohighlight">
+\[|\Delta| = \max\{x_k - x_{k-1} \mid k = 1,2,\cdots,n\}\]</div>
+<p>を分割 <span class="math notranslate nohighlight">\(\Delta\)</span> の幅という。</p>
+</section>
+<section id="id39">
+<h3>リーマン和<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(f(x)\)</span> を開区間 <span class="math notranslate nohighlight">\(I=[a,b]\)</span> で有界な関数とする。 <span class="math notranslate nohighlight">\(I\)</span> の分割 <span class="math notranslate nohighlight">\(\Delta = \{x_k\}^{n}_{k=0}\)</span> 代表点 <span class="math notranslate nohighlight">\(\xi_k\in[x_{k-1},x_k]\)</span> を決めた時</p>
+<div class="math notranslate nohighlight">
+\[S(f;\Delta,\{\xi_k\}) = \sum_{k=1}^{n}f(\xi_k)(x_k-x_{k-1})\]</div>
+<p>を <span class="math notranslate nohighlight">\((\Delta,\{\xi_k\})\)</span> に関する <span class="math notranslate nohighlight">\(f(x)\)</span> のリーマン和という。</p>
+</section>
+<section id="id40">
+<h3>リーマン積分<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h3>
+<p>関数 <span class="math notranslate nohighlight">\(f(x)\)</span> は有界閉区間 <span class="math notranslate nohighlight">\(I=[a,b]\)</span> で有界であるとする。この時ある実数 <span class="math notranslate nohighlight">\(\alpha\)</span> が存在して、任意の代表点 <span class="math notranslate nohighlight">\(\{\xi_k\}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\lim_{|\Delta|\to 0} S(f;\Delta,\{\xi_k\}) = \alpha\]</div>
+<p>が成り立つ時、 <span class="math notranslate nohighlight">\(f(x)\)</span> は <span class="math notranslate nohighlight">\(I\)</span> で積分可能であるという。</p>
+<p>このとき、</p>
+<div class="math notranslate nohighlight">
+\[\int^{b}_{a}f(x)dx = \alpha\]</div>
+<p>を <span class="math notranslate nohighlight">\(f(x)\)</span> の <span class="math notranslate nohighlight">\(I\)</span> でのリーマン積分という。</p>
+</section>
+<section id="id41">
+<h3>原始関数<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h3>
+<p>区間 <span class="math notranslate nohighlight">\(I\)</span> 上の関数 <span class="math notranslate nohighlight">\(f(x)\)</span> に対して</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{dx}F(x) = f(x) (x\in I)\]</div>
+<p>を満たす関数 <span class="math notranslate nohighlight">\(F(x)\)</span> が存在する時、 <span class="math notranslate nohighlight">\(F(x)\)</span> を <span class="math notranslate nohighlight">\(f(x)\)</span> の原始関数という。</p>
+</section>
+<section id="id42">
+<h3>不定積分<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h3>
+<p>関数 <span class="math notranslate nohighlight">\(f(x)\)</span> が区間 <span class="math notranslate nohighlight">\(I\)</span> に含まれる任意の有界閉区間上で積分可能とする。この時、 <span class="math notranslate nohighlight">\(a\in I\)</span> と定数 <span class="math notranslate nohighlight">\(C\)</span> に対して、関数</p>
+<div class="math notranslate nohighlight">
+\[F(x) = \int^{x}_{a}f(t)dt+C (x\in I)\]</div>
+<p>を定める。この <span class="math notranslate nohighlight">\(F(x)\)</span> を記号</p>
+<div class="math notranslate nohighlight">
+\[\int f(x)dx\]</div>
+<p>で表し、区間 <span class="math notranslate nohighlight">\(I\)</span> における <span class="math notranslate nohighlight">\(f(x)\)</span> 不定積分という。</p>
+</section>
+<section id="id43">
+<h3>微積分学の基本定理<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h3>
+<p>関数 <span class="math notranslate nohighlight">\(f(x)\)</span> が区間 <span class="math notranslate nohighlight">\(I\)</span> 上で連続ならば、 <span class="math notranslate nohighlight">\(a\in I\)</span> とすれば</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{dx}\int^{x}_{a}f(t)dt = f(x) (x\in I)\]</div>
+<p>が成り立つ。</p>
+<p>証明は面倒なので省略。</p>
+</section>
+<section id="id44">
+<h3>有理関数<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id45">
+<h3>広義積分<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h3>
+<p>後でかく</p>
+</section>
+<section id="id46">
+<h3>無限大・無限小の比較<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id47">
+<h3>ガンマ関数<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id48">
+<h3>ベータ関数<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id49">
+<h3>面積<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id50">
+<h3>曲線の長さ<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id51">
+<h3>回転体の体積と側面積<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id52">
+<h3>有名な極限公式<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id53">
+<h3>フーリエ級数展開への準備<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id54">
+<h3>ラプラス変換と常微分方程式<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../logic/index.html" class="btn btn-neutral float-left" title="論理学" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../processing/index.html" class="btn btn-neutral float-right" title="信号処理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, licrum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

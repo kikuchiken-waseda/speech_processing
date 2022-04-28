@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>音響特徴量 &mdash; 音声信号処理のための備忘録  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="スペクトラム" href="../spectrum.html" />
+    <link rel="prev" title="波動方程式" href="../wave_equation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">書きたいものまとめ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../symbol.html">前提となる数学知識や記号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../acoustic_wave.html">音波</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wave_equation.html">波動方程式</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">音響特徴量</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">音響特徴量とは</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">音の三要素</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">音の大きさを表す音響特徴量</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">音響パワー</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">音響パワーレベル</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">音圧</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">音圧レベル</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#loudness">Loudness</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">Loudnessレベル</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">騒音レベル</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#peak">Peak</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rms">RMS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">音の高さを表す音響特徴量</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#f0">F0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">パワースペクトラム</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">フォルマント周波数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">音色を表す音響特徴量</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id16">スペクトログラム</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mfcc">MFCC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lpc">LPC</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">音響特徴量集</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../spectrum.html">スペクトラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../level.html">レベル表現</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scale.html">聴覚尺度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../filter/index.html">フィルタ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization.html">音声の可視化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../convolution.html">畳み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../complex.html">複素関数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nbsphinx.html">nbsphinx使いやすいよって話</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#id2">後でまとめる雑多な知識</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../paper/index.html">論文まとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../implementation/index.html">実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../logic/index.html">論理学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../calculus/index.html">微分積分学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../processing/index.html">信号処理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../speech_analysis/index.html">音響解析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ml/index.html">machine learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../control_engineering/index.html">制御工学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../a.html">集合と位相</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">音声信号処理のための備忘録</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">書きたいものまとめ</a> &raquo;</li>
+      <li>音響特徴量</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/pachouli/acoustic_feature/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="id1">
+<h1><a class="toc-backref" href="#id18">音響特徴量</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title">目次</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id18">音響特徴量</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id19">音響特徴量とは</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id4" id="id20">音の三要素</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id5" id="id21">音の大きさを表す音響特徴量</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id6" id="id22">音響パワー</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id23">音響パワーレベル</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id24">音圧</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id25">音圧レベル</a></p></li>
+<li><p><a class="reference internal" href="#loudness" id="id26">Loudness</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id27">Loudnessレベル</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id28">騒音レベル</a></p></li>
+<li><p><a class="reference internal" href="#peak" id="id29">Peak</a></p></li>
+<li><p><a class="reference internal" href="#rms" id="id30">RMS</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id12" id="id31">音の高さを表す音響特徴量</a></p>
+<ul>
+<li><p><a class="reference internal" href="#f0" id="id32">F0</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id33">パワースペクトラム</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id34">フォルマント周波数</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id15" id="id35">音色を表す音響特徴量</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id16" id="id36">スペクトログラム</a></p></li>
+<li><p><a class="reference internal" href="#mfcc" id="id37">MFCC</a></p></li>
+<li><p><a class="reference internal" href="#lpc" id="id38">LPC</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id17" id="id39">音響特徴量集</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="id3">
+<h2><a class="toc-backref" href="#id19">音響特徴量とは</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>音に含まれる物理的な特徴を数値化(MKS単位系で表現可能)したものを指します。
+用は音の物理的な特徴や特性をまとめたものです。</p>
+<p>では物理的とはなんでしょう？</p>
+<p>音響特徴量ってなんですか？？: <a class="reference external" href="http://abcpedia.acoustics.jp/bs13_a_q4.pdf">http://abcpedia.acoustics.jp/bs13_a_q4.pdf</a></p>
+<section id="id4">
+<h3><a class="toc-backref" href="#id20">音の三要素</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>ヒトは音の3つの要素を感知することによって、音を認識し、識別するすることが出来ます。
+その三要素とは</p>
+<ol class="arabic simple">
+<li><p>音の大きさ</p></li>
+<li><p>音のたかさ</p></li>
+<li><p>音色</p></li>
+</ol>
+<p>です。</p>
+<p>物理量としては主に</p>
+<ol class="arabic simple">
+<li><p>音圧</p></li>
+<li><p>基本周波数、音の周期</p></li>
+<li><p>スペクトル分布、時間パターン</p></li>
+</ol>
+<p>が上げられます。</p>
+</section>
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id21">音の大きさを表す音響特徴量</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>ディジタル音声の大きさを表す特徴量は</p>
+<ol class="arabic simple">
+<li><p>音に関する物理量</p></li>
+<li><p>電圧に関する物理量</p></li>
+</ol>
+<p>といった種類がある。</p>
+<p>また指標としてしばしば <a class="reference internal" href="../level.html"><span class="doc">レベル表現</span></a> が使われる。</p>
+<section id="id6">
+<h3><a class="toc-backref" href="#id22">音響パワー</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://www.onosokki.co.jp/HP-WK/eMM_back/emm101.pdf">https://www.onosokki.co.jp/HP-WK/eMM_back/emm101.pdf</a></p>
+</section>
+<section id="id7">
+<h3><a class="toc-backref" href="#id23">音響パワーレベル</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>音響パワー <span class="math notranslate nohighlight">\(W \text{[W]}\)</span> に対し、基準値 <span class="math notranslate nohighlight">\(W_0 = 1 \times 10^{-12} \text{[W]}\)</span> を用いて</p>
+<div class="math notranslate nohighlight">
+\[L_w = 10 \times \log_{10} \frac{W}{W_0} \text{[dB]}\]</div>
+<p>で表す。</p>
+<p>実用上はSTFTのフレーム一つ一つのパワーを求めるのがよさそう？</p>
+</section>
+<section id="id8">
+<h3><a class="toc-backref" href="#id24">音圧</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>文字通り、音の圧力(pressure)</p>
+</section>
+<section id="id9">
+<h3><a class="toc-backref" href="#id25">音圧レベル</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>音量とも呼ばれてたりする。</p>
+<p>可聴域にある音は同じ周波数であれば、音圧が大きいほど大きな音として認識される。また、音圧の単位は圧力を示す単位であるPa（パスカル）であるが、人間が認識しうる音の大きさの範囲は音圧の実値では広範囲にわたる。</p>
+<p>そこで、音響工学の分野では人間の聴覚特性に合わせ、音圧の大きさを基準となる値との比の常用対数によって表現される量（レベル）である音圧レベルを用いて表すことが多い。</p>
+<p><a class="reference external" href="https://ja.wikipedia.org/wiki/%E9%9F%B3%E5%9C%A7%E3%83%AC%E3%83%99%E3%83%AB">https://ja.wikipedia.org/wiki/%E9%9F%B3%E5%9C%A7%E3%83%AC%E3%83%99%E3%83%AB</a></p>
+<p>音圧 <span class="math notranslate nohighlight">\(p \text{[Pa]}\)</span> に対し、基準値 <span class="math notranslate nohighlight">\(p_0 = 20 \times 10^{-6} \text{[Pa]}\)</span> を用いて</p>
+<div class="math notranslate nohighlight">
+\[L_p = 10 \times \log_{10} (\frac{p}{p_0})^2\text{[dB]}\]</div>
+<p>で表す。</p>
+</section>
+<section id="loudness">
+<h3><a class="toc-backref" href="#id26">Loudness</a><a class="headerlink" href="#loudness" title="Permalink to this headline">¶</a></h3>
+<p>ヒトの聴覚が感じる音の大小を示す心理量</p>
+<p>単位は <span class="math notranslate nohighlight">\(\text{[sone]}\)</span></p>
+<p>音圧レベル <span class="math notranslate nohighlight">\(40\text{[dB]}\)</span> 周波数 <span class="math notranslate nohighlight">\(1\text{[kHz]}\)</span> の純音をヒトが聞いたときに感じる音の大きさが
+<span class="math notranslate nohighlight">\(1\text{[sone]}\)</span> と定義される</p>
+</section>
+<section id="id10">
+<h3><a class="toc-backref" href="#id27">Loudnessレベル</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>そのうち書く</p>
+</section>
+<section id="id11">
+<h3><a class="toc-backref" href="#id28">騒音レベル</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>そのうち書く</p>
+</section>
+<section id="peak">
+<h3><a class="toc-backref" href="#id29">Peak</a><a class="headerlink" href="#peak" title="Permalink to this headline">¶</a></h3>
+<p>長さN(サンプル数)のディジタル音声信号 <span class="math notranslate nohighlight">\(x(i)\)</span> におけるPeakは</p>
+<div class="math notranslate nohighlight">
+\[x_{peak} =  \max x(i)\]</div>
+</section>
+<section id="rms">
+<h3><a class="toc-backref" href="#id30">RMS</a><a class="headerlink" href="#rms" title="Permalink to this headline">¶</a></h3>
+<p>波形全体や一部分で計算される</p>
+<p>波形振幅の時間平均値(多分信号の実効値)</p>
+<p>長さN(サンプル数)のディジタル音声信号 <span class="math notranslate nohighlight">\(x(i)\)</span> におけるRMSは</p>
+<div class="math notranslate nohighlight">
+\[x_{rms} =  \sqrt{\frac{1}{N} \sum^{N}_{i=1} x(i)^2}\]</div>
+</section>
+</section>
+<section id="id12">
+<h2><a class="toc-backref" href="#id31">音の高さを表す音響特徴量</a><a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<section id="f0">
+<h3><a class="toc-backref" href="#id32">F0</a><a class="headerlink" href="#f0" title="Permalink to this headline">¶</a></h3>
+<p>信号を正弦波の合成で表した時の最も低い周波数成分の周波数を指す</p>
+</section>
+<section id="id13">
+<h3><a class="toc-backref" href="#id33">パワースペクトラム</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../spectrum.html"><span class="doc">スペクトラム</span></a></p>
+</section>
+<section id="id14">
+<h3><a class="toc-backref" href="#id34">フォルマント周波数</a><a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p>スペクトラル包絡線のピーク部分?</p>
+</section>
+</section>
+<section id="id15">
+<h2><a class="toc-backref" href="#id35">音色を表す音響特徴量</a><a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<p>実質的に大きさと高さを含めた時系列、周波数列パターンを指すのでは?</p>
+<section id="id16">
+<h3><a class="toc-backref" href="#id36">スペクトログラム</a><a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../../processing/fourier.html"><span class="doc">音声信号処理に向けたフーリエ変換の学び</span></a></p>
+</section>
+<section id="mfcc">
+<h3><a class="toc-backref" href="#id37">MFCC</a><a class="headerlink" href="#mfcc" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="lpc">
+<h3><a class="toc-backref" href="#id38">LPC</a><a class="headerlink" href="#lpc" title="Permalink to this headline">¶</a></h3>
+<p>全極型フィルタモデル(自己回帰モデル等)</p>
+<div class="math notranslate nohighlight">
+\[y_t + \sum^{p}_{i=1} a_i y_{t-i} = \varepsilon_t\]</div>
+<p>のパラメータ <span class="math notranslate nohighlight">\({a_i}\)</span></p>
+<p><a class="reference external" href="https://ocw.u-tokyo.ac.jp/lecture_files/engin_01/3/notes/ja/C1-LPC.PDF">https://ocw.u-tokyo.ac.jp/lecture_files/engin_01/3/notes/ja/C1-LPC.PDF</a></p>
+</section>
+</section>
+<section id="id17">
+<h2><a class="toc-backref" href="#id39">音響特徴量集</a><a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../wave_equation.html" class="btn btn-neutral float-left" title="波動方程式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../spectrum.html" class="btn btn-neutral float-right" title="スペクトラム" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, licrum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

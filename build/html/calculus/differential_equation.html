@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Differntial equation &mdash; 音声信号処理のための備忘録  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logic/index.html">論理学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">微分積分学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/index.html">信号処理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../speech_analysis/index.html">音響解析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/index.html">machine learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../control_engineering/index.html">制御工学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../a.html">集合と位相</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">音声信号処理のための備忘録</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Differntial equation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/calculus/differential_equation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="differntial-equation">
+<h1>Differntial equation<a class="headerlink" href="#differntial-equation" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://www.math.hkust.edu.hk/~machas/differential-equations.pdf">https://www.math.hkust.edu.hk/~machas/differential-equations.pdf</a></p>
+<p>写経だから非公開にするかも</p>
+<section id="introduction-to-ordinary-differential-equations">
+<h2>Introduction to ordinary differential equations<a class="headerlink" href="#introduction-to-ordinary-differential-equations" title="Permalink to this headline">¶</a></h2>
+<p>A differntial equation is an equation for a function that relates the values of the function to the values of its derivatives.
+An ordinary differntial equation (ode) is a differential equation for a function of a single variable, e.g., <span class="math notranslate nohighlight">\(x(t)\)</span> , while a partial differntial equation (pde) is a differntial equation for a function of several variables, e.g., <span class="math notranslate nohighlight">\(v(x,y,z,t)\)</span> .
+An ode contains ordinary derivatives and a pde contains partial derivatives.</p>
+<section id="the-simplest-type-of-differential-equation">
+<h3>The simplest type of differential equation<a class="headerlink" href="#the-simplest-type-of-differential-equation" title="Permalink to this headline">¶</a></h3>
+<p>The simplest ordinary differential equations can be integrated directly by finding antiderivatives. These simplest odes have the form</p>
+<div class="math notranslate nohighlight">
+\[\frac{d^nx}{dt^n} = G(t),\]</div>
+<p>where the derivative of <span class="math notranslate nohighlight">\(x=x(t)\)</span> can be of any order, and the right-hand-side way depend only on the independent variable <span class="math notranslate nohighlight">\(t\)</span> . As an example, consider a mass falling under the influence of constant gravity, such as appoximately found on the Earth’s surface. Newton’s law, <span class="math notranslate nohighlight">\(F=ma,\)</span> results in the equation</p>
+<div class="math notranslate nohighlight">
+\[m\frac{d^2x}{dt^2} = -mg,\]</div>
+<p>where <span class="math notranslate nohighlight">\(x\)</span> is the height of the object above the ground, <span class="math notranslate nohighlight">\(m\)</span> is the mass of the object, and <span class="math notranslate nohighlight">\(g\)</span> is the constant gravitational acceleration. As Galileo suggested, the mass cannels from the equation, and</p>
+<div class="math notranslate nohighlight">
+\[\frac{d^2x}{dt^2} = -g.\]</div>
+<p>Here, the right-hand-side of the ode is a constant. The first integration, obtained by antidifferntiation, yields</p>
+<div class="math notranslate nohighlight">
+\[\frac{dx}{dt} = A - gt,\]</div>
+<p>with <span class="math notranslate nohighlight">\(A\)</span> the first constant of integration; and the second intergration yields</p>
+<div class="math notranslate nohighlight">
+\[x = B + At - \frac{1}{2}gt^2,\]</div>
+<p>with <span class="math notranslate nohighlight">\(B\)</span> the second constant of integration. The two constants of integration <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> can then be determined from the initial conditions. If we know that the initial height of the mass is <span class="math notranslate nohighlight">\(x_0\)</span> , and the initial velocith is <span class="math notranslate nohighlight">\(v_0\)</span> , then the initial conditions are</p>
+<div class="math notranslate nohighlight">
+\[x(0) = x_0, \frac{dx}{dt}(0) = v_0.\]</div>
+<p>Substitution of these initial conditions into the equations for <span class="math notranslate nohighlight">\({dx}/{dt}\)</span> and <span class="math notranslate nohighlight">\(x\)</span> allows us to solve for <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> . The unique solution that satisfies both the ode and the initial conditions is given by</p>
+<div class="math notranslate nohighlight">
+\[x(t) = x_0 + v_0t - \frac{1}{2}gt^2.\]</div>
+</section>
+</section>
+<section id="first-order-differential-equations">
+<h2>First-order differential equations<a class="headerlink" href="#first-order-differential-equations" title="Permalink to this headline">¶</a></h2>
+<p>Tge general first-order differential equation for the function <span class="math notranslate nohighlight">\(y=y(x)\)</span> is written as</p>
+<div class="math notranslate nohighlight">
+\[\frac{dy}{dx} = f(x,y),\]</div>
+<p>where <span class="math notranslate nohighlight">\(f(x,y)\)</span> can be any function of the independent variable <span class="math notranslate nohighlight">\(x\)</span> and the dependent variable <span class="math notranslate nohighlight">\(y\)</span> . We first show how to determine a numerical solution of this equation, and then learn techniques for solving analytically some special forms of (2.1), namely, separable and linear first-order equations.</p>
+<section id="the-euler-method">
+<h3>The Euler method<a class="headerlink" href="#the-euler-method" title="Permalink to this headline">¶</a></h3>
+<p>Although it is not always possible to find an analytical solution of (2.1) for <span class="math notranslate nohighlight">\(y = y(x)\)</span> , it is always possible to determine a unique numerical solution given an initial value <span class="math notranslate nohighlight">\(y(x_0) = y_0\)</span> ,  and provided <span class="math notranslate nohighlight">\(f(x,y)\)</span> is a well-behaved function. The differential equation (2.1) gives us the slope <span class="math notranslate nohighlight">\(f(x_0,y_0)\)</span> of the tangent line to the solution curve <span class="math notranslate nohighlight">\(y=y(x)\)</span> at the point <span class="math notranslate nohighlight">\((x_0,y_0)\)</span> . With a small step size <span class="math notranslate nohighlight">\(\Delta x = x_1 - x_0\)</span> ,the initial condition <span class="math notranslate nohighlight">\((x_0,y_0)\)</span> can be marched forward to <span class="math notranslate nohighlight">\((x_1,y_1)\)</span> along the tangent line using Euler’s method</p>
+<div class="math notranslate nohighlight">
+\[y_1 = y_0 + \Delta xf(x_0,y_0).\]</div>
+<p>This solution <span class="math notranslate nohighlight">\((x_1,y_1)\)</span> then becomes the new inital condition and is marched forward to <span class="math notranslate nohighlight">\((x_2,y_2)\)</span> along a newly determined tangent line with slope given by <span class="math notranslate nohighlight">\(f(x_1,y_1)\)</span> . For small enough <span class="math notranslate nohighlight">\(\Delta x\)</span> the numerical solution converges to the exact solution.</p>
+</section>
+<section id="separable-equations">
+<h3>Separable equations<a class="headerlink" href="#separable-equations" title="Permalink to this headline">¶</a></h3>
+<p>A first-order ode is separable if it can be written in the form</p>
+<div class="math notranslate nohighlight">
+\[g(y)\frac{dy}{dx} = f(x), y(x_0)=y_0,\]</div>
+<p>where the function <span class="math notranslate nohighlight">\(g(y)\)</span> is independent of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(f(x)\)</span> is independent of :math: <cite>y</cite> . Integration form <span class="math notranslate nohighlight">\(x_0\)</span> to <span class="math notranslate nohighlight">\(x\)</span> results in</p>
+<div class="math notranslate nohighlight">
+\[\int_{x_0}^{x} g(y(x))y'(x)dx = \int_{x_0}^{x} f(x)dx.\]</div>
+<p>The integral on the left can be transformed by substituting <span class="math notranslate nohighlight">\(u=y(x),du=y'(x)dx\)</span> , and changing the lower and upper limits of integration to <span class="math notranslate nohighlight">\(y(x_0) = y_0\)</span> and <span class="math notranslate nohighlight">\(y(x)=y\)</span> . Therefore,</p>
+<div class="math notranslate nohighlight">
+\[\int_{y_0}^{y} g(u)du = \int_{x_0}^{x} f(x)dx,\]</div>
+<p>and since <span class="math notranslate nohighlight">\(u\)</span> is a dummy variable of integration, we can write this in the equivalent form</p>
+<div class="math notranslate nohighlight">
+\[\int_{y_0}^{y} g(y)dy = \int_{x_0}^{x} f(x)dx.\]</div>
+<p>A simpler procedure that also yields (2.3) is to treat <span class="math notranslate nohighlight">\(dy/dx\)</span> in (2.2) like a fraction. Multiplying (2.2) by <span class="math notranslate nohighlight">\(dx\)</span> results in</p>
+<div class="math notranslate nohighlight">
+\[g(y)dy = f(x)dx,\]</div>
+<p>which is a separated equation with all the dependent variables on the left-side,and all the independent variables on the right-side. Equation (2.3) then results directly upon integration.</p>
+</section>
+<section id="linear-equations">
+<h3>Linear equations<a class="headerlink" href="#linear-equations" title="Permalink to this headline">¶</a></h3>
+<p>The linear first-order differential equation (linear in <span class="math notranslate nohighlight">\(y\)</span> and its derivative) can be written in the form</p>
+<div class="math notranslate nohighlight">
+\[\frac{dy}{dx} + p(x)y = g(x),\]</div>
+<p>with the inital condition <span class="math notranslate nohighlight">\(y(x_0)=y_0\)</span> Linear first-order equation can be integrated using an integrating factor <span class="math notranslate nohighlight">\(\mu(x)\)</span> ,</p>
+<div class="math notranslate nohighlight">
+\[\mu(x)\left[\frac{dy}{dx}+p(x)y\right] = y(x)g(x),\]</div>
+<p>and try to determine <span class="math notranslate nohighlight">\(\mu(x)\)</span> so that</p>
+<div class="math notranslate nohighlight">
+\[\mu(x)\left[\frac{dy}{dx}+p(x)y\right] = -\frac{d}{dx}\left[\mu(x)y\right].\]</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, licrum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
