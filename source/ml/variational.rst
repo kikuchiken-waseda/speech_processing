@@ -3,3 +3,24 @@
 ===========================
 
 https://ntacoffee.com/variational-inference/
+
+
+
+.. graphviz::
+
+    digraph G {
+        node [shape = circle];
+        subgraph cluster0{
+                z -> x;
+                label = "N";
+                fontsize = "20pt";
+                labeljust = r;
+        };
+        x -> z [style=dashed];
+        s -> z;
+        s -> x;
+        p -> z;
+        {rank="same" z;s;p;};
+    }
+
+graphvizと和解できない・・・

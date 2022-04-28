@@ -7,6 +7,10 @@
   <title>書きたいものまとめ &mdash; 音声信号処理のための備忘録  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+<<<<<<< HEAD
+=======
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+>>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -62,6 +66,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#id5">マクローリン展開</a></li>
 </ul>
 </li>
+<<<<<<< HEAD
+=======
+<li class="toctree-l2"><a class="reference internal" href="#id6">開発モデル</a></li>
+>>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
@@ -231,6 +239,22 @@
 <p><a class="reference external" href="https://risalc.info/src/taylor-series.html">https://risalc.info/src/taylor-series.html</a></p>
 </section>
 </section>
+<<<<<<< HEAD
+=======
+<section id="id6">
+<h2>開発モデル<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>xは音響特徴量、yは画像、lは判定ラベルとする。</p>
+<div class="graphviz"><img src="../_images/graphviz-e08eb89c4184224bf733ece64652b75a17d704e0.png" alt="digraph G {
+    rankdir=UD;
+    node [shape = circle];
+    y -&gt; l;
+    x -&gt; l;
+    c -&gt; x;
+    c -&gt; y;
+    z -&gt; x;
+}" class="graphviz" /></div>
+</section>
+>>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936
 </section>
 
 

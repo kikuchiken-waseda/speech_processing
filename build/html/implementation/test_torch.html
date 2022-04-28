@@ -7,6 +7,10 @@
   <title>pytorchaudioを試す &mdash; 音声信号処理のための備忘録  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+<<<<<<< HEAD
+=======
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+>>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -299,7 +303,11 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+<<<<<<< HEAD
 .prompt a.copybtn {
+=======
+.prompt .copybtn {
+>>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936
     display: none;
 }
 
@@ -365,8 +373,12 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
+<<<<<<< HEAD
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">torch</span>
+=======
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+>>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936
 <span class="kn">import</span> <span class="nn">torchaudio</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
@@ -376,8 +388,12 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
+<<<<<<< HEAD
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">python_dataset.utils</span> <span class="kn">import</span> <span class="n">example_audio_file</span>
+=======
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">python_dataset.utils</span> <span class="kn">import</span> <span class="n">example_audio_file</span>
+>>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936
 </pre></div>
 </div>
 </div>
@@ -387,8 +403,12 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
+<<<<<<< HEAD
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">IPython.display</span>
+=======
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">IPython.display</span>
+>>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936
 <span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">example_audio_file</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -410,8 +430,12 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
+<<<<<<< HEAD
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">waveform</span><span class="p">,</span> <span class="n">sample_rate</span> <span class="o">=</span> <span class="n">torchaudio</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">example_audio_file</span><span class="p">())</span>
+=======
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">waveform</span><span class="p">,</span> <span class="n">sample_rate</span> <span class="o">=</span> <span class="n">torchaudio</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">example_audio_file</span><span class="p">())</span>
+>>>>>>> 2783ffa775bb93c1c7f0aa2a2fefd9086c1ab936
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">waveform</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>

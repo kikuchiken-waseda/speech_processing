@@ -75,3 +75,20 @@ RC回路
 https://rikeilabo.com/mcloughlin-expansion
 
 https://risalc.info/src/taylor-series.html
+
+開発モデル
+=======================
+xは音響特徴量、yは画像、lは判定ラベルとする。
+
+.. graphviz::
+
+    digraph G {
+        rankdir=UD;
+        node [shape = circle];
+        y -> l;
+        x -> l;
+        c -> x;
+        c -> y;
+        z -> x;
+    }
+
