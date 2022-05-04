@@ -112,11 +112,22 @@
 <section id="id2">
 <h2>今回の目的<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>ニューラルネットワークで文章を作ったり、画像を作ったりするけど、そもそも作る、生成するとはどういったことを示すのかを知る</p>
+<p>モデル化をどうやって数式に表すのか</p>
 <p>これから生成モデルを使う人がどれくらい数学的議論をしなければならないかの確認(わざと数式多めで書いています)</p>
 <p>フォローアップとしてワークショップを考えています。</p>
 </section>
 <section id="id3">
-<h2>確率分布の推論における主要な式<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>確率変数と確率分布<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>確率変数とは、統計学の確率論において、起こりうる事柄に割り当てている値を取る変数。
+確率分布とは、確率変数に対して、各々の値をとる確率(または尤度)を表したものである。</p>
+<p>例えば「サイコロを振る」という事象を考えた際に確率変数はサイコロの数字である <span class="math notranslate nohighlight">\(x={1,2,3,4,5,6}\)</span> となる。
+この時の確率分布 <span class="math notranslate nohighlight">\(p(x)\)</span> は</p>
+<div class="math notranslate nohighlight">
+\[p(x) = \frac{1}{6} (x=1,2,3,4,5,6)\]</div>
+<p>となる。</p>
+</section>
+<section id="id4">
+<h2>確率分布の推論における主要な式<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>ある２つの変数 <span class="math notranslate nohighlight">\(x,y\)</span> に対する確率分布を同時分布と呼び <span class="math notranslate nohighlight">\(p(x,y)\)</span> で表す。さらに</p>
 <div class="math notranslate nohighlight">
 \[p(y) = \int_x p(x,y)dx\]</div>
@@ -129,20 +140,20 @@
 \[p(x|y) := \frac{p(x,y)}{p(y)}\]</div>
 <p>と定義する。</p>
 </section>
-<section id="id4">
-<h2>生成モデルって？<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<section id="id5">
+<h2>生成モデルって？<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>入力ベクトル <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^c\)</span> と対応する目標変数 <span class="math notranslate nohighlight">\(\mathbf{t}\in\mathbb{R}^d\)</span> があり、 <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> の新たな値に対する <span class="math notranslate nohighlight">\(\mathbf{t}\)</span> を予測することが目標である。</p>
 <p>このような問題の解き方として3つのアプローチが考えることができる（対立関係ではない）。</p>
-<section id="id5">
-<h3>識別関数<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<section id="id6">
+<h3>識別関数<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>各入力 <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> から直接 <span class="math notranslate nohighlight">\(\mathbf{t}\)</span> に写像する関数 <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span> を見つける。この場合確率は出てこない。このような関数 <span class="math notranslate nohighlight">\(f\)</span> を識別関数と呼ぶ。</p>
 </section>
-<section id="id6">
-<h3>識別モデル<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<section id="id7">
+<h3>識別モデル<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>最初に事後確率 <span class="math notranslate nohighlight">\(p(\mathbf{t}|\mathbf{x})\)</span> を決める推論問題を解き、次に決定理論を使って、新たな <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> を <span class="math notranslate nohighlight">\(\mathbf{t}\)</span> に割り当てる。このように、事後確率を直接モデル化するアプローチを識別モデル(discriminative model)と呼ぶ。</p>
 </section>
-<section id="id7">
-<h3>生成モデル<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<section id="id8">
+<h3>生成モデル<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>まず、条件付き確率 <span class="math notranslate nohighlight">\(p(\mathbf{x}|\mathbf{t})\)</span> を決める推論問題を解く。事前確率 <span class="math notranslate nohighlight">\(p(\mathbf{t})\)</span> も求める。それからベイズの定理を使って</p>
 <div class="math notranslate nohighlight">
 \[p(\mathbf{t}|\mathbf{x}) = \frac{p(\mathbf{x}|\mathbf{t})p(\mathbf{t})}{p(\mathbf{x})}\]</div>
@@ -153,8 +164,8 @@
 このように出力の分布だけでなく入力の分布もモデル化するアプローチは、モデルからのサンプリングによって、入力空間で人工データを生成できることから、生成モデルと呼ばれる。</p>
 </section>
 </section>
-<section id="id8">
-<h2>なにかを生成する際のお気持ち<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<section id="id9">
+<h2>なにかを生成する際のお気持ち<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <p>真のデータの分布を <span class="math notranslate nohighlight">\(p_r(\mathbf{x})\)</span> としたとき、それと一致するような <span class="math notranslate nohighlight">\(p_g(\mathbf{x})\)</span> を作ることができれば分布からのサンプリングによって人工データの生成を行うことができる。</p>
 <p>これらのモチベーションを持った深層生成モデルの主要モデルとして、自己回帰モデル(Autoregressive Model)、変分自己符号化器(Variational Autoencoder)、敵対的生成ネットワーク(Generative Adversarial Networks)がある。</p>
 <section id="ar">
@@ -179,7 +190,7 @@
 <h3>GAN<a class="headerlink" href="#gan" title="Permalink to this headline">¶</a></h3>
 <p>GANは二つのニューラルネットワークによって、生成データの分布、<span class="math notranslate nohighlight">\(p_g(\mathbf{x})\)</span> を得ることが目的である。乱数 <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> から生成器 <span class="math notranslate nohighlight">\(G\)</span> によってデータ空間 <span class="math notranslate nohighlight">\(\mathbf{x}=G(\mathbf{z})\)</span> への写像を行う。もう一つのネットワークは識別器 <span class="math notranslate nohighlight">\(D\)</span> と呼ばれ、データ <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> が <span class="math notranslate nohighlight">\(p_r(\mathbf{x})\)</span> からサンプリングされたものであれば確率 <span class="math notranslate nohighlight">\(p=D(\mathbf{x})\in[0,1]\)</span> を付与し、 <span class="math notranslate nohighlight">\(p_g(\mathbf{x})\)</span> からサンプリングされたものであれば、 確率 <span class="math notranslate nohighlight">\(1-p\)</span> を付与する。<span class="math notranslate nohighlight">\(D\)</span> と <span class="math notranslate nohighlight">\(G\)</span> は以下のMin-Maxの目的関数で最適化が行われる。</p>
 <div class="math notranslate nohighlight">
-\[\min\maxV(D,G) = mathbb{E}_{p_r(\mathbf{x})}[\log D(\mathbf{x})] + mathbb{E}_{p_z(\mathbf{z})}[\log D(G(\mathbf{z}))]\]</div>
+\[\underset{G}{\min}\underset{D}{\max} V(D,G) = \mathbb{E}_{p_r(\mathbf{x})}[\log D(\mathbf{x})] + \mathbb{E}_{p_z(\mathbf{z})}[\log (1-D(G(\mathbf{z})))]\]</div>
 <p>長所としてVAEと同様にデータの潜在的な表現を行うため生成結果をコントロールしやすい点、サンプリングコストがが低い点、またVAEと異なり <span class="math notranslate nohighlight">\(p_g(\mathbf{x})\)</span> は最適な条件下では <span class="math notranslate nohighlight">\(p_r(\mathbf{x})\)</span> に漸近することが示されており、精緻なデータ生成が可能であることが知られている。</p>
 <p>短所として、Min-Max最適化を行うため学習が安定しない点が挙げられる。(モード崩壊)</p>
 </section>
