@@ -95,6 +95,9 @@ EMと同様にここまで持ってく
 .. math::
    \log p(x) - \mathcal{L}_{\text{VB}}[q(z)] = KL[q(z)||p(z|x)]
 
+ここでEMと違い :math:`\log p(x)` は定数であるから、KLの最大化を行ってELBOを下げる
+
+
 平均場近似を使う
 
 .. math::
@@ -110,10 +113,15 @@ EMと同様にここまで持ってく
    &= \int q_j\prod_{i\neq j}q_i\log p(z|x)dz - \int q_j\log q_j dz + \text{const} \\
    &= \int q_j\Biggl{\{}\int \log p(z|x)\prod_{i\neq j}q_idz_i\Biggr{\}}dz_j - \int q_j\log q_j dz + \text{const}\\
    &= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(z|x)]] - \mathbb{E}_{q_j}[\log q_j] + \text{const} \\
+<<<<<<< HEAD
    &= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(z|x)] - \log q_j] + \text{const} \\
    &= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(x,z)] - \log q_j] + \text{const}
 
 よって
+=======
+   &= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(z|x)] - \log q_j] + \text{const}
+   
+>>>>>>> 5a13093ed8b282a82cce050d810014e4bbcbfeeb
 
 .. math::
    \log q_j^*(z_j) = \mathbb{E}_{q_{i\neq j}}[\log p(x,z)] + \text{const}
