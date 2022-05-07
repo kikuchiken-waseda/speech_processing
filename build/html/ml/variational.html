@@ -144,6 +144,22 @@
 <p>書くのが面倒なので下の式は自分で計算してくれ</p>
 <div class="math notranslate nohighlight">
 \[\log p_\theta(x) - \mathcal{L}_{\text{ML}}[\theta;q(z)] = KL[q(z)||p_\theta(z|x)]\]</div>
+<section id="e-step">
+<h3>E step<a class="headerlink" href="#e-step" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(\mathcal{Q}\)</span> 関数は下界に上の式を代入したもの</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}q^*(z) = p_{\theta^{\text{old}}}(z|x) \\
+\mathcal{Q}(\theta, \theta^{\text{old}}) = \mathbb{E}_{q^*(z)}[\log p_\theta(x,z)]\end{split}\]</div>
+</section>
+<section id="m-step">
+<h3>M step<a class="headerlink" href="#m-step" title="Permalink to this headline">¶</a></h3>
+<p>ML estimation</p>
+<div class="math notranslate nohighlight">
+\[\theta^{\text{new}} = \underset{\theta}{\arg \max} \, \mathcal{Q}(\theta, \theta^{\text{old}})\]</div>
+<p>MAP estimation</p>
+<div class="math notranslate nohighlight">
+\[\theta^{\text{new}} = \underset{\theta}{\arg \max} \, \{\mathcal{Q}(\theta, \theta^{\text{old}}) + \log p(\theta) \}\]</div>
+</section>
 </section>
 <section id="id5">
 <h2>変分ベイズ<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
@@ -155,17 +171,25 @@
 <div class="math notranslate nohighlight">
 \[q(z) = \prod_{i} q_i(z_i)\]</div>
 <p>面倒なので <span class="math notranslate nohighlight">\(z\)</span> を省略</p>
+<p>あと <span class="math notranslate nohighlight">\(p(x)\)</span> は定数なことを加味して</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}KL[q||p(z|x)]&amp;= \int q\log\frac{p(z|x)}{q}dz \\
 &amp;= \int q\log p(z|x)dz - \int q\log q dz\\
 &amp;= \int q_j\prod_{i\neq j}q_i\log p(z|x)dz - \int q_j\log q_j dz + \text{const} \\
 &amp;= \int q_j\Biggl{\{}\int \log p(z|x)\prod_{i\neq j}q_idz_i\Biggr{\}}dz_j - \int q_j\log q_j dz + \text{const}\\
 &amp;= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(z|x)]] - \mathbb{E}_{q_j}[\log q_j] + \text{const} \\
-&amp;= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(z|x)] - \log q_j] + \text{const}\end{split}\]</div>
+&amp;= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(z|x)] - \log q_j] + \text{const} \\
+&amp;= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(x,z)] - \log q_j] + \text{const}\end{split}\]</div>
+<p>よって</p>
+<div class="math notranslate nohighlight">
+\[\log q_j^*(z_j) = \mathbb{E}_{q_{i\neq j}}[\log p(x,z)] + \text{const}\]</div>
+<p>について、 <span class="math notranslate nohighlight">\(p(x,z)\)</span> の事前確率等々を定めてパラメータ更新をする。</p>
 </section>
 <section id="vae">
 <h2>VAE<a class="headerlink" href="#vae" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://arxiv.org/pdf/1312.6114.pdf">https://arxiv.org/pdf/1312.6114.pdf</a></p>
+<div class="math notranslate nohighlight">
+\[\log p_\theta(x) - \mathcal{L}_{\text{VAE}}[\theta,\phi;q_\phi(z|x)] = KL[q_\phi(z|x)||p_\theta(z|x)]\]</div>
 <p>VAEは確率的なグラフィカルモデルで、潜在変数 <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> からデータ <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> を生成する <span class="math notranslate nohighlight">\(p_\theta(\mathbf{x}|\mathbf{z})\)</span> (Decoder)とその逆向きの推論を行う <span class="math notranslate nohighlight">\(p_\theta(\mathbf{z}|\mathbf{x})\)</span> (Encoder) から構成される。<span class="math notranslate nohighlight">\(p_\theta(\mathbf{z}|\mathbf{x})\)</span> は計算的に扱いにくいため、近似分布 <span class="math notranslate nohighlight">\(q_\phi(\mathbf{z}|\mathbf{x})\)</span> を導入し、変分下界(Evidence lower bound) <span class="math notranslate nohighlight">\(\mathcal{L}(\theta ,\phi;\mathbf{x})\)</span> の最大化を行う。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\log p_\theta(\mathbf{x}) &amp;\geq \mathcal{L}(\theta, \phi ; \mathbf{x})\\

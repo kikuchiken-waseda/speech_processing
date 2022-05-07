@@ -11,6 +11,10 @@ machine learning
    ./gan
 
 
+最適化問題とは
+============================================================
+https://www.albert2005.co.jp/knowledge/machine_learning/optimisation_basics/optimisation_problem
+
 分布
 =================
 分布と確率質量関数と確率密度関数は同じノリで書かれることが多い。
