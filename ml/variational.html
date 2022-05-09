@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>変分推論 &mdash; 音声信号処理のための備忘録  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logic/index.html">論理学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculus/index.html">微分積分学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/index.html">信号処理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../speech_analysis/index.html">音響解析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">machine learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../control_engineering/index.html">制御工学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../a.html">集合と位相</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">音声信号処理のための備忘録</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>変分推論</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/ml/variational.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="id1">
+<h1>変分推論<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://ntacoffee.com/variational-inference/">https://ntacoffee.com/variational-inference/</a></p>
+<p><a class="reference external" href="https://academ-aid.com/ml/vae">https://academ-aid.com/ml/vae</a></p>
+<p>graphvizと和解できない・・・</p>
+<section id="id2">
+<h2>尤度関数<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://ja.wikipedia.org/wiki/%E5%B0%A4%E5%BA%A6%E9%96%A2%E6%95%B0">https://ja.wikipedia.org/wiki/%E5%B0%A4%E5%BA%A6%E9%96%A2%E6%95%B0</a></p>
+<div class="math notranslate nohighlight">
+\[p_\theta(x) = p(x;\theta) = L(\theta;x)\]</div>
+</section>
+<section id="id3">
+<h2>点推定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>maximum likelihood estimation</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\hat{\theta}(x)_{\text{ML}} &amp;= \underset{\theta}{\arg \max}\,p(x|\theta) \\\end{split}\]</div>
+<p>maximum a posteriori estimation</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\hat{\theta}(x)_{\text{MAP}} &amp;= \underset{\theta}{\arg \max}\,p(\theta|x) \\
+&amp;= \underset{\theta}{\arg \max}\,\frac{p(x|\theta)p(\theta)}{p(x)} \\
+&amp;\propto \underset{\theta}{\arg \max}\,p(x|\theta)p(\theta)\end{split}\]</div>
+<p>基本対数尤度に変えて最大化する</p>
+</section>
+<section id="id4">
+<h2>ベイズ推定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>bayesian estimation</p>
+<div class="math notranslate nohighlight">
+\[p(\theta|x) = \frac{p(x|\theta)p(\theta)}{p(x)}\]</div>
+<p><a class="reference external" href="https://ja.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E4%BA%8B%E5%BE%8C%E7%A2%BA%E7%8E%87">https://ja.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E4%BA%8B%E5%BE%8C%E7%A2%BA%E7%8E%87</a></p>
+</section>
+<section id="em-algorithm">
+<h2>EM algorithm<a class="headerlink" href="#em-algorithm" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://academ-aid.com/ml/em">https://academ-aid.com/ml/em</a></p>
+<p>点推定の式の変形に過ぎない</p>
+<p>イェンセンの不等式使って下界を設定</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\log p_\theta(x) &amp;= \log \int p_\theta(x,z)dz \\
+&amp;= \log \int q(z)\frac{p_\theta(x,z)}{q(z)}dz \\
+&amp;\geq \int q(z)\log{\frac{p_\theta(x,z)}{q(z)}}dz\\
+&amp;\equiv \mathcal{L}_{\text{ML}}[\theta;q(z)]\end{split}\]</div>
+<p>書くのが面倒なので下の式は自分で計算してくれ</p>
+<div class="math notranslate nohighlight">
+\[\log p_\theta(x) - \mathcal{L}_{\text{ML}}[\theta;q(z)] = KL[q(z)||p_\theta(z|x)]\]</div>
+<section id="e-step">
+<h3>E step<a class="headerlink" href="#e-step" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(\mathcal{Q}\)</span> 関数は下界に上の式を代入したもの</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}q^*(z) = p_{\theta^{\text{old}}}(z|x) \\
+\mathcal{Q}(\theta, \theta^{\text{old}}) = \mathbb{E}_{q^*(z)}[\log p_\theta(x,z)]\end{split}\]</div>
+</section>
+<section id="m-step">
+<h3>M step<a class="headerlink" href="#m-step" title="Permalink to this headline">¶</a></h3>
+<p>ML estimation</p>
+<div class="math notranslate nohighlight">
+\[\theta^{\text{new}} = \underset{\theta}{\arg \max} \, \mathcal{Q}(\theta, \theta^{\text{old}})\]</div>
+<p>MAP estimation</p>
+<div class="math notranslate nohighlight">
+\[\theta^{\text{new}} = \underset{\theta}{\arg \max} \, \{\mathcal{Q}(\theta, \theta^{\text{old}}) + \log p(\theta) \}\]</div>
+</section>
+</section>
+<section id="id5">
+<h2>変分ベイズ<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://academ-aid.com/ml/vb">https://academ-aid.com/ml/vb</a></p>
+<p>EMと同様にここまで持ってく</p>
+<div class="math notranslate nohighlight">
+\[\log p(x) - \mathcal{L}_{\text{VB}}[q(z)] = KL[q(z)||p(z|x)]\]</div>
+<p>ここでEMと違い <span class="math notranslate nohighlight">\(\log p(x)\)</span> は定数であるから、KLの最大化を行ってELBOを下げる</p>
+<p>平均場近似を使う</p>
+<div class="math notranslate nohighlight">
+\[q(z) = \prod_{i} q_i(z_i)\]</div>
+<p>面倒なので <span class="math notranslate nohighlight">\(z\)</span> を省略</p>
+<p>あと <span class="math notranslate nohighlight">\(p(x)\)</span> は定数なことを加味して</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}KL[q||p(z|x)]&amp;= \int q\log\frac{p(z|x)}{q}dz \\
+&amp;= \int q\log p(z|x)dz - \int q\log q dz\\
+&amp;= \int q_j\prod_{i\neq j}q_i\log p(z|x)dz - \int q_j\log q_j dz + \text{const} \\
+&amp;= \int q_j\Biggl{\{}\int \log p(z|x)\prod_{i\neq j}q_idz_i\Biggr{\}}dz_j - \int q_j\log q_j dz + \text{const}\\
+&amp;= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(z|x)]] - \mathbb{E}_{q_j}[\log q_j] + \text{const} \\\end{split}\]</div>
+<dl class="simple">
+<dt>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</dt><dd><p>&amp;= mathbb{E}_{q_j}[mathbb{E}_{q_{ineq j}}[log p(z|x)] - log q_j] + text{const} \
+&amp;= mathbb{E}_{q_j}[mathbb{E}_{q_{ineq j}}[log p(x,z)] - log q_j] + text{const}</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h2>よって<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>&amp;= mathbb{E}_{q_j}[mathbb{E}_{q_{ineq j}}[log p(z|x)] - log q_j] + text{const}</p>
+</div></blockquote>
+<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 5a13093ed8b282a82cce050d810014e4bbcbfeeb</p>
+<div class="math notranslate nohighlight">
+\[\log q_j^*(z_j) = \mathbb{E}_{q_{i\neq j}}[\log p(x,z)] + \text{const}\]</div>
+<p>について、 <span class="math notranslate nohighlight">\(p(x,z)\)</span> の事前確率等々を定めてパラメータ更新をする。</p>
+</section>
+<section id="vae">
+<h2>VAE<a class="headerlink" href="#vae" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://arxiv.org/pdf/1312.6114.pdf">https://arxiv.org/pdf/1312.6114.pdf</a></p>
+<div class="math notranslate nohighlight">
+\[\log p_\theta(x) - \mathcal{L}_{\text{VAE}}[\theta,\phi;q_\phi(z|x)] = KL[q_\phi(z|x)||p_\theta(z|x)]\]</div>
+<p>VAEは確率的なグラフィカルモデルで、潜在変数 <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> からデータ <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> を生成する <span class="math notranslate nohighlight">\(p_\theta(\mathbf{x}|\mathbf{z})\)</span> (Decoder)とその逆向きの推論を行う <span class="math notranslate nohighlight">\(p_\theta(\mathbf{z}|\mathbf{x})\)</span> (Encoder) から構成される。<span class="math notranslate nohighlight">\(p_\theta(\mathbf{z}|\mathbf{x})\)</span> は計算的に扱いにくいため、近似分布 <span class="math notranslate nohighlight">\(q_\phi(\mathbf{z}|\mathbf{x})\)</span> を導入し、変分下界(Evidence lower bound) <span class="math notranslate nohighlight">\(\mathcal{L}(\theta ,\phi;\mathbf{x})\)</span> の最大化を行う。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\log p_\theta(\mathbf{x}) &amp;\geq \mathcal{L}(\theta, \phi ; \mathbf{x})\\
+&amp;=-KL(q_\phi(\mathbf{z}|\mathbf{x})||p_\phi(\mathbf{z}))+\mathbb{E}_{q_\phi(\mathbf{z}|\mathbf{x})}[\log p_\theta(\mathbf{x}|\mathbf{z})]\end{split}\]</div>
+</section>
+<section id="joint-vae">
+<h2>joint VAE<a class="headerlink" href="#joint-vae" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://arxiv.org/pdf/1804.00104.pdf">https://arxiv.org/pdf/1804.00104.pdf</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, licrum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

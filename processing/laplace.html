@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ラプラス変換 &mdash; 音声信号処理のための備忘録  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="音響解析" href="../speech_analysis/index.html" />
+    <link rel="prev" title="音声信号処理に向けたフーリエ変換の学び" href="fourier.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logic/index.html">論理学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculus/index.html">微分積分学</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">信号処理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fourier.html">音声信号処理に向けたフーリエ変換の学び</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ラプラス変換</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">ラプラス変換とは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#z">z変換とは</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../speech_analysis/index.html">音響解析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/index.html">machine learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../control_engineering/index.html">制御工学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../a.html">集合と位相</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">音声信号処理のための備忘録</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">信号処理</a> &raquo;</li>
+      <li>ラプラス変換</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/processing/laplace.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="id1">
+<h1><a class="toc-backref" href="#id4">ラプラス変換</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title">目次</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id4">ラプラス変換</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id5">ラプラス変換とは</a></p></li>
+<li><p><a class="reference internal" href="#z" id="id6">z変換とは</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="id3">
+<h2><a class="toc-backref" href="#id5">ラプラス変換とは</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>時間信号 <span class="math notranslate nohighlight">\(f(t)\)</span> に適当な実指数関数 <span class="math notranslate nohighlight">\(e^{-ct}\)</span>
+と単位ステップ関数 <span class="math notranslate nohighlight">\(u_0(t)\)</span> をかけてフーリエ変換したもの</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(t\geq 0, s\in\mathbb{C}\)</span></p>
+</div></blockquote>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}F(s) = \int^{\infty}_{0}f(t)e^{-st}dt\\s = c+j\Omega\\F(s) = \mathcal{L}[f(t)]\end{aligned}\end{align} \]</div>
+</section>
+<section id="z">
+<h2><a class="toc-backref" href="#id6">z変換とは</a><a class="headerlink" href="#z" title="Permalink to this headline">¶</a></h2>
+<p>離散時間信号 <span class="math notranslate nohighlight">\(f(n)\)</span> に適当な実指数関数 <span class="math notranslate nohighlight">\(e^{-cn}\)</span>
+と単位ステップ関数 <span class="math notranslate nohighlight">\(u_0(n)\)</span> をかけて離散時間フーリエ変換したもの</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}F(z) = \sum^{\infty}_{n=0}f(n)z^{-n}\\z = e^{c+j\omega}\\F(z) = \mathcal{Z}[f(n)]\end{aligned}\end{align} \]</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fourier.html" class="btn btn-neutral float-left" title="音声信号処理に向けたフーリエ変換の学び" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../speech_analysis/index.html" class="btn btn-neutral float-right" title="音響解析" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, licrum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>集合と位相 &mdash; 音声信号処理のための備忘録  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="制御工学" href="control_engineering/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> 音声信号処理のための備忘録
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pachouli/index.html">書きたいものまとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paper/index.html">論文まとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation/index.html">実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logic/index.html">論理学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculus/index.html">微分積分学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing/index.html">信号処理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="speech_analysis/index.html">音響解析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml/index.html">machine learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="control_engineering/index.html">制御工学</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">集合と位相</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">集合</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">ラッセルのパラドクスと公理主義的集合論</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">集合演算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">集合変形</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">写像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">集合系</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">音声信号処理のための備忘録</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>集合と位相</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/a.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="id1">
+<h1>集合と位相<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<section id="id2">
+<h2>集合<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>集合とは「ある特定の性質を備えたものの集まり」のことである。集合に含まれる1つ1つの「もの」を、その集合の要素または元という。
+<span class="math notranslate nohighlight">\(a\)</span> が集合 <span class="math notranslate nohighlight">\(A\)</span> の元であることを</p>
+<div class="math notranslate nohighlight">
+\[a\in A\]</div>
+<p>で表し、 <span class="math notranslate nohighlight">\(a\)</span> は <span class="math notranslate nohighlight">\(A\)</span> に属するという。逆に <span class="math notranslate nohighlight">\(a\)</span> は <span class="math notranslate nohighlight">\(A\)</span> に属さないことは</p>
+<div class="math notranslate nohighlight">
+\[a\notin A\]</div>
+<p>のように表す。</p>
+<p>集合は <span class="math notranslate nohighlight">\(\{2,5,7\}\)</span> のように、属する元を全て書き並べたり、
+<span class="math notranslate nohighlight">\(\{x|x\text{は条件}P\text{を満たす}\}\)</span> のようにある条件を満たす元全体として定めることが多い。</p>
+<p>集合 <span class="math notranslate nohighlight">\(A\)</span> の元のうち、条件 <span class="math notranslate nohighlight">\(P\)</span> を満たす元全体の集合を</p>
+<div class="math notranslate nohighlight">
+\[\{x|x\in A,x\text{は条件}P\text{を満たす}\}\]</div>
+<p>または</p>
+<div class="math notranslate nohighlight">
+\[\{x\in A|x\text{は条件}P\text{を満たす}\}\]</div>
+<p>で表す。</p>
+<p>二つの集合 <span class="math notranslate nohighlight">\(A,B\)</span> について、 <span class="math notranslate nohighlight">\(\forall a\in A:a\in B\)</span> のとき、
+<span class="math notranslate nohighlight">\(A\)</span> は <span class="math notranslate nohighlight">\(B\)</span> の部分集合であるといい、 <span class="math notranslate nohighlight">\(A\subset B\)</span> で表す。
+この場合、 <span class="math notranslate nohighlight">\(A\)</span> は <span class="math notranslate nohighlight">\(B\)</span> に包まれる、または <span class="math notranslate nohighlight">\(B\)</span> は <span class="math notranslate nohighlight">\(A\)</span> を包むという。
+<span class="math notranslate nohighlight">\(A\subset B\)</span> でないことを <span class="math notranslate nohighlight">\(A\not\subset B\)</span> で表す。</p>
+<p><span class="math notranslate nohighlight">\(A\subset B \land A\ne B\)</span> のとき、 <span class="math notranslate nohighlight">\(A\)</span> は <span class="math notranslate nohighlight">\(B\)</span> の真部分集合であるといい、 <span class="math notranslate nohighlight">\(A\subsetneq B\)</span> で表す。</p>
+<p>議論している対象の要素全体の集合を全体集合または不偏集合という。
+全体集合を <span class="math notranslate nohighlight">\(U\)</span> を任意に選ぶと</p>
+<div class="math notranslate nohighlight">
+\[A\subset U \Leftrightarrow \forall x\in A : x\in U\]</div>
+<p>が成り立つ。</p>
+<p>要素を一つも含まない集合を空集合といい、 <span class="math notranslate nohighlight">\(\emptyset\)</span> で表す。</p>
+<p>全体集合が <span class="math notranslate nohighlight">\(U\)</span> であるとき、空集合は内包的に</p>
+<div class="math notranslate nohighlight">
+\[\emptyset = \{x\in U \mid x \neq x\}\]</div>
+<p>と表すことができる。</p>
+<p>元を有限個しか含まない集合および空集合を有限集合といい、そうでない集合を無限集合と呼ぶ。</p>
+<section id="id3">
+<h3>ラッセルのパラドクスと公理主義的集合論<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>そのうちかく</p>
+</section>
+<section id="id4">
+<h3>集合演算<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>集合論では集合を被演算子と呼ばれる演算を定義する。集合演算で使われる被演算子は <span class="math notranslate nohighlight">\(c,\cup,\cap,\setminus,\Delta\)</span> などであり、これらを集合演算子と呼ぶ。
+ここから特に断らない限り <span class="math notranslate nohighlight">\(U\)</span> を全体集合、 二つの集合 <span class="math notranslate nohighlight">\(A,B\)</span> について <span class="math notranslate nohighlight">\(A\subset U,B\subset U\)</span> とする。</p>
+<div class="math notranslate nohighlight">
+\[A^c = \{x\in U \mid x\notin A\}\]</div>
+<p>を <span class="math notranslate nohighlight">\(A\)</span> の補集合という。</p>
+<div class="math notranslate nohighlight">
+\[A\cup B = \{x\in U \mid x\in A \lor x\in B\}\]</div>
+<p>を <span class="math notranslate nohighlight">\(A\)</span> と <span class="math notranslate nohighlight">\(B\)</span> の和集合といい、</p>
+<div class="math notranslate nohighlight">
+\[A\cap B = \{x\in U \mid x\in A \land x\in B\}\]</div>
+<p>を <span class="math notranslate nohighlight">\(A\)</span> と <span class="math notranslate nohighlight">\(B\)</span> の共通部分といい、</p>
+<div class="math notranslate nohighlight">
+\[A\setminus B = \{x\in U \mid x\in A \land x\notin B\}\]</div>
+<p>を <span class="math notranslate nohighlight">\(A\)</span> と <span class="math notranslate nohighlight">\(B\)</span> の差集合という。</p>
+<div class="math notranslate nohighlight">
+\[A\Delta B = (A\setminus B)\cup (B\setminus A)\]</div>
+<p>を <span class="math notranslate nohighlight">\(A\)</span> と <span class="math notranslate nohighlight">\(B\)</span> の対称差という。</p>
+</section>
+<section id="id5">
+<h3>集合変形<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="id6">
+<h2>写像<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>集合 <span class="math notranslate nohighlight">\(A,B\)</span> に対し、 <span class="math notranslate nohighlight">\(A\)</span> のすべての元に対して <span class="math notranslate nohighlight">\(B\)</span> の元が唯一定まる時、その対応を写像と呼ぶ。</p>
+<p><span class="math notranslate nohighlight">\(f:A\to B\)</span> で、 <span class="math notranslate nohighlight">\(f\)</span> が <span class="math notranslate nohighlight">\(A\)</span> から <span class="math notranslate nohighlight">\(B\)</span> への写像であることを表す。
+<span class="math notranslate nohighlight">\(f:a\mapsto b\)</span> で、 写像 <span class="math notranslate nohighlight">\(f\)</span> によって <span class="math notranslate nohighlight">\(a\in A\)</span> が <span class="math notranslate nohighlight">\(b\in B\)</span> に移ることを表す。</p>
+<div class="math notranslate nohighlight">
+\[\forall a\in A, \exists !b \in B : b=f(a)\]</div>
+<p><span class="math notranslate nohighlight">\(A\)</span> を <span class="math notranslate nohighlight">\(f\)</span> の始域、 <span class="math notranslate nohighlight">\(B\)</span> を <span class="math notranslate nohighlight">\(f\)</span> の終域という。また <span class="math notranslate nohighlight">\(b\)</span> を <span class="math notranslate nohighlight">\(f\)</span> による <span class="math notranslate nohighlight">\(a\)</span> の像といい、
+<span class="math notranslate nohighlight">\(a\)</span> を <span class="math notranslate nohighlight">\(f\)</span> による <span class="math notranslate nohighlight">\(b\)</span> の原像という。</p>
+<p>全射は <span class="math notranslate nohighlight">\(\forall b\in B,\exists a\in A:b=a\)</span></p>
+<p>単射は <span class="math notranslate nohighlight">\(\forall a_1,a_2\in A:(b_1=b_2\Rightarrow a_1=a_2)\)</span></p>
+<p>合成写像</p>
+</section>
+<section id="id7">
+<h2>集合系<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="control_engineering/index.html" class="btn btn-neutral float-left" title="制御工学" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, licrum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
