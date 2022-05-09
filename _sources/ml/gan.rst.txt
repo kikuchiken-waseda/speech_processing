@@ -29,25 +29,4 @@ https://dreamer-uma.com/gan-theory/
 よって天下り的(だと思ったが違うかもしれない)ではあるが、
 
 .. math::
-	\underset{G}{\min}\underset{D}{\max}V(D, G)
-
-なんか
-===================
-確率変数 :math:`\mathbf{x} \in \mathbb{R}_c, \mathbf{y} \in \mathbb{R}_d` において、真の確率分布 :math:`P(\mathbf{x}, \mathbf{y})` と近似分布 :math:`Q(\mathbf{x}, \mathbf{y})` を定めたとき、これの交差エントロピーは
-
-.. math::
-        H(P(\mathbf{x}, \mathbf{y}), Q(\mathbf{x}, \mathbf{y})) &= -\int_{\mathbb{R}_d}\int_{\mathbb{R}_c}P(\mathbf{x}, \mathbf{y})\log Q(\mathbf{x}, \mathbf{y}) d\mathbf{x}d\mathbf{y} \\
-   &= -\underset{P(\mathbf{x}, \mathbf{y})}{\mathbf{E}}[\log Q(\mathbf{x}, \mathbf{y})] \\
-   &= -\underset{P(\mathbf{x}, \mathbf{y})}{\mathbf{E}}[\log Q(\mathbf{y}|\mathbf{x})Q(\mathbf{x})] \\
-   &= -\underset{P(\mathbf{x}, \mathbf{y})}{\mathbf{E}}[\log Q(\mathbf{y}|\mathbf{x})] + \underset{P(\mathbf{x}, \mathbf{y})}{\mathbf{E}}[\log Q(\mathbf{x})]\\
-   &= -\underset{P(\mathbf{x}, \mathbf{y})}{\mathbf{E}}[\log Q(\mathbf{y}|\mathbf{x})] + \underset{P(\mathbf{x})}{\mathbf{E}}[\log Q(\mathbf{x})]\\
-   &= -\underset{P(\mathbf{x}, \mathbf{y})}{\mathbf{E}}[\log Q(\mathbf{y}|\mathbf{x})] + H(P(\mathbf{x}),Q(\mathbf{x}))\\
-
-ここでDiscriminatorを :math:`D(\mathbf{x})` とし、 :math:`Q(\mathbf{y}|\mathbf{x}) = \mathrm{Bern}(\mathbf{y}|D(\mathbf{x}))` を仮定すると、
-
-.. math::
-        H(P(\mathbf{x}, \mathbf{y}), Q(\mathbf{x}, \mathbf{y})) &= -\underset{P(\mathbf{x}, \mathbf{y})}{\mathbf{E}}[\log \mathrm{Bern}(\mathbf{y}|D(\mathbf{x}))] + H(P(\mathbf{x}),Q(\mathbf{x}))\\
-   &= -\underset{P(\mathbf{x}|\mathbf{y})P(\mathbf{y})}{\mathbf{E}}[\log \mathrm{Bern}(\mathbf{y}|D(\mathbf{x}))] + H(P(\mathbf{x}),Q(\mathbf{x}))\\
-   &= -\underset{P(\mathbf{x}|\mathbf{y=0})P(\mathbf{y=0})}{\mathbf{E}}[\log \mathrm{Bern}(\mathbf{y=0}|D(\mathbf{x}))] -\underset{P(\mathbf{x}|\mathbf{y=1})P(\mathbf{y=1})}{\mathbf{E}}[\log \mathrm{Bern}(\mathbf{y=1}|D(\mathbf{x}))]+ H(P(\mathbf{x}),Q(\mathbf{x}))\\
-   &= -\pi\underset{P_d(\mathbf{x})}{\mathbf{E}}[\log(1 - D(\mathbf{x}))] -(1-\pi)\underset{P_g(\mathbf{x})}{\mathbf{E}}[\log D(\mathbf{x})]+ H(P(\mathbf{x}),Q(\mathbf{x}))\\
-   &= -\pi\underset{P_d(\mathbf{x})}{\mathbf{E}}[\log(1 - D(\mathbf{x}))] -(1-\pi)\underset{P_g(\mathbf{x})}{\mathbf{E}}[\log D(\mathbf{x})]+ H(P(\mathbf{x}),Q(\mathbf{x}))\\
+   \underset{G}{\min}\underset{D}{\max} V(D,G) = \mathbb{E}_{p_d(\mathbf{x})}[\log D(\mathbf{x})] + \mathbb{E}_{p_z(\mathbf{z})}[\log (1-D(G(\mathbf{z})))]

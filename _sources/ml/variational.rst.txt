@@ -113,15 +113,10 @@ EMと同様にここまで持ってく
    &= \int q_j\prod_{i\neq j}q_i\log p(z|x)dz - \int q_j\log q_j dz + \text{const} \\
    &= \int q_j\Biggl{\{}\int \log p(z|x)\prod_{i\neq j}q_idz_i\Biggr{\}}dz_j - \int q_j\log q_j dz + \text{const}\\
    &= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(z|x)]] - \mathbb{E}_{q_j}[\log q_j] + \text{const} \\
-<<<<<<< HEAD
    &= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(z|x)] - \log q_j] + \text{const} \\
    &= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(x,z)] - \log q_j] + \text{const}
 
 よって
-=======
-   &= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(z|x)] - \log q_j] + \text{const}
-   
->>>>>>> 5a13093ed8b282a82cce050d810014e4bbcbfeeb
 
 .. math::
    \log q_j^*(z_j) = \mathbb{E}_{q_{i\neq j}}[\log p(x,z)] + \text{const}
@@ -140,7 +135,7 @@ VAEは確率的なグラフィカルモデルで、潜在変数 :math:`\mathbf{z
 
 .. math::
    \log p_\theta(\mathbf{x}) &\geq \mathcal{L}(\theta, \phi ; \mathbf{x})\\
-   &=-KL(q_\phi(\mathbf{z}|\mathbf{x})||p_\phi(\mathbf{z}))+\mathbb{E}_{q_\phi(\mathbf{z}|\mathbf{x})}[\log p_\theta(\mathbf{x}|\mathbf{z})]
+   &=-KL(q_\phi(\mathbf{z}|\mathbf{x})||p_\theta(\mathbf{z}))+\mathbb{E}_{q_\phi(\mathbf{z}|\mathbf{x})}[\log p_\theta(\mathbf{x}|\mathbf{z})]
 
 joint VAE
 =========================
