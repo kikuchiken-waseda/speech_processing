@@ -17,6 +17,8 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -101,15 +103,128 @@
 </style>
 <section id="cvae-gan">
 <h1>CVAE-GAN<a class="headerlink" href="#cvae-gan" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://arxiv.org/pdf/1703.10155.pdf">https://arxiv.org/pdf/1703.10155.pdf</a></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>生成モデルで高品質かつ汎用性の高いものを作りたい</p>
+</section>
 <section id="formulation-of-cvae-gan">
 <h2>Formulation of CVAE-GAN<a class="headerlink" href="#formulation-of-cvae-gan" title="Permalink to this headline">¶</a></h2>
 <p>この手法は4つのネットワークに分けられている。</p>
 <ol class="arabic simple">
-<li><p>Encoder network</p></li>
-<li><p>Generative network</p></li>
-<li><p>Discriminative network</p></li>
-<li><p>Classification network</p></li>
+<li><p>Encoder network <span class="math notranslate nohighlight">\(E\)</span></p></li>
+<li><p>Generative network <span class="math notranslate nohighlight">\(G\)</span></p></li>
+<li><p>Discriminative network <span class="math notranslate nohighlight">\(D\)</span></p></li>
+<li><p>Classification network <span class="math notranslate nohighlight">\(C\)</span></p></li>
 </ol>
+<p>関数 <span class="math notranslate nohighlight">\(E,G\)</span> はCVAEのものと同じである。</p>
+<p>同様に関数 <span class="math notranslate nohighlight">\(G,D\)</span> はGANの枠組みと同じである。</p>
+<p>関数 <span class="math notranslate nohighlight">\(C\)</span> は事後確率 <span class="math notranslate nohighlight">\(p(\mathbf{c}|\mathbf{x})\)</span> を測るものである。</p>
+<p>しかし、ナイーブにVAEとGANを組み合わせただけでは不十分である。</p>
+<p>GANの学習においては関数 <span class="math notranslate nohighlight">\(G\)</span> で勾配の消失や不安定性の問題に悩まされることがわかっている。</p>
+<p>よって <span class="math notranslate nohighlight">\(E,D,C\)</span> の学習のみ、もとのVAE、GANと同じで、 <span class="math notranslate nohighlight">\(G\)</span> の新しい(mean feature objective)を提案し安定性を向上させることにした。この手法を使ったとしてもモード崩壊のリスクは存在する。</p>
+<p>そこで、<span class="math notranslate nohighlight">\(E,G\)</span> で実サンプル <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> から合成されたサンプル <span class="math notranslate nohighlight">\(\mathbf{x'}\)</span> へのマッピングを求める。(再合成誤差のことを言ってる?)</p>
+<p>By using the pixel-wise <span class="math notranslate nohighlight">\(l2\)</span> loss and pair-wise feature matching(これなに?), the generative model is enforced to emit diverse samples and generate structure-preserving samples.</p>
+<p>以下のセクションでは、まず、平均特徴マッチングに基づくGANの手法を説明する（セクション3.1）。</p>
+<p>次に、平均特徴マッチングが条件付き画像生成タスクにも利用できることを示す（セクション3.2）。</p>
+<p>その後、エンコーダネットワークを追加したペアワイズ特徴マッチングを紹介する（セクション3.3）。</p>
+<p>最後に 提案手法の目的を分析し、学習パイプラインにおける実装の詳細を示す。を分析し、学習パイプラインにおける実装の詳細を示す（セクション 3.4）。</p>
+<section id="mean-feature-matching-based-gan">
+<h3>Mean feature matching based GAN<a class="headerlink" href="#mean-feature-matching-based-gan" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(G,D\)</span> はmin-maxゲームで計算される。</p>
+<p>この論文においてはGANの損失を2つに分けて書いている。</p>
+<p>the network <span class="math notranslate nohighlight">\(D\)</span> tries to minimize the loss function</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_D =  - \mathbb{E}_{p_r(\mathbf{x})}[\log D(\mathbf{x})] - \mathbb{E}_{p_z(\mathbf{z})}[\log (1 - D(G(\mathbf{z})))]\]</div>
+<p>while network <span class="math notranslate nohighlight">\(G\)</span> tries minimize</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}'_{GD} =  -\mathbb{E}_{p_z(\mathbf{z})}[\log (1 - D(G(\mathbf{z})))]\]</div>
+<p>こっからモード崩壊が起こる理由の説明があるが、難しいので割愛(卒論にはまとめるべき)。
+ソフトマックス損失を使うと勾配がなくなる的な感じ</p>
+<p>この問題に対処するため、生成器に(a mean feature matching objective)を用いることを提案する。</p>
+<p>The objective requires the center of the features of the synthesized samples to match the center of the features of the real samples.(特徴のcenterとは?)</p>
+<p><span class="math notranslate nohighlight">\(f_D(\mathbf(x))\)</span> は <span class="math notranslate nohighlight">\(D\)</span> の中間層。</p>
+<p><span class="math notranslate nohighlight">\(G\)</span> then tries to minimize the loss function</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_{GD} = \frac{1}{2}||\mathbb{E}_{p_r(\mathbf{x})}[f_D(\mathbf{x})]-\mathbb{E}_{p_z(\mathbf{z})}[f_D(G(\mathbf{z}))]||^2_2\]</div>
+<p>本実験では簡単なため、識別器の最終のFC層を特徴量 <span class="math notranslate nohighlight">\(f_D\)</span> として選択する。(VAE/GANではサンプルごとにランダム選択していた(ganの方のロスも使ってたけど))</p>
+<p>n the training stage, we estimate the mean feature using the data in a minibatch.</p>
+<p>We also use moving historical averages to make it more stable.(なにこれ)</p>
+<p>3つの利点がある(面倒だから後で)</p>
+<p>1.
+2.
+3.</p>
+</section>
+<section id="mean-feature-matching-for-conditional-image-generation">
+<h3>Mean Feature Matching for Conditional Image Generation<a class="headerlink" href="#mean-feature-matching-for-conditional-image-generation" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(K\)</span> 個のカテゴリーに属するデータセットに対し、 <span class="math notranslate nohighlight">\(C\)</span> によって画像がどのカテゴリーに属するか測定する。</p>
+<p>Here we use a standard method for classification. The network C takes in x as input and outputs a K dimensional vector, which then turns into class probabilities using a softmax function.</p>
+<p>The output of each entry represents the posterior probability P(c|x). In the training stage, the network C tries to minimize the softmax loss.</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_C = -\mathbb{E}_{p_r(\mathbf{x})}[\log p(\mathbf{c}|\mathbf{x})]\]</div>
+<p><span class="math notranslate nohighlight">\(\mathcal{L}'_{GD}\)</span> と同様に <span class="math notranslate nohighlight">\(G\)</span> にソフトマックス損失を用いると学習が不安定になる。</p>
+<p>よって、 <span class="math notranslate nohighlight">\(G\)</span> に対し(Mean feature matching objective)を用いることを提案する。</p>
+<p>Let <span class="math notranslate nohighlight">\(f_C(\mathbf{x})\)</span> denote features on an intermediate layer of the classification, then <span class="math notranslate nohighlight">\(G\)</span> tries to minimize:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_{GC} = \frac{1}{2}\sum_\mathbf{c}||\mathbb{E}_{p_r(\mathbf{x})}[f_C(\mathbf{x})]-\mathbb{E}_{p_\mathbf{z}(\mathbf{z})}[f_C(G(\mathbf{z},\mathbf{c}))]||^2_2\]</div>
+<p>Since there are only a few samples belonging to the same category in a minibatch, it is necessary to use moving averages of features for both real and generated samples.(大切そうだが何を言ってるのかわからん)</p>
+</section>
+<section id="pairise-feature-matching">
+<h3>Pairise Feature Matching<a class="headerlink" href="#pairise-feature-matching" title="Permalink to this headline">¶</a></h3>
+<p>なんかいろいろ書いてあって、モード崩壊を起こさないため、エンコーダを追加する。</p>
+<p>VAEと同じ仕組みでlossをとっている</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_{KL} = \frac{1}{2}(書くのだるい)\]</div>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_G = (各出力の二乗誤差)\]</div>
+</section>
+<section id="objective-of-cvae-gan">
+<h3>Objective of CVAE-GAN<a class="headerlink" href="#objective-of-cvae-gan" title="Permalink to this headline">¶</a></h3>
+<p>アルゴリズムの画像</p>
+</section>
+</section>
+<section id="analysis-of-toy-example">
+<h2>Analysis of Toy Example<a class="headerlink" href="#analysis-of-toy-example" title="Permalink to this headline">¶</a></h2>
+<p>Toy Exampleとは?</p>
+<p>過去のモデルと学習を比べている。</p>
+<p>このモデルが良さそうという話。</p>
+</section>
+<section id="experiments">
+<h2>Experiments<a class="headerlink" href="#experiments" title="Permalink to this headline">¶</a></h2>
+<p>実験の話</p>
+<p>Encoderが学習済み?ちょっとわからない。</p>
+<p>All networks are trained from scratch.</p>
+<p>最初から学習をやってるみたい。</p>
+<section id="visualization-comparison-with-other-models">
+<h3>Visualization comparison with other models<a class="headerlink" href="#visualization-comparison-with-other-models" title="Permalink to this headline">¶</a></h3>
+<p>単純に見た感じの比較
+いろんなモデルで画像生成の学習させた感じ今回のモデルが良さそう</p>
+</section>
+<section id="quantitative-comparison">
+<h3>Quantitative Comparison<a class="headerlink" href="#quantitative-comparison" title="Permalink to this headline">¶</a></h3>
+<p>クオリティの比較</p>
+</section>
+<section id="attributes-morphing">
+<h3>Attributes Morphing<a class="headerlink" href="#attributes-morphing" title="Permalink to this headline">¶</a></h3>
+<p>モーフィングの比較</p>
+</section>
+<section id="image-inpainting">
+<h3>Image Inpainting<a class="headerlink" href="#image-inpainting" title="Permalink to this headline">¶</a></h3>
+<p>マスクした部分の追加</p>
+</section>
+<section id="comparing-different-combination-of-losses">
+<h3>Comparing Different Combination of Losses<a class="headerlink" href="#comparing-different-combination-of-losses" title="Permalink to this headline">¶</a></h3>
+<p>Gのlossについて比較</p>
+<p>Cから得られる二乗誤差をなくしたほうが良い結果を得られた。</p>
+</section>
+<section id="cvae-gan-for-data-augmentation">
+<h3>CVAE-GAN for Data Augmentation<a class="headerlink" href="#cvae-gan-for-data-augmentation" title="Permalink to this headline">¶</a></h3>
+<p>データオーギュメンテーションとして使った話</p>
+<p>ある程度良くなってる？</p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 </section>
 </section>
 
