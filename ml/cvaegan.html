@@ -149,7 +149,8 @@
 <p>こっからモード崩壊が起こる理由の説明があるが、難しいので割愛(卒論にはまとめるべき)。
 ソフトマックス損失を使うと勾配がなくなる的な感じ</p>
 <p>この問題に対処するため、生成器に(a mean feature matching objective)を用いることを提案する。</p>
-<p>The objective requires the center of the features of the synthesized samples to match the center of the features of the real samples.(特徴のcenterとは?)</p>
+<p>The objective requires the center of the features of the synthesized samples to match the center of the features of the real samples.(特徴のcenterとは?)
+(ミニバッチごとの平均みたい)</p>
 <p><span class="math notranslate nohighlight">\(f_D(\mathbf(x))\)</span> は <span class="math notranslate nohighlight">\(D\)</span> の中間層。</p>
 <p><span class="math notranslate nohighlight">\(G\)</span> then tries to minimize the loss function</p>
 <div class="math notranslate nohighlight">
@@ -181,13 +182,14 @@
 <p>なんかいろいろ書いてあって、モード崩壊を起こさないため、エンコーダを追加する。</p>
 <p>VAEと同じ仕組みでlossをとっている</p>
 <div class="math notranslate nohighlight">
-\[\mathcal{L}_{KL} = \frac{1}{2}(書くのだるい)\]</div>
+\[\mathcal{L}_{KL} = (いつものやつ)\]</div>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}_G = (各出力の二乗誤差)\]</div>
 </section>
 <section id="objective-of-cvae-gan">
 <h3>Objective of CVAE-GAN<a class="headerlink" href="#objective-of-cvae-gan" title="Permalink to this headline">¶</a></h3>
-<p>アルゴリズムの画像</p>
+<img alt="https://media.arxiv-vanity.com/render-output/5498152/x3.png" src="https://media.arxiv-vanity.com/render-output/5498152/x3.png" />
+<p>アルゴリズムとlossについて</p>
 </section>
 </section>
 <section id="analysis-of-toy-example">
