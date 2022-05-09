@@ -79,6 +79,7 @@ while network :math:`G` tries minimize
 この問題に対処するため、生成器に(a mean feature matching objective)を用いることを提案する。
 
 The objective requires the center of the features of the synthesized samples to match the center of the features of the real samples.(特徴のcenterとは?)
+(ミニバッチごとの平均みたい)
 
 :math:`f_D(\mathbf(x))` は :math:`D` の中間層。
 
@@ -128,14 +129,18 @@ Pairise Feature Matching
 VAEと同じ仕組みでlossをとっている
 
 .. math::
-   \mathcal{L}_{KL} = \frac{1}{2}(書くのだるい)
+   \mathcal{L}_{KL} = (いつものやつ)
 
 .. math::
    \mathcal{L}_G = (各出力の二乗誤差)
 
 Objective of CVAE-GAN
 ------------------------------------
-アルゴリズムの画像
+.. image:: https://media.arxiv-vanity.com/render-output/5498152/x3.png
+
+アルゴリズムとlossについて
+
+
 
 Analysis of Toy Example
 ======================================
