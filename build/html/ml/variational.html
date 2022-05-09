@@ -178,19 +178,10 @@
 &amp;= \int q\log p(z|x)dz - \int q\log q dz\\
 &amp;= \int q_j\prod_{i\neq j}q_i\log p(z|x)dz - \int q_j\log q_j dz + \text{const} \\
 &amp;= \int q_j\Biggl{\{}\int \log p(z|x)\prod_{i\neq j}q_idz_i\Biggr{\}}dz_j - \int q_j\log q_j dz + \text{const}\\
-&amp;= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(z|x)]] - \mathbb{E}_{q_j}[\log q_j] + \text{const} \\\end{split}\]</div>
-<dl class="simple">
-<dt>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</dt><dd><p>&amp;= mathbb{E}_{q_j}[mathbb{E}_{q_{ineq j}}[log p(z|x)] - log q_j] + text{const} \
-&amp;= mathbb{E}_{q_j}[mathbb{E}_{q_{ineq j}}[log p(x,z)] - log q_j] + text{const}</p>
-</dd>
-</dl>
-</section>
-<section id="id6">
-<h2>よって<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>&amp;= mathbb{E}_{q_j}[mathbb{E}_{q_{ineq j}}[log p(z|x)] - log q_j] + text{const}</p>
-</div></blockquote>
-<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 5a13093ed8b282a82cce050d810014e4bbcbfeeb</p>
+&amp;= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(z|x)]] - \mathbb{E}_{q_j}[\log q_j] + \text{const} \\
+&amp;= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(z|x)] - \log q_j] + \text{const} \\
+&amp;= \mathbb{E}_{q_j}[\mathbb{E}_{q_{i\neq j}}[\log p(x,z)] - \log q_j] + \text{const}\end{split}\]</div>
+<p>よって</p>
 <div class="math notranslate nohighlight">
 \[\log q_j^*(z_j) = \mathbb{E}_{q_{i\neq j}}[\log p(x,z)] + \text{const}\]</div>
 <p>について、 <span class="math notranslate nohighlight">\(p(x,z)\)</span> の事前確率等々を定めてパラメータ更新をする。</p>
@@ -203,7 +194,7 @@
 <p>VAEは確率的なグラフィカルモデルで、潜在変数 <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> からデータ <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> を生成する <span class="math notranslate nohighlight">\(p_\theta(\mathbf{x}|\mathbf{z})\)</span> (Decoder)とその逆向きの推論を行う <span class="math notranslate nohighlight">\(p_\theta(\mathbf{z}|\mathbf{x})\)</span> (Encoder) から構成される。<span class="math notranslate nohighlight">\(p_\theta(\mathbf{z}|\mathbf{x})\)</span> は計算的に扱いにくいため、近似分布 <span class="math notranslate nohighlight">\(q_\phi(\mathbf{z}|\mathbf{x})\)</span> を導入し、変分下界(Evidence lower bound) <span class="math notranslate nohighlight">\(\mathcal{L}(\theta ,\phi;\mathbf{x})\)</span> の最大化を行う。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\log p_\theta(\mathbf{x}) &amp;\geq \mathcal{L}(\theta, \phi ; \mathbf{x})\\
-&amp;=-KL(q_\phi(\mathbf{z}|\mathbf{x})||p_\phi(\mathbf{z}))+\mathbb{E}_{q_\phi(\mathbf{z}|\mathbf{x})}[\log p_\theta(\mathbf{x}|\mathbf{z})]\end{split}\]</div>
+&amp;=-KL(q_\phi(\mathbf{z}|\mathbf{x})||p_\theta(\mathbf{z}))+\mathbb{E}_{q_\phi(\mathbf{z}|\mathbf{x})}[\log p_\theta(\mathbf{x}|\mathbf{z})]\end{split}\]</div>
 </section>
 <section id="joint-vae">
 <h2>joint VAE<a class="headerlink" href="#joint-vae" title="Permalink to this headline">¶</a></h2>

@@ -55,7 +55,6 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Generative adversarial network</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">疑問</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">導出</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">なんか</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#id1">最適化問題とは</a></li>
@@ -132,25 +131,7 @@
 <p>分布 <span class="math notranslate nohighlight">\(p_d(x)\)</span> は分布の形が明示されているわけではないため、どのような分布か分からず、直接尤度を計算することはできない。</p>
 <p>よって天下り的(だと思ったが違うかもしれない)ではあるが、</p>
 <div class="math notranslate nohighlight">
-\[\underset{G}{\min}\underset{D}{\max}V(D, G)\]</div>
-</section>
-<section id="id3">
-<h2>なんか<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>確率変数 <span class="math notranslate nohighlight">\(\mathbf{x} \in \mathbb{R}_c, \mathbf{y} \in \mathbb{R}_d\)</span> において、真の確率分布 <span class="math notranslate nohighlight">\(P(\mathbf{x}, \mathbf{y})\)</span> と近似分布 <span class="math notranslate nohighlight">\(Q(\mathbf{x}, \mathbf{y})\)</span> を定めたとき、これの交差エントロピーは</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}H(P(\mathbf{x}, \mathbf{y}), Q(\mathbf{x}, \mathbf{y})) &amp;= -\int_{\mathbb{R}_d}\int_{\mathbb{R}_c}P(\mathbf{x}, \mathbf{y})\log Q(\mathbf{x}, \mathbf{y}) d\mathbf{x}d\mathbf{y} \\
-&amp;= -\underset{P(\mathbf{x}, \mathbf{y})}{\mathbf{E}}[\log Q(\mathbf{x}, \mathbf{y})] \\
-&amp;= -\underset{P(\mathbf{x}, \mathbf{y})}{\mathbf{E}}[\log Q(\mathbf{y}|\mathbf{x})Q(\mathbf{x})] \\
-&amp;= -\underset{P(\mathbf{x}, \mathbf{y})}{\mathbf{E}}[\log Q(\mathbf{y}|\mathbf{x})] + \underset{P(\mathbf{x}, \mathbf{y})}{\mathbf{E}}[\log Q(\mathbf{x})]\\
-&amp;= -\underset{P(\mathbf{x}, \mathbf{y})}{\mathbf{E}}[\log Q(\mathbf{y}|\mathbf{x})] + \underset{P(\mathbf{x})}{\mathbf{E}}[\log Q(\mathbf{x})]\\
-&amp;= -\underset{P(\mathbf{x}, \mathbf{y})}{\mathbf{E}}[\log Q(\mathbf{y}|\mathbf{x})] + H(P(\mathbf{x}),Q(\mathbf{x}))\\\end{split}\]</div>
-<p>ここでDiscriminatorを <span class="math notranslate nohighlight">\(D(\mathbf{x})\)</span> とし、 <span class="math notranslate nohighlight">\(Q(\mathbf{y}|\mathbf{x}) = \mathrm{Bern}(\mathbf{y}|D(\mathbf{x}))\)</span> を仮定すると、</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}H(P(\mathbf{x}, \mathbf{y}), Q(\mathbf{x}, \mathbf{y})) &amp;= -\underset{P(\mathbf{x}, \mathbf{y})}{\mathbf{E}}[\log \mathrm{Bern}(\mathbf{y}|D(\mathbf{x}))] + H(P(\mathbf{x}),Q(\mathbf{x}))\\
-&amp;= -\underset{P(\mathbf{x}|\mathbf{y})P(\mathbf{y})}{\mathbf{E}}[\log \mathrm{Bern}(\mathbf{y}|D(\mathbf{x}))] + H(P(\mathbf{x}),Q(\mathbf{x}))\\
-&amp;= -\underset{P(\mathbf{x}|\mathbf{y=0})P(\mathbf{y=0})}{\mathbf{E}}[\log \mathrm{Bern}(\mathbf{y=0}|D(\mathbf{x}))] -\underset{P(\mathbf{x}|\mathbf{y=1})P(\mathbf{y=1})}{\mathbf{E}}[\log \mathrm{Bern}(\mathbf{y=1}|D(\mathbf{x}))]+ H(P(\mathbf{x}),Q(\mathbf{x}))\\
-&amp;= -\pi\underset{P_d(\mathbf{x})}{\mathbf{E}}[\log(1 - D(\mathbf{x}))] -(1-\pi)\underset{P_g(\mathbf{x})}{\mathbf{E}}[\log D(\mathbf{x})]+ H(P(\mathbf{x}),Q(\mathbf{x}))\\
-&amp;= -\pi\underset{P_d(\mathbf{x})}{\mathbf{E}}[\log(1 - D(\mathbf{x}))] -(1-\pi)\underset{P_g(\mathbf{x})}{\mathbf{E}}[\log D(\mathbf{x})]+ H(P(\mathbf{x}),Q(\mathbf{x}))\\\end{split}\]</div>
+\[\underset{G}{\min}\underset{D}{\max} V(D,G) = \mathbb{E}_{p_d(\mathbf{x})}[\log D(\mathbf{x})] + \mathbb{E}_{p_z(\mathbf{z})}[\log (1-D(G(\mathbf{z})))]\]</div>
 </section>
 </section>
 
