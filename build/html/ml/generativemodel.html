@@ -1,24 +1,23 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>生成モデル &mdash; 音声信号処理のための備忘録  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -29,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            音声信号処理のための備忘録
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,8 +69,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>生成モデル</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">生成モデル</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/ml/generativemodel.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -77,47 +80,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="id1">
-<h1>生成モデル<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section id="id1">
+<h1>生成モデル<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <section id="memo">
-<h2>memo<a class="headerlink" href="#memo" title="Permalink to this headline">¶</a></h2>
+<h2>memo<a class="headerlink" href="#memo" title="Link to this heading">¶</a></h2>
 <p>参考文献
 <a class="reference external" href="https://www.jstage.jst.go.jp/article/jasj/74/4/74_208/_pdf">https://www.jstage.jst.go.jp/article/jasj/74/4/74_208/_pdf</a></p>
 <p>対数尤度の最大化は大抵ハイパラの推定問題</p>
 </section>
 <section id="id2">
-<h2>今回の目的<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>今回の目的<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>ニューラルネットワークで文章を作ったり、画像を作ったりするけど、そもそも作る、生成するとはどういったことを示すのかを知る</p>
 <p>モデル化をどうやって数式に表すのか</p>
 <p>これから生成モデルを使う人がどれくらい数学的議論をしなければならないかの確認(わざと数式多めで書いています)</p>
 <p>フォローアップとしてワークショップを考えています。</p>
 </section>
 <section id="id3">
-<h2>確率変数と確率分布<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>確率変数と確率分布<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <p>確率変数とは、統計学の確率論において、起こりうる事柄に割り当てている値を取る変数。
 確率分布とは、確率変数に対して、各々の値をとる確率(または尤度)を表したものである。</p>
 <p>例えば「サイコロを振る」という事象を考えた際に確率変数はサイコロの数字である <span class="math notranslate nohighlight">\(x={1,2,3,4,5,6}\)</span> となる。
@@ -127,7 +106,7 @@
 <p>となる。</p>
 </section>
 <section id="id4">
-<h2>確率分布の推論における主要な式<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>確率分布の推論における主要な式<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
 <p>ある２つの変数 <span class="math notranslate nohighlight">\(x,y\)</span> に対する確率分布を同時分布と呼び <span class="math notranslate nohighlight">\(p(x,y)\)</span> で表す。さらに</p>
 <div class="math notranslate nohighlight">
 \[p(y) = \int_x p(x,y)dx\]</div>
@@ -141,19 +120,19 @@
 <p>と定義する。</p>
 </section>
 <section id="id5">
-<h2>生成モデルって？<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>生成モデルって？<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
 <p>入力ベクトル <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^c\)</span> と対応する目標変数 <span class="math notranslate nohighlight">\(\mathbf{t}\in\mathbb{R}^d\)</span> があり、 <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> の新たな値に対する <span class="math notranslate nohighlight">\(\mathbf{t}\)</span> を予測することが目標である。</p>
 <p>このような問題の解き方として3つのアプローチが考えることができる（対立関係ではない）。</p>
 <section id="id6">
-<h3>識別関数<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h3>識別関数<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
 <p>各入力 <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> から直接 <span class="math notranslate nohighlight">\(\mathbf{t}\)</span> に写像する関数 <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span> を見つける。この場合確率は出てこない。このような関数 <span class="math notranslate nohighlight">\(f\)</span> を識別関数と呼ぶ。</p>
 </section>
 <section id="id7">
-<h3>識別モデル<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h3>識別モデル<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
 <p>最初に事後確率 <span class="math notranslate nohighlight">\(p(\mathbf{t}|\mathbf{x})\)</span> を決める推論問題を解き、次に決定理論を使って、新たな <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> を <span class="math notranslate nohighlight">\(\mathbf{t}\)</span> に割り当てる。このように、事後確率を直接モデル化するアプローチを識別モデル(discriminative model)と呼ぶ。</p>
 </section>
 <section id="id8">
-<h3>生成モデル<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3>生成モデル<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
 <p>まず、条件付き確率 <span class="math notranslate nohighlight">\(p(\mathbf{x}|\mathbf{t})\)</span> を決める推論問題を解く。事前確率 <span class="math notranslate nohighlight">\(p(\mathbf{t})\)</span> も求める。それからベイズの定理を使って</p>
 <div class="math notranslate nohighlight">
 \[p(\mathbf{t}|\mathbf{x}) = \frac{p(\mathbf{x}|\mathbf{t})p(\mathbf{t})}{p(\mathbf{x})}\]</div>
@@ -165,11 +144,11 @@
 </section>
 </section>
 <section id="id9">
-<h2>なにかを生成する際のお気持ち<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<h2>なにかを生成する際のお気持ち<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
 <p>真のデータの分布を <span class="math notranslate nohighlight">\(p_r(\mathbf{x})\)</span> としたとき、それと一致するような <span class="math notranslate nohighlight">\(p_g(\mathbf{x})\)</span> を作ることができれば分布からのサンプリングによって人工データの生成を行うことができる。</p>
 <p>これらのモチベーションを持った深層生成モデルの主要モデルとして、自己回帰モデル(Autoregressive Model)、変分自己符号化器(Variational Autoencoder)、敵対的生成ネットワーク(Generative Adversarial Networks)がある。</p>
 <section id="ar">
-<h3>AR<a class="headerlink" href="#ar" title="Permalink to this headline">¶</a></h3>
+<h3>AR<a class="headerlink" href="#ar" title="Link to this heading">¶</a></h3>
 <p>ARでは、連鎖律を用いて、 ベクトル <span class="math notranslate nohighlight">\(\mathbf{x}\in\mathbb{R}^n\)</span> を1次元の確率分布に分解して表現し、確率分布を直接扱えるようにする。( <span class="math notranslate nohighlight">\(p_g\)</span> の分布形状を決めるだけ)</p>
 <div class="math notranslate nohighlight">
 \[p_g(\mathbf{x}) = \prod_{i=1}^{n}p_g(x_i|x_1,\dots,x_{i-1})\]</div>
@@ -178,7 +157,7 @@
 <p>短所は、生成が再帰的なため並列化が難しく時間がかかる点、データの潜在的な表現を行わないため、生成結果のコントロールが困難な点が挙げられる。</p>
 </section>
 <section id="vae">
-<h3>VAE<a class="headerlink" href="#vae" title="Permalink to this headline">¶</a></h3>
+<h3>VAE<a class="headerlink" href="#vae" title="Link to this heading">¶</a></h3>
 <p>VAEは確率的なグラフィカルモデルで、潜在変数 <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> からデータ <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> を生成する <span class="math notranslate nohighlight">\(p_\theta(\mathbf{x}|\mathbf{z})\)</span> (Decoder)とその逆向きの推論を行う <span class="math notranslate nohighlight">\(p_\theta(\mathbf{z}|\mathbf{x})\)</span> (Encoder) から構成される。<span class="math notranslate nohighlight">\(p_\theta(\mathbf{z}|\mathbf{x})\)</span> は計算的に扱いにくいため、近似分布 <span class="math notranslate nohighlight">\(q_\phi(\mathbf{z}|\mathbf{x})\)</span> を導入し、変分下界(Evidence lower bound) <span class="math notranslate nohighlight">\(\mathcal{L}(\theta ,\phi;\mathbf{x})\)</span> の最大化を行う。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\log p_\theta(\mathbf{x}) &amp;\geq \mathcal{L}(\theta, \phi ; \mathbf{x})\\
@@ -187,7 +166,7 @@
 <p>短所として、近似分布の推定を行うため理想的な学習ができたとしても学習した生成分布が <span class="math notranslate nohighlight">\(p_r(\mathbf{x})\)</span> と一致するとは限らない点、 <span class="math notranslate nohighlight">\(p_\theta(\mathbf{x}|\mathbf{z})\)</span> の分布形状を陽に定める必要があり、その結果、統計的な平均化が生じ、生成結果に過剰な平滑化が起こり易い点が挙げられる。</p>
 </section>
 <section id="gan">
-<h3>GAN<a class="headerlink" href="#gan" title="Permalink to this headline">¶</a></h3>
+<h3>GAN<a class="headerlink" href="#gan" title="Link to this heading">¶</a></h3>
 <p>GANは二つのニューラルネットワークによって、生成データの分布、<span class="math notranslate nohighlight">\(p_g(\mathbf{x})\)</span> を得ることが目的である。乱数 <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> から生成器 <span class="math notranslate nohighlight">\(G\)</span> によってデータ空間 <span class="math notranslate nohighlight">\(\mathbf{x}=G(\mathbf{z})\)</span> への写像を行う。もう一つのネットワークは識別器 <span class="math notranslate nohighlight">\(D\)</span> と呼ばれ、データ <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> が <span class="math notranslate nohighlight">\(p_r(\mathbf{x})\)</span> からサンプリングされたものであれば確率 <span class="math notranslate nohighlight">\(p=D(\mathbf{x})\in[0,1]\)</span> を付与し、 <span class="math notranslate nohighlight">\(p_g(\mathbf{x})\)</span> からサンプリングされたものであれば、 確率 <span class="math notranslate nohighlight">\(1-p\)</span> を付与する。<span class="math notranslate nohighlight">\(D\)</span> と <span class="math notranslate nohighlight">\(G\)</span> は以下のMin-Maxの目的関数で最適化が行われる。</p>
 <div class="math notranslate nohighlight">
 \[\underset{G}{\min}\underset{D}{\max} V(D,G) = \mathbb{E}_{p_r(\mathbf{x})}[\log D(\mathbf{x})] + \mathbb{E}_{p_z(\mathbf{z})}[\log (1-D(G(\mathbf{z})))]\]</div>

@@ -1,22 +1,21 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>音響学会 &mdash; 音声信号処理のための備忘録  documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -29,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            音声信号処理のための備忘録
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -94,9 +97,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">論文まとめ</a> &raquo;</li>
-      <li>音響学会</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">論文まとめ</a></li>
+      <li class="breadcrumb-item active">音響学会</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/paper/gakkai/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -106,54 +109,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="id1">
-<h1>音響学会<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section id="id1">
+<h1>音響学会<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <section id="fader-networks">
-<h2>印象表現語ラベルを用いた Fader Networks に基づく音声印象変換<a class="headerlink" href="#fader-networks" title="Permalink to this headline">¶</a></h2>
+<h2>印象表現語ラベルを用いた Fader Networks に基づく音声印象変換<a class="headerlink" href="#fader-networks" title="Link to this heading">¶</a></h2>
 <section id="id2">
-<h3>ひとこと<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>ひとこと<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <p>FaderNetVCの話者ラベルを印象ラベルに変えたやつ。印象ラベルの数値を変えることでその印象の声に変換する。</p>
 <p>変換結果はうまく行ってない。
 人によって印象に対するステレオタイプが違うからうまく学習できないのでは？という結論</p>
 </section>
 <section id="id3">
-<h3>わしの感想<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>わしの感想<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <p>変換音声そのもののクオリティが良くないから結論をつけるには早計ではと思った。
 モデル学習そのものの精錬をしたほうが良いと感じる</p>
 <p>私の研究におけるデータセット作成時に、被験者属性を絞る必要性があると考えることができる。</p>
 </section>
 <section id="id4">
-<h3>関連研究<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>関連研究<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <p>FaderNetVCの改良案
 同じグループの研究
 FaderNetについて詳しく書いているため、こちらも参考にするべき</p>
 <p><a class="reference external" href="https://www.ieice.org/ken/paper/20210619TCe4/">https://www.ieice.org/ken/paper/20210619TCe4/</a></p>
 <section id="fadernet">
-<h4>軽いFaderNetの説明<a class="headerlink" href="#fadernet" title="Permalink to this headline">¶</a></h4>
+<h4>軽いFaderNetの説明<a class="headerlink" href="#fadernet" title="Link to this heading">¶</a></h4>
 <p>CVAEのlatentにDiscriminaterを噛ませるモデル</p>
 <p>Discriminaterにlabel判別させることにより、latentからlabelの要素を排除することができる</p>
 <p>よってDecoderに入力されるlatentがcontentのみを表現できるようにする狙いがある</p>
@@ -161,33 +140,33 @@ FaderNetについて詳しく書いているため、こちらも参考にする
 </section>
 </section>
 <section id="id5">
-<h2>深層学習に基づく音声合成における顔画像情報を用いたクロスモーダル話者適応<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>深層学習に基づく音声合成における顔画像情報を用いたクロスモーダル話者適応<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
 <section id="id6">
-<h3>ひとこと<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h3>ひとこと<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
 <p>VAEベースの音声合成と画像生成器を同時学習。imageとspeech双方のlatent distributionが近づくように学習することで相互にlatentを利用できる。
 つまり画像から音声、音声から画像が生成できる。</p>
 </section>
 <section id="id7">
-<h3>わしの感想<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h3>わしの感想<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
 <p>この研究の着想はFace2speechとCrossmodal VCの両方だと思われる。
 双方の特徴を合わせて発展させた内容だと感じた</p>
 <p>lossのとり方がすごく特徴的だと感じる。
 音声のlatentが非時系列なので、私自身の研究に適応するには工夫が必要</p>
 </section>
 <section id="id8">
-<h3>関連研究<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3>関連研究<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
 <p><a class="reference external" href="https://github.com/DeNA/Face2Speech">https://github.com/DeNA/Face2Speech</a></p>
 <p><a class="reference external" href="http://www.kecl.ntt.co.jp/people/kameoka.hirokazu/Demos/crossmodal-vc/">http://www.kecl.ntt.co.jp/people/kameoka.hirokazu/Demos/crossmodal-vc/</a></p>
 </section>
 </section>
 <section id="vae">
-<h2>マルチモーダルVAEを用いた顔画像に基づく目標話者音声不要な声質変換<a class="headerlink" href="#vae" title="Permalink to this headline">¶</a></h2>
+<h2>マルチモーダルVAEを用いた顔画像に基づく目標話者音声不要な声質変換<a class="headerlink" href="#vae" title="Link to this heading">¶</a></h2>
 <section id="id9">
-<h3>ひとこと<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<h3>ひとこと<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
 <p>CVAEのVCのlabelとしてFaceNetの出力を利用。</p>
 </section>
 <section id="id10">
-<h3>わしの感想<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<h3>わしの感想<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
 <p>新規性がマジでない。crossmodalVCの劣化のように感じる。
 先行研究調査も足りてなさそうだったので、こうならないよう戒めとしたい。</p>
 <p>この研究において、本当の顔と声のペアと印象があった顔と声のペアが違うよねって指摘があった。

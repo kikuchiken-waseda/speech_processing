@@ -1,24 +1,23 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>変分推論 &mdash; 音声信号処理のための備忘録  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -29,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            音声信号処理のための備忘録
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,8 +69,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>変分推論</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">変分推論</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/ml/variational.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -77,43 +80,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="id1">
-<h1>変分推論<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section id="id1">
+<h1>変分推論<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <p><a class="reference external" href="https://ntacoffee.com/variational-inference/">https://ntacoffee.com/variational-inference/</a></p>
 <p><a class="reference external" href="https://academ-aid.com/ml/vae">https://academ-aid.com/ml/vae</a></p>
 <p>graphvizと和解できない・・・</p>
 <section id="id2">
-<h2>尤度関数<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>尤度関数<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="https://ja.wikipedia.org/wiki/%E5%B0%A4%E5%BA%A6%E9%96%A2%E6%95%B0">https://ja.wikipedia.org/wiki/%E5%B0%A4%E5%BA%A6%E9%96%A2%E6%95%B0</a></p>
 <div class="math notranslate nohighlight">
 \[p_\theta(x) = p(x;\theta) = L(\theta;x)\]</div>
 </section>
 <section id="id3">
-<h2>点推定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>点推定<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <p>maximum likelihood estimation</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\hat{\theta}(x)_{\text{ML}} &amp;= \underset{\theta}{\arg \max}\,p(x|\theta) \\\end{split}\]</div>
@@ -125,14 +104,14 @@
 <p>基本対数尤度に変えて最大化する</p>
 </section>
 <section id="id4">
-<h2>ベイズ推定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>ベイズ推定<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
 <p>bayesian estimation</p>
 <div class="math notranslate nohighlight">
 \[p(\theta|x) = \frac{p(x|\theta)p(\theta)}{p(x)}\]</div>
 <p><a class="reference external" href="https://ja.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E4%BA%8B%E5%BE%8C%E7%A2%BA%E7%8E%87">https://ja.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E4%BA%8B%E5%BE%8C%E7%A2%BA%E7%8E%87</a></p>
 </section>
 <section id="em-algorithm">
-<h2>EM algorithm<a class="headerlink" href="#em-algorithm" title="Permalink to this headline">¶</a></h2>
+<h2>EM algorithm<a class="headerlink" href="#em-algorithm" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="https://academ-aid.com/ml/em">https://academ-aid.com/ml/em</a></p>
 <p>点推定の式の変形に過ぎない</p>
 <p>イェンセンの不等式使って下界を設定</p>
@@ -145,14 +124,14 @@
 <div class="math notranslate nohighlight">
 \[\log p_\theta(x) - \mathcal{L}_{\text{ML}}[\theta;q(z)] = KL[q(z)||p_\theta(z|x)]\]</div>
 <section id="e-step">
-<h3>E step<a class="headerlink" href="#e-step" title="Permalink to this headline">¶</a></h3>
+<h3>E step<a class="headerlink" href="#e-step" title="Link to this heading">¶</a></h3>
 <p><span class="math notranslate nohighlight">\(\mathcal{Q}\)</span> 関数は下界に上の式を代入したもの</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}q^*(z) = p_{\theta^{\text{old}}}(z|x) \\
 \mathcal{Q}(\theta, \theta^{\text{old}}) = \mathbb{E}_{q^*(z)}[\log p_\theta(x,z)]\end{split}\]</div>
 </section>
 <section id="m-step">
-<h3>M step<a class="headerlink" href="#m-step" title="Permalink to this headline">¶</a></h3>
+<h3>M step<a class="headerlink" href="#m-step" title="Link to this heading">¶</a></h3>
 <p>ML estimation</p>
 <div class="math notranslate nohighlight">
 \[\theta^{\text{new}} = \underset{\theta}{\arg \max} \, \mathcal{Q}(\theta, \theta^{\text{old}})\]</div>
@@ -162,7 +141,7 @@
 </section>
 </section>
 <section id="id5">
-<h2>変分ベイズ<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>変分ベイズ<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="https://academ-aid.com/ml/vb">https://academ-aid.com/ml/vb</a></p>
 <p>EMと同様にここまで持ってく</p>
 <div class="math notranslate nohighlight">
@@ -187,7 +166,7 @@
 <p>について、 <span class="math notranslate nohighlight">\(p(x,z)\)</span> の事前確率等々を定めてパラメータ更新をする。</p>
 </section>
 <section id="vae">
-<h2>VAE<a class="headerlink" href="#vae" title="Permalink to this headline">¶</a></h2>
+<h2>VAE<a class="headerlink" href="#vae" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="https://arxiv.org/pdf/1312.6114.pdf">https://arxiv.org/pdf/1312.6114.pdf</a></p>
 <div class="math notranslate nohighlight">
 \[\log p_\theta(x) - \mathcal{L}_{\text{VAE}}[\theta,\phi;q_\phi(z|x)] = KL[q_\phi(z|x)||p_\theta(z|x)]\]</div>
@@ -197,7 +176,7 @@
 &amp;=-KL(q_\phi(\mathbf{z}|\mathbf{x})||p_\theta(\mathbf{z}))+\mathbb{E}_{q_\phi(\mathbf{z}|\mathbf{x})}[\log p_\theta(\mathbf{x}|\mathbf{z})]\end{split}\]</div>
 </section>
 <section id="joint-vae">
-<h2>joint VAE<a class="headerlink" href="#joint-vae" title="Permalink to this headline">¶</a></h2>
+<h2>joint VAE<a class="headerlink" href="#joint-vae" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="https://arxiv.org/pdf/1804.00104.pdf">https://arxiv.org/pdf/1804.00104.pdf</a></p>
 </section>
 </section>

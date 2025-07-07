@@ -1,0 +1,9 @@
+# Production dependencies
+Sphinx
+sphinx-rtd-theme
+sphinx-autobuild
+nbsphinx
+pandoc
+matplotlib
+numpy
+scipy

@@ -1,24 +1,23 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>確率 &mdash; 音声信号処理のための備忘録  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -31,11 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            音声信号処理のための備忘録
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -112,9 +115,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">書きたいものまとめ</a> &raquo;</li>
-      <li>確率</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">書きたいものまとめ</a></li>
+      <li class="breadcrumb-item active">確率</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/pachouli/statistics.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -124,48 +127,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="id1">
-<h1>確率<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section id="id1">
+<h1>確率<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <p><a class="reference external" href="https://wiis.info/math/probability/probability/sample-space-and-events/">https://wiis.info/math/probability/probability/sample-space-and-events/</a></p>
 <section id="id2">
-<h2>標本空間と事象<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>標本空間と事象<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <section id="id3">
-<h3>試行<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>試行<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <p>結果が前もって完全に予測できない状況を <strong>ランダムネス(randomness)</strong> と呼ぶ。</p>
 <p>コイン投げのように、起こり得るすべての結果は分かっていても、その中のどの結果が実際に起こるかはランダムネスによって支配されているような実験や観察を <strong>試行(trial)</strong> と呼ぶ。</p>
 <p>ある試行のもとである現象が起こる <strong>確率(probability)</strong> というとき、その日常的な意味は、現象の起こりやすさを数字で表現したものである。しかし確率とは厳密にはどのように定義されるのか。試行において現象が起こる確率を正確に評価するためには、確率の概念を定義する必要がある。ただ、確率の定義について述べる前に、まずは確率の測定対象となる現象を定式化をおこなう。</p>
 </section>
 <section id="id4">
-<h3>標本空間<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>標本空間<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <p>与えらえた試行において起こり得る個々の結果を <strong>標本点(sample point)</strong> と呼び、試行において起こり得るすべての標本点からなる集合を <strong>標本空間(sample space)</strong> と呼ばれる集合として定式化する。</p>
 <p>多くの場合、標本空間を <span class="math notranslate nohighlight">\(\Omega\)</span> で表し、標本空間に属する個々の標本点を <span class="math notranslate nohighlight">\(\omega\)</span> で表す。</p>
 </section>
 <section id="id5">
-<h3>事象<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3>事象<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
 <p>試行によって起こりうる様々な現象を標本空間の部分集合と同一視し、それを <strong>事象(event)</strong> と呼ぶ。
 問題としている現象 <span class="math notranslate nohighlight">\(X\)</span> に相当する現象が <span class="math notranslate nohighlight">\(A\subset \Omega\)</span> であることとは、任意の <span class="math notranslate nohighlight">\(\omega\in\Omega\)</span> について、</p>
 <div class="math notranslate nohighlight">
@@ -176,7 +155,7 @@
 </section>
 </section>
 <section id="id6">
-<h2>部分事象<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h2>部分事象<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
 <p>標本空間 <span class="math notranslate nohighlight">\(\Omega\)</span> が与えられたとき、2つの事象 <span class="math notranslate nohighlight">\(A,B \subset \Omega\)</span> において</p>
 <div class="math notranslate nohighlight">
 \[A\subset B\]</div>
@@ -187,51 +166,51 @@
 <p>が成り立つ。</p>
 </section>
 <section id="id7">
-<h2>等しい事象<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<h2>等しい事象<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
 <section id="id8">
-<h3>等しい事象<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3>等しい事象<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[A = B\]</div>
 </section>
 <section id="id9">
-<h3>真部分事象<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<h3>真部分事象<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[A\subset B \land A \neq B\]</div>
 </section>
 </section>
 <section id="id10">
-<h2>全事象<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<h2>全事象<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h2>
 <p>標本空間を事象とみなす</p>
 <div class="math notranslate nohighlight">
 \[\Omega\subset\Omega\]</div>
 </section>
 <section id="id11">
-<h2>空事象<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<h2>空事象<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h2>
 </section>
 <section id="id12">
-<h2>余事象<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<h2>余事象<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h2>
 </section>
 <section id="id13">
-<h2>積事象<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<h2>積事象<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h2>
 </section>
 <section id="id14">
-<h2>和事象<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<h2>和事象<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h2>
 </section>
 <section id="id15">
-<h2>差事象<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<h2>差事象<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h2>
 </section>
 <section id="id16">
-<h2>対象差事象<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<h2>対象差事象<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h2>
 </section>
 <section id="id17">
-<h2>古典的確率解釈<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<h2>古典的確率解釈<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h2>
 <p>飛ばす</p>
 </section>
 <section id="id18">
-<h2>公理主義的確率<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<h2>公理主義的確率<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h2>
 <p>標本空間 <span class="math notranslate nohighlight">\(\Omega\)</span> について、確率の測定対象となる事象を全て集めてできる <span class="math notranslate nohighlight">\(\Omega\)</span> の部分集合族、 <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> を <strong>事象空間(event space)</strong> と呼ぶ。</p>
 <section id="id19">
-<h3>確率空間の定義<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<h3>確率空間の定義<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
 <p>標本空間 <span class="math notranslate nohighlight">\(\Omega\)</span> が一般の集合である場合、その部分集合族である事象空間 <span class="math notranslate nohighlight">\(\mathcal{F}\subset 2^\Omega\)</span> は、</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathcal{F} \neq \phi \\
@@ -251,7 +230,7 @@ P(\Omega) = 1\end{split}\]</div>
 </section>
 </section>
 <section id="id20">
-<h2>なんかいろいろ書いてある<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<h2>なんかいろいろ書いてある<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h2>
 </section>
 </section>
 

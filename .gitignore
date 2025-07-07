@@ -170,8 +170,18 @@ dmypy.json
 cython_debug/
 
 # vscode
-.vscode
+.vscode/
 
-# poetry
+# Poetry (no longer used)
 poetry.lock
+pyproject.toml.bak
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env
+
+# DevContainer
+.devcontainer/.env
 

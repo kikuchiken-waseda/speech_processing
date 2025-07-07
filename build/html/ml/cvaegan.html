@@ -1,24 +1,23 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CVAE-GAN &mdash; 音声信号処理のための備忘録  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -29,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            音声信号処理のための備忘録
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,8 +69,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>CVAE-GAN</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CVAE-GAN</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/ml/cvaegan.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -77,46 +80,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="cvae-gan">
-<h1>CVAE-GAN<a class="headerlink" href="#cvae-gan" title="Permalink to this headline">¶</a></h1>
+  <section id="cvae-gan">
+<h1>CVAE-GAN<a class="headerlink" href="#cvae-gan" title="Link to this heading">¶</a></h1>
 <p><a class="reference external" href="https://arxiv.org/pdf/1703.10155.pdf">https://arxiv.org/pdf/1703.10155.pdf</a></p>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>生成モデルで高品質かつ汎用性の高いものを作りたい</p>
 </section>
 <section id="related-work">
-<h2>Related work<a class="headerlink" href="#related-work" title="Permalink to this headline">¶</a></h2>
+<h2>Related work<a class="headerlink" href="#related-work" title="Link to this heading">¶</a></h2>
 <p>生成モデルについて、昔ながらの生成手法と勉強会で私が説明した3つの手法を紹介している。</p>
 <p><a class="reference internal" href="generativemodel.html"><span class="doc">生成モデル</span></a></p>
 <img alt="https://tips-memo.com/wp-content/uploads/2019/07/VAE_1_modify.png" src="https://tips-memo.com/wp-content/uploads/2019/07/VAE_1_modify.png" />
 <img alt="data:image/png;base64,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" src="data:image/png;base64,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" />
 </section>
 <section id="formulation-of-cvae-gan">
-<h2>Formulation of CVAE-GAN<a class="headerlink" href="#formulation-of-cvae-gan" title="Permalink to this headline">¶</a></h2>
+<h2>Formulation of CVAE-GAN<a class="headerlink" href="#formulation-of-cvae-gan" title="Link to this heading">¶</a></h2>
 <p>この手法は4つのネットワークに分けられている。</p>
 <ol class="arabic simple">
 <li><p>Encoder network <span class="math notranslate nohighlight">\(E\)</span></p></li>
@@ -137,7 +116,7 @@
 <p>その後、エンコーダネットワークを追加したペアワイズ特徴マッチングを紹介する（セクション3.3）。</p>
 <p>最後に 提案手法の目的を分析し、学習パイプラインにおける実装の詳細を示す。を分析し、学習パイプラインにおける実装の詳細を示す（セクション 3.4）。</p>
 <section id="mean-feature-matching-based-gan">
-<h3>Mean feature matching based GAN<a class="headerlink" href="#mean-feature-matching-based-gan" title="Permalink to this headline">¶</a></h3>
+<h3>Mean feature matching based GAN<a class="headerlink" href="#mean-feature-matching-based-gan" title="Link to this heading">¶</a></h3>
 <p><span class="math notranslate nohighlight">\(G,D\)</span> はmin-maxゲームで計算される。</p>
 <p>この論文においてはGANの損失を2つに分けて書いている。</p>
 <p>the network <span class="math notranslate nohighlight">\(D\)</span> tries to minimize the loss function</p>
@@ -164,7 +143,7 @@
 3.</p>
 </section>
 <section id="mean-feature-matching-for-conditional-image-generation">
-<h3>Mean Feature Matching for Conditional Image Generation<a class="headerlink" href="#mean-feature-matching-for-conditional-image-generation" title="Permalink to this headline">¶</a></h3>
+<h3>Mean Feature Matching for Conditional Image Generation<a class="headerlink" href="#mean-feature-matching-for-conditional-image-generation" title="Link to this heading">¶</a></h3>
 <p><span class="math notranslate nohighlight">\(K\)</span> 個のカテゴリーに属するデータセットに対し、 <span class="math notranslate nohighlight">\(C\)</span> によって画像がどのカテゴリーに属するか測定する。</p>
 <p>Here we use a standard method for classification. The network C takes in x as input and outputs a K dimensional vector, which then turns into class probabilities using a softmax function.</p>
 <p>The output of each entry represents the posterior probability P(c|x). In the training stage, the network C tries to minimize the softmax loss.</p>
@@ -178,7 +157,7 @@
 <p>Since there are only a few samples belonging to the same category in a minibatch, it is necessary to use moving averages of features for both real and generated samples.(大切そうだが何を言ってるのかわからん)</p>
 </section>
 <section id="pairise-feature-matching">
-<h3>Pairise Feature Matching<a class="headerlink" href="#pairise-feature-matching" title="Permalink to this headline">¶</a></h3>
+<h3>Pairise Feature Matching<a class="headerlink" href="#pairise-feature-matching" title="Link to this heading">¶</a></h3>
 <p>なんかいろいろ書いてあって、モード崩壊を起こさないため、エンコーダを追加する。</p>
 <p>VAEと同じ仕組みでlossをとっている</p>
 <div class="math notranslate nohighlight">
@@ -187,53 +166,53 @@
 \[\mathcal{L}_G = (各出力の二乗誤差)\]</div>
 </section>
 <section id="objective-of-cvae-gan">
-<h3>Objective of CVAE-GAN<a class="headerlink" href="#objective-of-cvae-gan" title="Permalink to this headline">¶</a></h3>
+<h3>Objective of CVAE-GAN<a class="headerlink" href="#objective-of-cvae-gan" title="Link to this heading">¶</a></h3>
 <img alt="https://media.arxiv-vanity.com/render-output/5498152/x3.png" src="https://media.arxiv-vanity.com/render-output/5498152/x3.png" />
 <p>アルゴリズムとlossについて</p>
 </section>
 </section>
 <section id="analysis-of-toy-example">
-<h2>Analysis of Toy Example<a class="headerlink" href="#analysis-of-toy-example" title="Permalink to this headline">¶</a></h2>
+<h2>Analysis of Toy Example<a class="headerlink" href="#analysis-of-toy-example" title="Link to this heading">¶</a></h2>
 <p>Toy Exampleとは?</p>
 <p>過去のモデルと学習を比べている。</p>
 <p>このモデルが良さそうという話。</p>
 </section>
 <section id="experiments">
-<h2>Experiments<a class="headerlink" href="#experiments" title="Permalink to this headline">¶</a></h2>
+<h2>Experiments<a class="headerlink" href="#experiments" title="Link to this heading">¶</a></h2>
 <p>実験の話</p>
 <p>Encoderが学習済み?ちょっとわからない。</p>
 <p>All networks are trained from scratch.</p>
 <p>最初から学習をやってるみたい。</p>
 <section id="visualization-comparison-with-other-models">
-<h3>Visualization comparison with other models<a class="headerlink" href="#visualization-comparison-with-other-models" title="Permalink to this headline">¶</a></h3>
+<h3>Visualization comparison with other models<a class="headerlink" href="#visualization-comparison-with-other-models" title="Link to this heading">¶</a></h3>
 <p>単純に見た感じの比較
 いろんなモデルで画像生成の学習させた感じ今回のモデルが良さそう</p>
 </section>
 <section id="quantitative-comparison">
-<h3>Quantitative Comparison<a class="headerlink" href="#quantitative-comparison" title="Permalink to this headline">¶</a></h3>
+<h3>Quantitative Comparison<a class="headerlink" href="#quantitative-comparison" title="Link to this heading">¶</a></h3>
 <p>クオリティの比較</p>
 </section>
 <section id="attributes-morphing">
-<h3>Attributes Morphing<a class="headerlink" href="#attributes-morphing" title="Permalink to this headline">¶</a></h3>
+<h3>Attributes Morphing<a class="headerlink" href="#attributes-morphing" title="Link to this heading">¶</a></h3>
 <p>モーフィングの比較</p>
 </section>
 <section id="image-inpainting">
-<h3>Image Inpainting<a class="headerlink" href="#image-inpainting" title="Permalink to this headline">¶</a></h3>
+<h3>Image Inpainting<a class="headerlink" href="#image-inpainting" title="Link to this heading">¶</a></h3>
 <p>マスクした部分の追加</p>
 </section>
 <section id="comparing-different-combination-of-losses">
-<h3>Comparing Different Combination of Losses<a class="headerlink" href="#comparing-different-combination-of-losses" title="Permalink to this headline">¶</a></h3>
+<h3>Comparing Different Combination of Losses<a class="headerlink" href="#comparing-different-combination-of-losses" title="Link to this heading">¶</a></h3>
 <p>Gのlossについて比較</p>
 <p>Cから得られる二乗誤差をなくしたほうが良い結果を得られた。</p>
 </section>
 <section id="cvae-gan-for-data-augmentation">
-<h3>CVAE-GAN for Data Augmentation<a class="headerlink" href="#cvae-gan-for-data-augmentation" title="Permalink to this headline">¶</a></h3>
+<h3>CVAE-GAN for Data Augmentation<a class="headerlink" href="#cvae-gan-for-data-augmentation" title="Link to this heading">¶</a></h3>
 <p>データオーギュメンテーションとして使った話</p>
 <p>ある程度良くなってる？</p>
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">¶</a></h2>
 </section>
 </section>
 

@@ -1,22 +1,21 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VQMIVC: Vector Quantization and Mutual Information-Based Unsupervised Speech Representation Disentanglement for One-shot Voice Conversion &mdash; 音声信号処理のための備忘録  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -29,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            音声信号処理のための備忘録
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -79,9 +82,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">論文まとめ</a> &raquo;</li>
-      <li>VQMIVC: Vector Quantization and Mutual Information-Based Unsupervised Speech Representation Disentanglement for One-shot Voice Conversion</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">論文まとめ</a></li>
+      <li class="breadcrumb-item active">VQMIVC: Vector Quantization and Mutual Information-Based Unsupervised Speech Representation Disentanglement for One-shot Voice Conversion</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/paper/vqmivc.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -91,34 +94,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="vqmivc-vector-quantization-and-mutual-information-based-unsupervised-speech-representation-disentanglement-for-one-shot-voice-conversion">
-<h1><a class="toc-backref" href="#id2">VQMIVC: Vector Quantization and Mutual Information-Based Unsupervised Speech Representation Disentanglement for One-shot Voice Conversion</a><a class="headerlink" href="#vqmivc-vector-quantization-and-mutual-information-based-unsupervised-speech-representation-disentanglement-for-one-shot-voice-conversion" title="Permalink to this headline">¶</a></h1>
+  <section id="vqmivc-vector-quantization-and-mutual-information-based-unsupervised-speech-representation-disentanglement-for-one-shot-voice-conversion">
+<h1><a class="toc-backref" href="#id2" role="doc-backlink">VQMIVC: Vector Quantization and Mutual Information-Based Unsupervised Speech Representation Disentanglement for One-shot Voice Conversion</a><a class="headerlink" href="#vqmivc-vector-quantization-and-mutual-information-based-unsupervised-speech-representation-disentanglement-for-one-shot-voice-conversion" title="Link to this heading">¶</a></h1>
 <p><a class="reference external" href="https://arxiv.org/abs/2106.10132">https://arxiv.org/abs/2106.10132</a></p>
-<div class="contents topic" id="id1">
+<nav class="contents" id="id1">
 <p class="topic-title">目次</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#vqmivc-vector-quantization-and-mutual-information-based-unsupervised-speech-representation-disentanglement-for-one-shot-voice-conversion" id="id2">VQMIVC: Vector Quantization and Mutual Information-Based Unsupervised Speech Representation Disentanglement for One-shot Voice Conversion</a></p>
@@ -128,9 +107,9 @@
 </ul>
 </li>
 </ul>
-</div>
+</nav>
 <section id="words">
-<h2><a class="toc-backref" href="#id3">words</a><a class="headerlink" href="#words" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">words</a><a class="headerlink" href="#words" title="Link to this heading">¶</a></h2>
 <p>One-shot Voice Conversion(One-shot VC): It performs conversion across arbitrary speakers with only a single target-speaker utterance for reference.
 Vector Quantization(VQ):
 Mutual Information (MI):</p>
@@ -138,7 +117,7 @@ Mutual Information (MI):</p>
 <p>Speech Representation Disentanglement(SRD):</p>
 </section>
 <section id="abstract">
-<h2><a class="toc-backref" href="#id4">Abstract</a><a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Abstract</a><a class="headerlink" href="#abstract" title="Link to this heading">¶</a></h2>
 <p>One-shot VC can be effectively achieved by speech representation disentanglement.</p>
 <p><strong>Existing work</strong> generally ignores the correlation between different speech representations during training, which causes leakage of content information into the speaker representation and thus degrades VC performance.</p>
 <p><strong>To alleviate this issue</strong> , we employ vector quantization (VQ) for content encoding and introduce mutual information (MI) as the correlation metric during training, to achieve proper disentanglement of content, speaker and pitch representations, by reducing their inter-dependencies in an unsupervised manner.</p>

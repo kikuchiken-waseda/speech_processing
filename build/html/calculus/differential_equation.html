@@ -1,24 +1,23 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Differntial equation &mdash; 音声信号処理のための備忘録  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -29,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            音声信号処理のための備忘録
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,8 +69,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Differntial equation</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Differntial equation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/calculus/differential_equation.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -77,41 +80,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="differntial-equation">
-<h1>Differntial equation<a class="headerlink" href="#differntial-equation" title="Permalink to this headline">¶</a></h1>
+  <section id="differntial-equation">
+<h1>Differntial equation<a class="headerlink" href="#differntial-equation" title="Link to this heading">¶</a></h1>
 <p><a class="reference external" href="https://www.math.hkust.edu.hk/~machas/differential-equations.pdf">https://www.math.hkust.edu.hk/~machas/differential-equations.pdf</a></p>
 <p>写経だから非公開にするかも</p>
 <section id="introduction-to-ordinary-differential-equations">
-<h2>Introduction to ordinary differential equations<a class="headerlink" href="#introduction-to-ordinary-differential-equations" title="Permalink to this headline">¶</a></h2>
+<h2>Introduction to ordinary differential equations<a class="headerlink" href="#introduction-to-ordinary-differential-equations" title="Link to this heading">¶</a></h2>
 <p>A differntial equation is an equation for a function that relates the values of the function to the values of its derivatives.
 An ordinary differntial equation (ode) is a differential equation for a function of a single variable, e.g., <span class="math notranslate nohighlight">\(x(t)\)</span> , while a partial differntial equation (pde) is a differntial equation for a function of several variables, e.g., <span class="math notranslate nohighlight">\(v(x,y,z,t)\)</span> .
 An ode contains ordinary derivatives and a pde contains partial derivatives.</p>
 <section id="the-simplest-type-of-differential-equation">
-<h3>The simplest type of differential equation<a class="headerlink" href="#the-simplest-type-of-differential-equation" title="Permalink to this headline">¶</a></h3>
+<h3>The simplest type of differential equation<a class="headerlink" href="#the-simplest-type-of-differential-equation" title="Link to this heading">¶</a></h3>
 <p>The simplest ordinary differential equations can be integrated directly by finding antiderivatives. These simplest odes have the form</p>
 <div class="math notranslate nohighlight">
 \[\frac{d^nx}{dt^n} = G(t),\]</div>
@@ -136,20 +115,20 @@ An ode contains ordinary derivatives and a pde contains partial derivatives.</p>
 </section>
 </section>
 <section id="first-order-differential-equations">
-<h2>First-order differential equations<a class="headerlink" href="#first-order-differential-equations" title="Permalink to this headline">¶</a></h2>
+<h2>First-order differential equations<a class="headerlink" href="#first-order-differential-equations" title="Link to this heading">¶</a></h2>
 <p>Tge general first-order differential equation for the function <span class="math notranslate nohighlight">\(y=y(x)\)</span> is written as</p>
 <div class="math notranslate nohighlight">
 \[\frac{dy}{dx} = f(x,y),\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(x,y)\)</span> can be any function of the independent variable <span class="math notranslate nohighlight">\(x\)</span> and the dependent variable <span class="math notranslate nohighlight">\(y\)</span> . We first show how to determine a numerical solution of this equation, and then learn techniques for solving analytically some special forms of (2.1), namely, separable and linear first-order equations.</p>
 <section id="the-euler-method">
-<h3>The Euler method<a class="headerlink" href="#the-euler-method" title="Permalink to this headline">¶</a></h3>
+<h3>The Euler method<a class="headerlink" href="#the-euler-method" title="Link to this heading">¶</a></h3>
 <p>Although it is not always possible to find an analytical solution of (2.1) for <span class="math notranslate nohighlight">\(y = y(x)\)</span> , it is always possible to determine a unique numerical solution given an initial value <span class="math notranslate nohighlight">\(y(x_0) = y_0\)</span> ,  and provided <span class="math notranslate nohighlight">\(f(x,y)\)</span> is a well-behaved function. The differential equation (2.1) gives us the slope <span class="math notranslate nohighlight">\(f(x_0,y_0)\)</span> of the tangent line to the solution curve <span class="math notranslate nohighlight">\(y=y(x)\)</span> at the point <span class="math notranslate nohighlight">\((x_0,y_0)\)</span> . With a small step size <span class="math notranslate nohighlight">\(\Delta x = x_1 - x_0\)</span> ,the initial condition <span class="math notranslate nohighlight">\((x_0,y_0)\)</span> can be marched forward to <span class="math notranslate nohighlight">\((x_1,y_1)\)</span> along the tangent line using Euler’s method</p>
 <div class="math notranslate nohighlight">
 \[y_1 = y_0 + \Delta xf(x_0,y_0).\]</div>
 <p>This solution <span class="math notranslate nohighlight">\((x_1,y_1)\)</span> then becomes the new inital condition and is marched forward to <span class="math notranslate nohighlight">\((x_2,y_2)\)</span> along a newly determined tangent line with slope given by <span class="math notranslate nohighlight">\(f(x_1,y_1)\)</span> . For small enough <span class="math notranslate nohighlight">\(\Delta x\)</span> the numerical solution converges to the exact solution.</p>
 </section>
 <section id="separable-equations">
-<h3>Separable equations<a class="headerlink" href="#separable-equations" title="Permalink to this headline">¶</a></h3>
+<h3>Separable equations<a class="headerlink" href="#separable-equations" title="Link to this heading">¶</a></h3>
 <p>A first-order ode is separable if it can be written in the form</p>
 <div class="math notranslate nohighlight">
 \[g(y)\frac{dy}{dx} = f(x), y(x_0)=y_0,\]</div>
@@ -168,7 +147,7 @@ An ode contains ordinary derivatives and a pde contains partial derivatives.</p>
 <p>which is a separated equation with all the dependent variables on the left-side,and all the independent variables on the right-side. Equation (2.3) then results directly upon integration.</p>
 </section>
 <section id="linear-equations">
-<h3>Linear equations<a class="headerlink" href="#linear-equations" title="Permalink to this headline">¶</a></h3>
+<h3>Linear equations<a class="headerlink" href="#linear-equations" title="Link to this heading">¶</a></h3>
 <p>The linear first-order differential equation (linear in <span class="math notranslate nohighlight">\(y\)</span> and its derivative) can be written in the form</p>
 <div class="math notranslate nohighlight">
 \[\frac{dy}{dx} + p(x)y = g(x),\]</div>

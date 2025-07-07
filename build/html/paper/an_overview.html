@@ -1,22 +1,21 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>An Overview of Voice Conversion and its Challenges: From Statistical Modeling to Deep Learning &mdash; 音声信号処理のための備忘録  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -29,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> 音声信号処理のための備忘録
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            音声信号処理のための備忘録
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -75,9 +78,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">論文まとめ</a> &raquo;</li>
-      <li>An Overview of Voice Conversion and its Challenges: From Statistical Modeling to Deep Learning</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">論文まとめ</a></li>
+      <li class="breadcrumb-item active">An Overview of Voice Conversion and its Challenges: From Statistical Modeling to Deep Learning</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/paper/an_overview.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -87,39 +90,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="an-overview-of-voice-conversion-and-its-challenges-from-statistical-modeling-to-deep-learning">
-<h1><a class="toc-backref" href="#id2">An Overview of Voice Conversion and its Challenges: From Statistical Modeling to Deep Learning</a><a class="headerlink" href="#an-overview-of-voice-conversion-and-its-challenges-from-statistical-modeling-to-deep-learning" title="Permalink to this headline">¶</a></h1>
+  <section id="an-overview-of-voice-conversion-and-its-challenges-from-statistical-modeling-to-deep-learning">
+<h1><a class="toc-backref" href="#id2" role="doc-backlink">An Overview of Voice Conversion and its Challenges: From Statistical Modeling to Deep Learning</a><a class="headerlink" href="#an-overview-of-voice-conversion-and-its-challenges-from-statistical-modeling-to-deep-learning" title="Link to this heading">¶</a></h1>
 <p><a class="reference external" href="https://arxiv.org/abs/2008.03648">https://arxiv.org/abs/2008.03648</a></p>
-<div class="contents topic" id="id1">
+<nav class="contents" id="id1">
 <p class="topic-title">目次</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#an-overview-of-voice-conversion-and-its-challenges-from-statistical-modeling-to-deep-learning" id="id2">An Overview of Voice Conversion and its Challenges: From Statistical Modeling to Deep Learning</a></p></li>
 </ul>
-</div>
+</nav>
 </section>
 
 

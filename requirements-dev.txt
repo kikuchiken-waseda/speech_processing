@@ -1,0 +1,9 @@
+# Development dependencies
+-r requirements.txt
+pylint
+black
+flake8
+mypy
+pytest
+pytest-cov
+ruff

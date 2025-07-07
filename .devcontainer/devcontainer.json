@@ -1,0 +1,44 @@
+{
+    "name": "Speech Processing",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.pylint",
+                "ms-python.black-formatter",
+                "ms-python.mypy-type-checker",
+                "ms-python.flake8",
+                "charliermarsh.ruff",
+                "ms-toolsai.jupyter",
+                "ms-toolsai.jupyter-keymap",
+                "ms-toolsai.jupyter-renderers",
+                "lextudio.restructuredtext",
+                "ms-python.debugpy"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.formatting.provider": "black",
+                "python.linting.enabled": true,
+                "python.linting.pylintEnabled": true,
+                "python.linting.flake8Enabled": true,
+                "python.linting.mypyEnabled": true,
+                "ruff.enable": true,
+                "files.associations": {
+                    "*.rst": "restructuredtext"
+                }
+            }
+        }
+    },
+    "postCreateCommand": "pip install --user -r requirements-dev.txt",
+    "remoteEnv": {
+        "PATH": "/home/vscode/.local/bin:${PATH}"
+    },
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "workspaceFolder": "/workspace",
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {}
+    }
+}

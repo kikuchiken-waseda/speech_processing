@@ -1,24 +1,23 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>集合と位相 &mdash; 音声信号処理のための備忘録  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> 音声信号処理のための備忘録
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            音声信号処理のための備忘録
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -77,8 +80,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>集合と位相</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">集合と位相</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/a.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -88,34 +91,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="id1">
-<h1>集合と位相<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section id="id1">
+<h1>集合と位相<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <section id="id2">
-<h2>集合<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>集合<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>集合とは「ある特定の性質を備えたものの集まり」のことである。集合に含まれる1つ1つの「もの」を、その集合の要素または元という。
 <span class="math notranslate nohighlight">\(a\)</span> が集合 <span class="math notranslate nohighlight">\(A\)</span> の元であることを</p>
 <div class="math notranslate nohighlight">
@@ -139,7 +118,7 @@
 <span class="math notranslate nohighlight">\(A\subset B\)</span> でないことを <span class="math notranslate nohighlight">\(A\not\subset B\)</span> で表す。</p>
 <p><span class="math notranslate nohighlight">\(A\subset B \land A\ne B\)</span> のとき、 <span class="math notranslate nohighlight">\(A\)</span> は <span class="math notranslate nohighlight">\(B\)</span> の真部分集合であるといい、 <span class="math notranslate nohighlight">\(A\subsetneq B\)</span> で表す。</p>
 <p>議論している対象の要素全体の集合を全体集合または不偏集合という。
-全体集合を <span class="math notranslate nohighlight">\(U\)</span> を任意に選ぶと</p>
+全体集合を <span class="math notranslate nohighlight">\(U`で表す時、議論の対象となる集合 :math:`A\)</span> を任意に選ぶと</p>
 <div class="math notranslate nohighlight">
 \[A\subset U \Leftrightarrow \forall x\in A : x\in U\]</div>
 <p>が成り立つ。</p>
@@ -150,11 +129,11 @@
 <p>と表すことができる。</p>
 <p>元を有限個しか含まない集合および空集合を有限集合といい、そうでない集合を無限集合と呼ぶ。</p>
 <section id="id3">
-<h3>ラッセルのパラドクスと公理主義的集合論<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>ラッセルのパラドクスと公理主義的集合論<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <p>そのうちかく</p>
 </section>
 <section id="id4">
-<h3>集合演算<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>集合演算<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <p>集合論では集合を被演算子と呼ばれる演算を定義する。集合演算で使われる被演算子は <span class="math notranslate nohighlight">\(c,\cup,\cap,\setminus,\Delta\)</span> などであり、これらを集合演算子と呼ぶ。
 ここから特に断らない限り <span class="math notranslate nohighlight">\(U\)</span> を全体集合、 二つの集合 <span class="math notranslate nohighlight">\(A,B\)</span> について <span class="math notranslate nohighlight">\(A\subset U,B\subset U\)</span> とする。</p>
 <div class="math notranslate nohighlight">
@@ -174,11 +153,11 @@
 <p>を <span class="math notranslate nohighlight">\(A\)</span> と <span class="math notranslate nohighlight">\(B\)</span> の対称差という。</p>
 </section>
 <section id="id5">
-<h3>集合変形<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3>集合変形<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
 </section>
 </section>
 <section id="id6">
-<h2>写像<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h2>写像<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
 <p>集合 <span class="math notranslate nohighlight">\(A,B\)</span> に対し、 <span class="math notranslate nohighlight">\(A\)</span> のすべての元に対して <span class="math notranslate nohighlight">\(B\)</span> の元が唯一定まる時、その対応を写像と呼ぶ。</p>
 <p><span class="math notranslate nohighlight">\(f:A\to B\)</span> で、 <span class="math notranslate nohighlight">\(f\)</span> が <span class="math notranslate nohighlight">\(A\)</span> から <span class="math notranslate nohighlight">\(B\)</span> への写像であることを表す。
 <span class="math notranslate nohighlight">\(f:a\mapsto b\)</span> で、 写像 <span class="math notranslate nohighlight">\(f\)</span> によって <span class="math notranslate nohighlight">\(a\in A\)</span> が <span class="math notranslate nohighlight">\(b\in B\)</span> に移ることを表す。</p>
@@ -191,7 +170,7 @@
 <p>合成写像</p>
 </section>
 <section id="id7">
-<h2>集合系<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<h2>集合系<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
 </section>
 </section>
 
