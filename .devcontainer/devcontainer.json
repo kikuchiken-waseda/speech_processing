@@ -32,10 +32,6 @@
             }
         }
     },
-    "postCreateCommand": "pip install --user -r requirements-dev.txt",
-    "remoteEnv": {
-        "PATH": "/home/vscode/.local/bin:${PATH}"
-    },
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
     "workspaceFolder": "/workspace",
     "features": {

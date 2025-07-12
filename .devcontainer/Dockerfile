@@ -33,5 +33,14 @@ RUN useradd --create-home --shell /bin/bash vscode \
 # Switch to non-root user
 USER vscode
 
+# Copy requirements files
+COPY requirements.txt requirements-dev.txt ./
+
+# Install Python dependencies
+RUN pip install --user -r requirements-dev.txt
+
+# Add local bin to PATH for sphinx-build and other tools
+ENV PATH="/home/vscode/.local/bin:${PATH}"
+
 # Set the default command
 CMD ["/bin/bash"]

@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>データベース &mdash; 音声信号処理のための備忘録  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="集合と位相" href="../a.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            音声信号処理のための備忘録
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paper/index.html">論文まとめ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logic/index.html">論理学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculus/index.html">微分積分学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processing/index.html">信号処理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../speech_analysis/index.html">音響解析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml/index.html">machine learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../control_engineering/index.html">制御工学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../a.html">集合と位相</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">データベース</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#entity-relationship-model">実体関連モデル (Entity-Relationship Model)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#entity">1. 実体（Entity）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#attribute">2. 属性（Attribute）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relationship">3. 関連（Relationship）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integrity-constraints">4. 整合性制約（Integrity Constraints）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cardinality-constraints">4.1 カーディナリティ制約（Cardinality Constraints）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#participation-constraints">4.2 参加制約（Participation Constraints）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-constraints">4.3 キー制約（Key Constraints）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#weak-entity-sets-and-identifying-relationships">4.4 弱実体集合と識別関係（Weak Entity Sets and Identifying Relationships）</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#generalization-and-specialization">5. 汎化と専化（Generalization and Specialization）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">5.1 概要</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">5.2 形式定義</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#er-entity-relationship-diagram">6. ER図（Entity-Relationship Diagram）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">6.1 構成要素</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">6.2 属性の図式表現</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">6.3 制約の図式表現</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">6.4 弱実体と識別関係の表現</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">6.5 拡張表記</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">音声信号処理のための備忘録</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">データベース</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/database/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>データベース<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="entity-relationship-model">
+<h2>実体関連モデル (Entity-Relationship Model)<a class="headerlink" href="#entity-relationship-model" title="Link to this heading">¶</a></h2>
+<section id="id2">
+<h3>概要<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<p>実体関連モデル（Entity-Relationship Model、ERモデル）は、データベースの概念設計において、対象領域（業務ドメイン）を構造的かつ意味論的に記述するためのモデルである。1976年に Peter Chen により提唱された。</p>
+<p>本モデルは、以下の3要素を基礎とする：</p>
+<ul class="simple">
+<li><p><strong>実体（Entity）</strong>：識別可能な個体または概念。</p></li>
+<li><p><strong>属性（Attribute）</strong>：実体の特性を表す情報。</p></li>
+<li><p><strong>関連（Relationship）</strong>：実体間の意味的な接続関係。</p></li>
+</ul>
+<p>これらにより、構造と意味の両面を明示的にモデル化する。</p>
+</section>
+<section id="entity">
+<h3>1. 実体（Entity）<a class="headerlink" href="#entity" title="Link to this heading">¶</a></h3>
+<p><strong>定義</strong></p>
+<p>実体とは、現実世界における識別可能な対象であり、データベース内で一意に表現される個体を意味する。</p>
+<p><strong>実体集合（Entity Set）</strong></p>
+<p>同種の実体の集合を実体集合と呼び、以下のように定義される：</p>
+<div class="math notranslate nohighlight">
+\[E = \{e_1, e_2, \ldots, e_n\}, \quad n \in \mathbb{N}, \quad e_i \neq e_j \text{ if } i \neq j\]</div>
+<p>ここで <span class="math notranslate nohighlight">\(E\)</span> は実体集合、<span class="math notranslate nohighlight">\(e_i\)</span> は個別の実体。</p>
+<p>実体集合の例としてたとえば「人」「商品」「組織」「イベント」などが含まれ、実体の例として「山田太郎」「iPhone 13」「株式会社ABC」「2023年のオリンピック」などが挙げられる。</p>
+<p><strong>属性構造との関係</strong></p>
+<p>すべての <span class="math notranslate nohighlight">\(e_i \in E\)</span> は共通の属性集合（スキーマ）を共有し、同型の構造を持つ。</p>
+</section>
+<section id="attribute">
+<h3>2. 属性（Attribute）<a class="headerlink" href="#attribute" title="Link to this heading">¶</a></h3>
+<p><strong>定義</strong></p>
+<p>属性とは、実体の性質や状態を表す情報単位であり、実体集合に対する写像（関数）として定義される。</p>
+<p><strong>記法</strong></p>
+<div class="math notranslate nohighlight">
+\[A : E \rightarrow D_A\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(E\)</span> は実体集合、<span class="math notranslate nohighlight">\(D_A\)</span> は属性 <span class="math notranslate nohighlight">\(A\)</span> の定義域（値の集合）である。</p>
+<p>任意の <span class="math notranslate nohighlight">\(e \in E\)</span> に対して、<span class="math notranslate nohighlight">\(A(e) \in D_A\)</span> が成り立つ。</p>
+<p><strong>属性の分類</strong></p>
+<ul class="simple">
+<li><p>単一属性（Atomic Attribute）</p></li>
+<li><p>複合属性（Composite Attribute）</p></li>
+<li><p>多値属性（Multivalued Attribute）</p></li>
+<li><p>派生属性（Derived Attribute）</p></li>
+</ul>
+</section>
+<section id="relationship">
+<h3>3. 関連（Relationship）<a class="headerlink" href="#relationship" title="Link to this heading">¶</a></h3>
+<p><strong>定義</strong></p>
+<p>関連とは、複数の実体間に存在する意味的な接続関係を表現する構造である。</p>
+<p><strong>関連集合（Relationship Set）</strong></p>
+<div class="math notranslate nohighlight">
+\[R \subseteq E_1 \times E_2 \times \cdots \times E_n\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(R\)</span> の各要素が関連インスタンスであり、nは関連の次数（arity）と呼ばれる。</p>
+<p><strong>補足</strong></p>
+<ul class="simple">
+<li><p>同一の実体集合が複数回現れる場合もある（自己関連）。</p></li>
+<li><p>関連にも属性が付与される場合がある（関連属性）。</p></li>
+</ul>
+</section>
+<section id="integrity-constraints">
+<h3>4. 整合性制約（Integrity Constraints）<a class="headerlink" href="#integrity-constraints" title="Link to this heading">¶</a></h3>
+<p>整合性制約とは、データベース内のデータが意味的に正しく、一貫性のある状態を保つために課される論理的ルールである。ERモデルにおいては、以下の制約が主要な役割を担う。</p>
+<section id="cardinality-constraints">
+<h4>4.1 カーディナリティ制約（Cardinality Constraints）<a class="headerlink" href="#cardinality-constraints" title="Link to this heading">¶</a></h4>
+<p><strong>定義</strong></p>
+<p>カーディナリティ制約は、関連 <span class="math notranslate nohighlight">\(R \subseteq E_1 \times E_2\)</span> において、各実体集合の要素が関連に参加する**回数の上限**を定める制約である。</p>
+<p><strong>形式定義</strong></p>
+<p>例えば <span class="math notranslate nohighlight">\(R \subseteq A \times B\)</span> に対して：</p>
+<ul>
+<li><p><strong>1対1（1:1）</strong>
+任意の <span class="math notranslate nohighlight">\(a \in A\)</span> に対して、高々1つの <span class="math notranslate nohighlight">\(b \in B\)</span> が存在し、<span class="math notranslate nohighlight">\((a, b) \in R\)</span>。かつ逆も同様。</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall a \in A, \quad |\{ b \in B \mid (a, b) \in R \}| \leq 1\\\forall b \in B, \quad |\{ a \in A \mid (a, b) \in R \}| \leq 1\end{aligned}\end{align} \]</div>
+</li>
+<li><p><strong>1対多（1:N）</strong>
+任意の <span class="math notranslate nohighlight">\(a \in A\)</span> に対して、任意個の <span class="math notranslate nohighlight">\(b \in B\)</span> と関連できるが、<span class="math notranslate nohighlight">\(b\)</span> 側は最大1つの <span class="math notranslate nohighlight">\(a\)</span> に関連。</p>
+<div class="math notranslate nohighlight">
+\[\forall b \in B, \quad |\{ a \in A \mid (a, b) \in R \}| \leq 1\]</div>
+</li>
+<li><p><strong>多対多（M:N）</strong>
+双方に制約なし：</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\forall a \in A, \quad |\{ b \in B \mid (a, b) \in R \}| \geq 0\\\forall b \in B, \quad |\{ a \in A \mid (a, b) \in R \}| \geq 0\end{aligned}\end{align} \]</div>
+</li>
+</ul>
+<p><strong>記法例</strong></p>
+<div class="math notranslate nohighlight">
+\[\text{Employee} \xrightarrow{1:N} \text{Department}\]</div>
+</section>
+<section id="participation-constraints">
+<h4>4.2 参加制約（Participation Constraints）<a class="headerlink" href="#participation-constraints" title="Link to this heading">¶</a></h4>
+<p><strong>定義</strong></p>
+<p>参加制約は、実体集合 <span class="math notranslate nohighlight">\(E\)</span> の要素が関連 <span class="math notranslate nohighlight">\(R\)</span> に対して**少なくとも一度**参加する必要があるかを定義する制約である。</p>
+<p><strong>形式定義</strong></p>
+<ul>
+<li><p><strong>全体参加（Total Participation）</strong></p>
+<div class="math notranslate nohighlight">
+\[\forall e \in E, \quad \exists (e, e') \in R\]</div>
+</li>
+<li><p><strong>部分参加（Partial Participation）</strong></p>
+<p>上記が成り立たない場合。すなわち：</p>
+<div class="math notranslate nohighlight">
+\[\exists e \in E, \quad \forall e', \; (e, e') \notin R\]</div>
+</li>
+</ul>
+</section>
+<section id="key-constraints">
+<h4>4.3 キー制約（Key Constraints）<a class="headerlink" href="#key-constraints" title="Link to this heading">¶</a></h4>
+<p><strong>定義</strong></p>
+<p>キー制約とは、実体集合における識別性を保証する属性写像の組に対して課される制約である。</p>
+<p>各属性 <span class="math notranslate nohighlight">\(A_i\)</span> は以下のような写像として定義されている（2. 属性の定義に準拠）：</p>
+<div class="math notranslate nohighlight">
+\[A_i : E \to D_i, \quad (i = 1, \ldots, k)\]</div>
+<p>ここで、</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(E\)</span> は対象の実体集合</p></li>
+<li><p><span class="math notranslate nohighlight">\(D_i\)</span> は属性 <span class="math notranslate nohighlight">\(A_i\)</span> の定義域（値の集合）</p></li>
+</ul>
+<p>これらの属性を組み合わせたタプル写像：</p>
+<div class="math notranslate nohighlight">
+\[f = (A_1, A_2, \ldots, A_k) : E \to D_1 \times D_2 \times \cdots \times D_k\]</div>
+<p>が <strong>単射（injective）</strong> であるとき、属性集合 <span class="math notranslate nohighlight">\(\{A_1, A_2, \ldots, A_k\}\)</span> は <strong>主キー（Primary Key）</strong> を構成する。</p>
+<p>すなわち、以下が成り立つ：</p>
+<div class="math notranslate nohighlight">
+\[\forall e_1, e_2 \in E, \quad f(e_1) = f(e_2) \Rightarrow e_1 = e_2\]</div>
+<p><strong>分類</strong></p>
+<ul class="simple">
+<li><p><strong>主キー（Primary Key）</strong>：上記条件を満たす属性写像の組。</p></li>
+<li><p><strong>部分キー（Partial Key）</strong>：弱実体集合 <span class="math notranslate nohighlight">\(W\)</span> において、親実体集合 <span class="math notranslate nohighlight">\(P\)</span> の主キーと組み合わせたときに識別可能となる写像 <span class="math notranslate nohighlight">\(p : W \to D'\)</span>。</p></li>
+<li><p><strong>外部キー（Foreign Key）</strong>：別の実体集合 <span class="math notranslate nohighlight">\(E'\)</span> の主キー値を参照する属性写像群。関係モデルへの変換後に制約として実装される。</p></li>
+</ul>
+<p><strong>補足</strong></p>
+<ul class="simple">
+<li><p>属性集合という語は、属性の「名前の集まり」ではなく、それぞれ <span class="math notranslate nohighlight">\(A_i : E \to D_i\)</span> のような「関数（写像）」の集合を意味する。</p></li>
+<li><p>写像 <span class="math notranslate nohighlight">\(f = (A_1, \ldots, A_k)\)</span> に injectivity を課すことで、実体の一意性を保証する。</p></li>
+</ul>
+</section>
+<section id="weak-entity-sets-and-identifying-relationships">
+<h4>4.4 弱実体集合と識別関係（Weak Entity Sets and Identifying Relationships）<a class="headerlink" href="#weak-entity-sets-and-identifying-relationships" title="Link to this heading">¶</a></h4>
+<p><strong>定義</strong></p>
+<p>弱実体集合とは、単独では一意に識別できない実体集合であり、他の親実体集合と**識別関係（identifying relationship）**を通じて識別される。</p>
+<p><strong>構造条件</strong></p>
+<ul>
+<li><p>弱実体集合 <span class="math notranslate nohighlight">\(W\)</span> は識別関係 <span class="math notranslate nohighlight">\(R \subseteq W \times P\)</span> に対して**全体参加**である：</p>
+<div class="math notranslate nohighlight">
+\[\forall w \in W, \exists p \in P, \; (w, p) \in R\]</div>
+</li>
+<li><p>識別には親の主キー <span class="math notranslate nohighlight">\(K_P\)</span> と部分キー <span class="math notranslate nohighlight">\(K_W\)</span> の組が必要：</p>
+<div class="math notranslate nohighlight">
+\[\text{識別関数 } f: W \to K_P \times K_W \text{ が injective}\]</div>
+</li>
+</ul>
+<p><strong>例</strong></p>
+<ul class="simple">
+<li><p>実体集合 <cite>Building`（主キー：building_id）と `Room`（属性：room_no）は、room_no だけでは識別不能。
+`Room</cite> は <cite>Building</cite> との関連によって (building_id, room_no) の組で識別される。</p></li>
+</ul>
+</section>
+</section>
+<section id="generalization-and-specialization">
+<h3>5. 汎化と専化（Generalization and Specialization）<a class="headerlink" href="#generalization-and-specialization" title="Link to this heading">¶</a></h3>
+<section id="id3">
+<h4>5.1 概要<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
+<p>汎化と専化は、実体集合の階層的関係を集合論的に定式化する操作である。</p>
+<ul class="simple">
+<li><p><strong>汎化（Generalization）</strong>：複数の実体集合から共通上位集合を構成する操作。</p></li>
+<li><p><strong>専化（Specialization）</strong>：1つの実体集合から条件に基づき下位集合を導出する操作。</p></li>
+</ul>
+</section>
+<section id="id4">
+<h4>5.2 形式定義<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
+<p><strong>汎化</strong></p>
+<div class="math notranslate nohighlight">
+\[\forall i \in \{1, \ldots, k\}, \quad E_i \subseteq G \
+\text{かつ} \quad Attributes(G) \subseteq Attributes(E_i)\]</div>
+<p><strong>専化</strong></p>
+<div class="math notranslate nohighlight">
+\[\forall i \in \{1, \ldots, k\}, \quad S_i \subseteq E \
+\text{かつ} \quad Attributes(E) \subseteq Attributes(S_i)\]</div>
+</section>
+</section>
+<section id="er-entity-relationship-diagram">
+<h3>6. ER図（Entity-Relationship Diagram）<a class="headerlink" href="#er-entity-relationship-diagram" title="Link to this heading">¶</a></h3>
+<p>ER図は、ERモデルを視覚的に表現するための標準的な図式記法であり、要素間の関係構造を直感的に把握可能とする。</p>
+<section id="id5">
+<h4>6.1 構成要素<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>実体：矩形</p></li>
+<li><p>属性：楕円</p></li>
+<li><p>主キー属性：下線付き楕円</p></li>
+<li><p>関連：菱形</p></li>
+<li><p>線：要素間の接続を表す</p></li>
+</ul>
+</section>
+<section id="id6">
+<h4>6.2 属性の図式表現<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>複合属性：複数楕円と線で分解表示</p></li>
+<li><p>多値属性：二重楕円</p></li>
+<li><p>派生属性：点線楕円</p></li>
+</ul>
+</section>
+<section id="id7">
+<h4>6.3 制約の図式表現<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>カーディナリティ：線の横に (1:N) 等で明示</p></li>
+<li><p>参加制約：全体参加は実線、部分参加は破線</p></li>
+</ul>
+</section>
+<section id="id8">
+<h4>6.4 弱実体と識別関係の表現<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>弱実体集合：二重矩形</p></li>
+<li><p>識別関係：二重菱形</p></li>
+<li><p>部分キー属性：通常楕円（下線なし）</p></li>
+</ul>
+</section>
+<section id="id9">
+<h4>6.5 拡張表記<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>n-項関連：3項以上の関連に対応</p></li>
+<li><p>汎化・専化：三角形ノードで階層表現</p></li>
+<li><p>集約：矩形で囲ってメタ構造を明示</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../a.html" class="btn btn-neutral float-left" title="集合と位相" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, licrum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

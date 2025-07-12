@@ -21,6 +21,7 @@
    ./ml/index
    ./control_engineering/index
    ./a
+   ./database/index
 
 
 こんなサイトが出来たら最高だわ
