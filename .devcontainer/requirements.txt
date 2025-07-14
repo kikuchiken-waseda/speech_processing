@@ -3,6 +3,7 @@ Sphinx
 sphinx-rtd-theme
 sphinx-autobuild
 nbsphinx
+furo
 pandoc
 matplotlib
 numpy
