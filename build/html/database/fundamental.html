@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="machine learning" href="../ml/index.html" /><link rel="prev" title="extract mfcc" href="mfcc.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="実体関連モデル (Entity-Relationship Model)" href="ermodel.html" /><link rel="prev" title="データベース" href="index.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-        <title>mel generalized cepstrum - 音声信号処理のための備忘録 documentation</title>
+        <title>1. データベースの基礎 - 音声信号処理のための備忘録 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -241,10 +241,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../processing/laplace.html">ラプラス変換</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">音響解析</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of 音響解析</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cepstrum.html">ケプストラム</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mfcc.html">extract mfcc</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">mel generalized cepstrum</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../speech_analysis/index.html">音響解析</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of 音響解析</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../speech_analysis/cepstrum.html">ケプストラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../speech_analysis/mfcc.html">extract mfcc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../speech_analysis/mgcs.html">mel generalized cepstrum</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ml/index.html">machine learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of machine learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -256,9 +256,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../a.html">集合と位相</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../database/index.html">データベース</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of データベース</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../database/ermodel.html">実体関連モデル (Entity-Relationship Model)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../database/rdmodel.html">リレーショナルデータモデル（Relational Data Model）</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">データベース</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of データベース</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">1. データベースの基礎</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2. スキーマとインスタンス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">3. 抽象化の階層</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ermodel.html">実体関連モデル (Entity-Relationship Model)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rdmodel.html">リレーショナルデータモデル（Relational Data Model）</a></li>
 </ul>
 </li>
 </ul>
@@ -281,7 +284,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/speech_analysis/mgcs.rst.txt" title="View this page">
+  <a class="muted-link" href="../_sources/database/fundamental.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -301,60 +304,187 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="mel-generalized-cepstrum">
-<h1><a class="toc-backref" href="#id4" role="doc-backlink">mel generalized cepstrum</a><a class="headerlink" href="#mel-generalized-cepstrum" title="Link to this heading">¶</a></h1>
-<nav class="contents" id="id1">
-<p class="topic-title">目次</p>
+          <section id="id1">
+<h1>1. データベースの基礎<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<section id="data">
+<h2>1.1 データ（Data）<a class="headerlink" href="#data" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>データとは、事実・事象・概念などを形式化した**記号列**であり、解釈主体にとって意味を持ちうる対象である。一般にデータは、構造（形式）と意味（セマンティクス）を伴う。</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#mel-generalized-cepstrum" id="id4">mel generalized cepstrum</a></p>
+<li><p>単独では意味を持たない可能性があり、文脈やスキーマによって解釈される。</p></li>
+<li><p>データは記録・通信・処理の対象であり、情報処理の基本単位である。</p></li>
+</ul>
+<p>例：
+- <cite>42</cite>, <cite>‘Alice’</cite>, <cite>2024-01-01</cite> はいずれもデータであるが、構造と意味づけがなければ用途は限定される。</p>
+</section>
+<section id="data-model">
+<h2>1.2 データモデル（Data Model）<a class="headerlink" href="#data-model" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>データモデルとは、データの**構造・意味・制約・操作**を記述するための抽象的枠組みである。</p>
+<ul class="simple">
+<li><p>目的は、現実世界の情報を**コンピュータ上で表現・管理・操作可能な形式**で記述すること。</p></li>
+<li><p>モデルには以下が含まれる：</p>
 <ul>
-<li><p><a class="reference internal" href="#id2" id="id5">なにこれ</a></p></li>
-<li><p><a class="reference internal" href="#generalized-logarithmic-function" id="id6">generalized logarithmic function</a></p></li>
-<li><p><a class="reference internal" href="#generalized-cepstrum" id="id7">generalized cepstrum</a></p></li>
-<li><p><a class="reference internal" href="#id3" id="id8">本編</a></p></li>
+<li><p>構造（Structure）：データがどのように構成されるか</p></li>
+<li><p>意味（Semantics）：データが何を意味するか</p></li>
+<li><p>制約（Constraints）：データが満たすべき条件</p></li>
+<li><p>操作（Operations）：データに対する演算（例：検索、更新、削除）</p></li>
 </ul>
 </li>
 </ul>
-</nav>
+<p><strong>分類</strong></p>
+<ul class="simple">
+<li><p>リレーショナルモデル（Relational Model）</p></li>
+<li><p>階層モデル（Hierarchical Model）</p></li>
+<li><p>ネットワークモデル（Network Model）</p></li>
+<li><p>オブジェクト指向モデル（Object-oriented Model）</p></li>
+<li><p>ドキュメントモデル、グラフモデル、など</p></li>
+</ul>
+</section>
+<section id="database">
+<h2>1.3 データベース（Database）<a class="headerlink" href="#database" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>データベースとは、 <strong>あるデータモデル</strong> に基づき、意味的整合性と永続性をもって組織化された <strong>関連データの集合</strong> である。</p>
+<ul class="simple">
+<li><p>一貫性、一意性、再利用性、共有性を備えることが要求される。</p></li>
+<li><p>データベースは通常、 <strong>スキーマ（構造）</strong> と <strong>インスタンス（内容）</strong> の2層構造を持つ。</p></li>
+</ul>
+<p><strong>備考</strong></p>
+<ul class="simple">
+<li><p>データベースは静的なデータの集まりではなく、動的な操作（問合せ、更新）を伴う。</p></li>
+<li><p>データベース管理システム（DBMS）は、この集合を効率的かつ安全に管理するためのソフトウェアシステムである。</p></li>
+</ul>
+</section>
+<section id="dbms-database-management-system">
+<h2>1.4 データベース管理システム（DBMS: Database Management System）<a class="headerlink" href="#dbms-database-management-system" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>DBMS とは、データベースを構成・操作・保守・制御するための <strong>ソフトウェアシステム</strong> である。</p>
+<p><strong>機能的役割</strong></p>
+<p>DBMS は、次のような機能を提供する：</p>
+<ul class="simple">
+<li><p><strong>定義機能</strong>：スキーマやビューの定義</p></li>
+<li><p><strong>操作機能</strong>：データの検索（問合せ）、挿入、削除、更新</p></li>
+<li><p><strong>制御機能</strong>：
+- 整合性制約の保証
+- トランザクション管理（原子性・一貫性・独立性・永続性：ACID特性）
+- 同時実行制御
+- アクセス制御とセキュリティ
+- 障害回復（リカバリ）</p></li>
+</ul>
+<p><strong>備考</strong></p>
+<ul class="simple">
+<li><p>DBMS はデータ独立性（論理・物理の独立）を実現し、アプリケーションとデータの分離を促進する。</p></li>
+<li><p>代表的な DBMS：PostgreSQL, MySQL, Oracle Database, SQL Server など。</p></li>
+</ul>
+</section>
+<section id="dbs-database-system">
+<h2>1.5 データベースシステム（DBS: Database System）<a class="headerlink" href="#dbs-database-system" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>DBS とは、 <strong>データベース（データ）</strong> と <strong>DBMS（ソフトウェア）</strong> 、およびそれらを運用・活用するための <strong>ユーザーやアプリケーション</strong> を含めた <strong>統合的なシステム全体</strong> を指す。</p>
+<figure class="align-center" id="id4">
+<img alt="DBSの構成" src="database/dbs_structure.svg" />
+<figcaption>
+<p><span class="caption-text">データベースシステムの概念構成（DBS = データ + DBMS + 利用者）</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>構成要素</strong></p>
+<ul class="simple">
+<li><p><strong>データ</strong>：意味的に統合された構造化データの集合</p></li>
+<li><p><strong>DBMS</strong>：操作・制御機能を提供するソフトウェア</p></li>
+<li><p><strong>アプリケーション</strong>：DBMS を利用する業務プログラム群</p></li>
+<li><p><strong>ユーザー</strong>：データにアクセスする主体（エンドユーザー、DB管理者など）</p></li>
+</ul>
+<p><strong>備考</strong></p>
+<ul class="simple">
+<li><p>DBS は技術的構成だけでなく、利用環境・役割・責任も含む情報システムの一部とみなされる。</p></li>
+<li><p>「DBMS ⊂ DBS」という包含関係が成立する。</p></li>
+</ul>
+</section>
+</section>
 <section id="id2">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">なにこれ</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
-<p>lpcとかケプストラムとかを包含するやつ</p>
-<p><a class="reference external" href="https://www.sp.nitech.ac.jp/~tokuda/selected_pub/pdf/paper/tokuda_j75-a_7_1124.pdf">https://www.sp.nitech.ac.jp/~tokuda/selected_pub/pdf/paper/tokuda_j75-a_7_1124.pdf</a></p>
-<p><a class="reference external" href="https://www.sp.nitech.ac.jp/~tokuda/tokuda_tamkang2002.pdf">https://www.sp.nitech.ac.jp/~tokuda/tokuda_tamkang2002.pdf</a></p>
-<p><a class="reference external" href="https://www.sp.nitech.ac.jp/~tokuda/selected_pub/pdf/conference/tokuda_icslp1994.pdf">https://www.sp.nitech.ac.jp/~tokuda/selected_pub/pdf/conference/tokuda_icslp1994.pdf</a></p>
+<h1>2. スキーマとインスタンス<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h1>
+<section id="schema">
+<h2>2.1 スキーマ（Schema）<a class="headerlink" href="#schema" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>スキーマとは、データの構造を定義するメタ情報であり、対象とする世界におけるデータの種類、属性、型、関係性を記述する <strong>設計仕様</strong> である。</p>
+<ul class="simple">
+<li><p>データベースにおける「スキーマ」は、構造の青写真（blueprint）として機能する。</p></li>
+<li><p>スキーマは変更されにくく、 <strong>比較的静的</strong> な構成要素である。</p></li>
+</ul>
+<p>例：
+- リレーショナルデータベースでは、各テーブルの名前、列名、列型、制約（キー制約など）からなる。</p>
 </section>
-<section id="generalized-logarithmic-function">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">generalized logarithmic function</a><a class="headerlink" href="#generalized-logarithmic-function" title="Link to this heading">¶</a></h2>
-<div class="math-wrapper docutils container">
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}s_\gamma(w):=
-\begin{cases}
-    (w^{\gamma}-1)/\gamma,\text{  if }0&lt;|\gamma|\le 1\\    \log w,\text{  if }\gamma =0
-\end{cases}\end{aligned}\end{align} \]</div>
-</div>
-<div class="math-wrapper docutils container">
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}{s_\gamma}^{-1}(w):=
-\begin{cases}
-    (1+\gamma w)^(1/\gamma),\text{  if }0&lt;|\gamma|\le 1\\    e^w,\text{  if }\gamma =0
-\end{cases}\end{aligned}\end{align} \]</div>
-</div>
+<section id="instance">
+<h2>2.2 インスタンス（Instance）<a class="headerlink" href="#instance" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>インスタンスとは、定義されたスキーマに基づいて、 <strong>ある時点で実際に存在する具体的なデータの集合</strong> である。</p>
+<ul class="simple">
+<li><p>スキーマが構造を定義するのに対し、インスタンスはその構造に従った <strong>実体（具体値）</strong> である。</p></li>
+<li><p>インスタンスは運用中に <strong>頻繁に変化</strong> し得る動的な要素である。</p></li>
+</ul>
+<p>例：
+- スキーマで定義された「学生」テーブルにおける、ある時点の登録済みの学生レコード。</p>
+<p><strong>補足</strong>
+スキーマはインスタンスの構造や制約を定義する、高次のデータと捉えることもできる。
+このようなデータを <strong>メタデータ（Metadata）</strong> と呼ぶ。</p>
 </section>
-<section id="generalized-cepstrum">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">generalized cepstrum</a><a class="headerlink" href="#generalized-cepstrum" title="Link to this heading">¶</a></h2>
-<p>複素ケプストラムを一般化対数関数で拡張したもの</p>
-<div class="math-wrapper docutils container">
-<div class="math notranslate nohighlight">
-\[c_{\gamma}[n] := \frac{1}{2\pi} \int^{\pi}_{-\pi} s_\gamma(F(\omega))e^{j\omega n}d\omega\]</div>
-</div>
 </section>
 <section id="id3">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">本編</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
-<p>実際にはこの定義で出さないらしい</p>
-<div class="math-wrapper docutils container">
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}c_{\alpha,\gamma}[n] := \frac{1}{2\pi} \int^{\pi}_{-\pi} s_\gamma(F(\omega))e^{j\beta_\alpha(\omega) n}d\omega\\\beta_\alpha(\omega) = \tan^{-1}\frac{(1-\alpha^2)\sin\omega}{(1+\alpha^2)\cos\omega-2\alpha}\end{aligned}\end{align} \]</div>
-</div>
+<h1>3. 抽象化の階層<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h1>
+<p>データベースシステムは、データの利用者と物理的格納構造のあいだに抽象化の階層を導入することで、柔軟な設計と保守を実現している。これは <strong>3層スキーマアーキテクチャ</strong> として定式化されており、以下の3レベルから構成される：</p>
+<ul class="simple">
+<li><p><strong>外部レベル（External Level）</strong></p></li>
+<li><p><strong>概念レベル（Conceptual Level）</strong></p></li>
+<li><p><strong>内部レベル（Internal Level）</strong></p></li>
+</ul>
+<p>この分離により、データの定義と利用がそれぞれ独立して設計・変更できるようになる。</p>
+<section id="external-level">
+<h2>3.1 外部レベル（External Level）<a class="headerlink" href="#external-level" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>利用者やアプリケーションがデータベースを参照・操作する際に用いる**論理的ビューの集合**である。</p>
+<ul class="simple">
+<li><p>各ユーザーに対し、関心のある部分構造のみを提供する。</p></li>
+<li><p>外部レベルは1つではなく、複数存在することが可能。</p></li>
+</ul>
+<p><strong>外部スキーマ（External Schema）</strong></p>
+<p>外部レベルに定義される個別の論理ビューのスキーマ。</p>
+</section>
+<section id="conceptual-level">
+<h2>3.2 概念レベル（Conceptual Level）<a class="headerlink" href="#conceptual-level" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>データベース全体の**論理的構造**を一貫して定義するレベル。</p>
+<ul class="simple">
+<li><p>エンティティ、属性、関係、制約などがこのレベルで表現される。</p></li>
+<li><p>すべての外部スキーマは、この概念スキーマの部分集合でなければならない。</p></li>
+</ul>
+<p><strong>概念スキーマ（Conceptual Schema）</strong></p>
+<p>全体の整合的なデータ構造・意味・制約を記述する中心的スキーマ。</p>
+</section>
+<section id="internal-level">
+<h2>3.3 内部レベル（Internal Level）<a class="headerlink" href="#internal-level" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>データの**物理的格納構造**とアクセスパスを定義するレベル。</p>
+<ul class="simple">
+<li><p>ストレージのフォーマット、インデックス、ファイル構造などが含まれる。</p></li>
+<li><p>利用者からは直接参照されない。</p></li>
+</ul>
+<p><strong>内部スキーマ（Internal Schema）</strong></p>
+<p>実際のデータ格納方式を記述するスキーマ。</p>
+</section>
+<section id="data-independence">
+<h2>3.4 データ独立性（Data Independence）<a class="headerlink" href="#data-independence" title="Link to this heading">¶</a></h2>
+<p>3層構造の意義は、下位層の変更が上位層に影響しないという**データ独立性**の確保にある。2種類の独立性が定義される：</p>
+<ul class="simple">
+<li><p><strong>論理的データ独立性（Logical Data Independence）</strong>
+概念スキーマの変更（例：属性の追加）が外部スキーマに影響を及ぼさない性質。</p></li>
+<li><p><strong>物理的データ独立性（Physical Data Independence）</strong>
+内部スキーマの変更（例：インデックスや格納方式の変更）が概念スキーマに影響を及ぼさない性質。</p></li>
+</ul>
+<p><strong>備考</strong></p>
+<ul class="simple">
+<li><p>論理的独立性は物理的独立性より実現が困難。</p></li>
+<li><p>データ独立性の確保により、スキーマの階層的な保守が可能となる。</p></li>
+</ul>
 </section>
 </section>
 
@@ -363,23 +493,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../ml/index.html">
+          <a class="next-page" href="ermodel.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">machine learning</div>
+                <div class="title">実体関連モデル (Entity-Relationship Model)</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="mfcc.html">
+          <a class="prev-page" href="index.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">extract mfcc</div>
+                <div class="title">データベース</div>
                 
               </div>
             </a>
@@ -413,11 +543,24 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">mel generalized cepstrum</a><ul>
-<li><a class="reference internal" href="#id2">なにこれ</a></li>
-<li><a class="reference internal" href="#generalized-logarithmic-function">generalized logarithmic function</a></li>
-<li><a class="reference internal" href="#generalized-cepstrum">generalized cepstrum</a></li>
-<li><a class="reference internal" href="#id3">本編</a></li>
+<li><a class="reference internal" href="#">1. データベースの基礎</a><ul>
+<li><a class="reference internal" href="#data">1.1 データ（Data）</a></li>
+<li><a class="reference internal" href="#data-model">1.2 データモデル（Data Model）</a></li>
+<li><a class="reference internal" href="#database">1.3 データベース（Database）</a></li>
+<li><a class="reference internal" href="#dbms-database-management-system">1.4 データベース管理システム（DBMS: Database Management System）</a></li>
+<li><a class="reference internal" href="#dbs-database-system">1.5 データベースシステム（DBS: Database System）</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">2. スキーマとインスタンス</a><ul>
+<li><a class="reference internal" href="#schema">2.1 スキーマ（Schema）</a></li>
+<li><a class="reference internal" href="#instance">2.2 インスタンス（Instance）</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">3. 抽象化の階層</a><ul>
+<li><a class="reference internal" href="#external-level">3.1 外部レベル（External Level）</a></li>
+<li><a class="reference internal" href="#conceptual-level">3.2 概念レベル（Conceptual Level）</a></li>
+<li><a class="reference internal" href="#internal-level">3.3 内部レベル（Internal Level）</a></li>
+<li><a class="reference internal" href="#data-independence">3.4 データ独立性（Data Independence）</a></li>
 </ul>
 </li>
 </ul>
@@ -434,7 +577,5 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>

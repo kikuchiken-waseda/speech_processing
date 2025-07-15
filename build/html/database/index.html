@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="実体関連モデル (Entity-Relationship Model)" href="ermodel.html" /><link rel="prev" title="集合と位相" href="../a.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="1. データベースの基礎" href="fundamental.html" /><link rel="prev" title="集合と位相" href="../a.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
         <title>データベース - 音声信号処理のための備忘録 documentation</title>
@@ -179,7 +179,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -257,6 +257,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../a.html">集合と位相</a></li>
 <li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">データベース</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of データベース</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="fundamental.html">1. データベースの基礎</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamental.html#id2">2. スキーマとインスタンス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamental.html#id3">3. 抽象化の階層</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ermodel.html">実体関連モデル (Entity-Relationship Model)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rdmodel.html">リレーショナルデータモデル（Relational Data Model）</a></li>
 </ul>
@@ -295,7 +298,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
@@ -306,6 +309,26 @@
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="fundamental.html">1. データベースの基礎</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fundamental.html#data">1.1 データ（Data）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamental.html#data-model">1.2 データモデル（Data Model）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamental.html#database">1.3 データベース（Database）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamental.html#dbms-database-management-system">1.4 データベース管理システム（DBMS: Database Management System）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamental.html#dbs-database-system">1.5 データベースシステム（DBS: Database System）</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fundamental.html#id2">2. スキーマとインスタンス</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fundamental.html#schema">2.1 スキーマ（Schema）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamental.html#instance">2.2 インスタンス（Instance）</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fundamental.html#id3">3. 抽象化の階層</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fundamental.html#external-level">3.1 外部レベル（External Level）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamental.html#conceptual-level">3.2 概念レベル（Conceptual Level）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamental.html#internal-level">3.3 内部レベル（Internal Level）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamental.html#data-independence">3.4 データ独立性（Data Independence）</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ermodel.html">実体関連モデル (Entity-Relationship Model)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ermodel.html#id1">概要</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ermodel.html#entity">1. 実体（Entity）</a></li>
@@ -326,128 +349,6 @@
 </li>
 </ul>
 </div>
-<section id="id2">
-<h2>0. データとデータモデルとデータベース<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
-<section id="data">
-<h3>0.1 データ（Data）<a class="headerlink" href="#data" title="Link to this heading">¶</a></h3>
-<p><strong>定義</strong></p>
-<p>データとは、事実・事象・概念などを形式化した**記号列**であり、解釈主体にとって意味を持ちうる対象である。一般にデータは、構造（形式）と意味（セマンティクス）を伴う。</p>
-<ul class="simple">
-<li><p>単独では意味を持たない可能性があり、文脈やスキーマによって解釈される。</p></li>
-<li><p>データは記録・通信・処理の対象であり、情報処理の基本単位である。</p></li>
-</ul>
-<p>例：
-- <cite>42</cite>, <cite>‘Alice’</cite>, <cite>2024-01-01</cite> はいずれもデータであるが、構造と意味づけがなければ用途は限定される。</p>
-</section>
-<section id="data-model">
-<h3>0.2 データモデル（Data Model）<a class="headerlink" href="#data-model" title="Link to this heading">¶</a></h3>
-<p><strong>定義</strong></p>
-<p>データモデルとは、データの**構造・意味・制約・操作**を記述するための抽象的枠組みである。</p>
-<ul class="simple">
-<li><p>目的は、現実世界の情報を**コンピュータ上で表現・管理・操作可能な形式**で記述すること。</p></li>
-<li><p>モデルには以下が含まれる：</p>
-<ul>
-<li><p>構造（Structure）：データがどのように構成されるか</p></li>
-<li><p>意味（Semantics）：データが何を意味するか</p></li>
-<li><p>制約（Constraints）：データが満たすべき条件</p></li>
-<li><p>操作（Operations）：データに対する演算（例：検索、更新、削除）</p></li>
-</ul>
-</li>
-</ul>
-<p><strong>分類</strong></p>
-<ul class="simple">
-<li><p>リレーショナルモデル（Relational Model）</p></li>
-<li><p>階層モデル（Hierarchical Model）</p></li>
-<li><p>ネットワークモデル（Network Model）</p></li>
-<li><p>オブジェクト指向モデル（Object-oriented Model）</p></li>
-<li><p>ドキュメントモデル、グラフモデル、など</p></li>
-</ul>
-</section>
-<section id="database">
-<h3>0.3 データベース（Database）<a class="headerlink" href="#database" title="Link to this heading">¶</a></h3>
-<p><strong>定義</strong></p>
-<p>データベースとは、<a href="#id3"><span class="problematic" id="id4">**</span></a>あるデータモデル**に基づき、意味的整合性と永続性をもって組織化された**関連データの集合**である。</p>
-<ul class="simple">
-<li><p>一貫性、一意性、再利用性、共有性を備えることが要求される。</p></li>
-<li><p>データベースは通常、<a href="#id5"><span class="problematic" id="id6">**</span></a>スキーマ（構造）**と**インスタンス（内容）**の2層構造を持つ。</p></li>
-</ul>
-<p><strong>備考</strong></p>
-<ul class="simple">
-<li><p>データベースは静的なデータの集まりではなく、動的な操作（問合せ、更新）を伴う。</p></li>
-<li><p>データベース管理システム（DBMS）は、この集合を効率的かつ安全に管理するためのソフトウェアシステムである。</p></li>
-</ul>
-</section>
-<section id="dbms-database-management-system">
-<h3>0.4 データベース管理システム（DBMS: Database Management System）<a class="headerlink" href="#dbms-database-management-system" title="Link to this heading">¶</a></h3>
-<p><strong>定義</strong></p>
-<p>DBMS とは、データベースを構成・操作・保守・制御するための**ソフトウェアシステム**である。</p>
-<p><strong>機能的役割</strong></p>
-<p>DBMS は、次のような機能を提供する：</p>
-<ul class="simple">
-<li><p><strong>定義機能</strong>：スキーマやビューの定義</p></li>
-<li><p><strong>操作機能</strong>：データの検索（問合せ）、挿入、削除、更新</p></li>
-<li><p><strong>制御機能</strong>：
-- 整合性制約の保証
-- トランザクション管理（原子性・一貫性・独立性・永続性：ACID特性）
-- 同時実行制御
-- アクセス制御とセキュリティ
-- 障害回復（リカバリ）</p></li>
-</ul>
-<p><strong>備考</strong></p>
-<ul class="simple">
-<li><p>DBMS はデータ独立性（論理・物理の独立）を実現し、アプリケーションとデータの分離を促進する。</p></li>
-<li><p>代表的な DBMS：PostgreSQL, MySQL, Oracle Database, SQL Server など。</p></li>
-</ul>
-</section>
-<section id="dbs-database-system">
-<h3>0.5 データベースシステム（DBS: Database System）<a class="headerlink" href="#dbs-database-system" title="Link to this heading">¶</a></h3>
-<p><strong>定義</strong></p>
-<p>DBS とは、<strong>データベース（データ）**と**DBMS（ソフトウェア）</strong>、およびそれらを運用・活用するための**ユーザーやアプリケーション**を含めた**統合的なシステム全体**を指す。</p>
-<figure class="align-center" id="id12">
-<img alt="DBSの構成" src="database/dbs_structure.svg" />
-<figcaption>
-<p><span class="caption-text">データベースシステムの概念構成（DBS = データ + DBMS + 利用者）</span><a class="headerlink" href="#id12" title="Link to this image">¶</a></p>
-</figcaption>
-</figure>
-<p><strong>構成要素</strong></p>
-<ul class="simple">
-<li><p><strong>データ</strong>：意味的に統合された構造化データの集合</p></li>
-<li><p><strong>DBMS</strong>：操作・制御機能を提供するソフトウェア</p></li>
-<li><p><strong>アプリケーション</strong>：DBMS を利用する業務プログラム群</p></li>
-<li><p><strong>ユーザー</strong>：データにアクセスする主体（エンドユーザー、DB管理者など）</p></li>
-</ul>
-<p><strong>備考</strong></p>
-<ul class="simple">
-<li><p>DBS は技術的構成だけでなく、利用環境・役割・責任も含む情報システムの一部とみなされる。</p></li>
-<li><p>「DBMS ⊂ DBS」という包含関係が成立する。</p></li>
-</ul>
-</section>
-</section>
-<section id="id7">
-<h2>1. スキーマとインスタンス<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
-<section id="schema">
-<h3>1.1 スキーマ（Schema）<a class="headerlink" href="#schema" title="Link to this heading">¶</a></h3>
-<p><strong>定義</strong></p>
-<p>スキーマとは、データの構造を定義するメタ情報であり、対象とする世界におけるデータの種類、属性、型、関係性を記述する**設計仕様**である。</p>
-<ul class="simple">
-<li><p>データベースにおける「スキーマ」は、構造の青写真（blueprint）として機能する。</p></li>
-<li><p>スキーマは変更されにくく、<a href="#id8"><span class="problematic" id="id9">**</span></a>比較的静的**な構成要素である。</p></li>
-</ul>
-<p>例：
-- リレーショナルデータベースでは、各テーブルの名前、列名、列型、制約（キー制約など）からなる。</p>
-</section>
-<section id="instance">
-<h3>1.2 インスタンス（Instance）<a class="headerlink" href="#instance" title="Link to this heading">¶</a></h3>
-<p><strong>定義</strong></p>
-<p>インスタンスとは、定義されたスキーマに基づいて、<a href="#id10"><span class="problematic" id="id11">**</span></a>ある時点で実際に存在する具体的なデータの集合**である。</p>
-<ul class="simple">
-<li><p>スキーマが構造を定義するのに対し、インスタンスはその構造に従った**実体（具体値）**である。</p></li>
-<li><p>インスタンスは運用中に**頻繁に変化**し得る動的な要素である。</p></li>
-</ul>
-<p>例：
-- スキーマで定義された「学生」テーブルにおける、ある時点の登録済みの学生レコード。</p>
-</section>
-</section>
 </section>
 
         </article>
@@ -455,12 +356,12 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="ermodel.html">
+          <a class="next-page" href="fundamental.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">実体関連モデル (Entity-Relationship Model)</div>
+                <div class="title">1. データベースの基礎</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -493,39 +394,8 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">データベース</a><ul>
-<li><a class="reference internal" href="#id2">0. データとデータモデルとデータベース</a><ul>
-<li><a class="reference internal" href="#data">0.1 データ（Data）</a></li>
-<li><a class="reference internal" href="#data-model">0.2 データモデル（Data Model）</a></li>
-<li><a class="reference internal" href="#database">0.3 データベース（Database）</a></li>
-<li><a class="reference internal" href="#dbms-database-management-system">0.4 データベース管理システム（DBMS: Database Management System）</a></li>
-<li><a class="reference internal" href="#dbs-database-system">0.5 データベースシステム（DBS: Database System）</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id7">1. スキーマとインスタンス</a><ul>
-<li><a class="reference internal" href="#schema">1.1 スキーマ（Schema）</a></li>
-<li><a class="reference internal" href="#instance">1.2 インスタンス（Instance）</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
