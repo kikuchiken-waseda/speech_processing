@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="型無しラムダ計算（Untyped Lambda Calculus, ULC）" href="ulc.html" /><link rel="prev" title="リレーショナルデータモデル（Relational Data Model）" href="../database/rdmodel.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-        <title>&lt;no title&gt; - 音声信号処理のための備忘録 documentation</title>
+        <title>型理論 - データサイエンス近縁の理論ノート documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">音声信号処理のための備忘録  documentation</div></a>
+      <a href="../index.html"><div class="brand">データサイエンス近縁の理論ノート  documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -191,7 +191,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">音声信号処理のための備忘録  documentation</span>
+  <span class="sidebar-brand-text">データサイエンス近縁の理論ノート  documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -200,7 +200,7 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of 書きたいものまとめ</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../pachouli/symbol.html">前提となる数学知識や記号</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pachouli/acoustic_wave.html">音波</a></li>
@@ -264,6 +264,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../database/rdmodel.html">リレーショナルデータモデル（Relational Data Model）</a></li>
 </ul>
 </li>
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">型理論</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of 型理論</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ulc.html">型無しラムダ計算（Untyped Lambda Calculus, ULC）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stlc.html">型付きラムダ計算（Simply Typed Lambda Calculus, STLC）</a></li>
+</ul>
+</li>
 </ul>
 
 </div>
@@ -284,7 +289,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/modeling/dementional.rst.txt" title="View this page">
+  <a class="muted-link" href="../_sources/type_theory/index.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -304,19 +309,67 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          
+          <section id="id1">
+<h1>型理論<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">型理論</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulc.html">型無しラムダ計算（Untyped Lambda Calculus, ULC）</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ulc.html#id1">1. 定義と背景</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ulc.html#syntax">2. 構文（Syntax）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ulc.html#semantics">3. 意味論（Semantics）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ulc.html#id2">4. 自由変数と束縛変数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ulc.html#evaluation-strategy">5. 評価戦略（Evaluation Strategy）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ulc.html#expressiveness">6. 表現力（Expressiveness）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ulc.html#y">7. 再帰（Yコンビネータ）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ulc.html#id4">8. 性質</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ulc.html#id5">9. 応用と限界</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stlc.html">型付きラムダ計算（Simply Typed Lambda Calculus, STLC）</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stlc.html#id1">1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stlc.html#types">2. 型（Types）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stlc.html#terms">3. 項の構文（Terms）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stlc.html#context">4. 文脈（Context）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stlc.html#typing-rules">5. 型付け規則（Typing Rules）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stlc.html#operational-semantics">6. 評価規則（Operational Semantics）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stlc.html#type-safety">7. 型安全性（Type Safety）</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
         </article>
       </div>
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="ulc.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">型無しラムダ計算（Untyped Lambda Calculus, ULC）</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../database/rdmodel.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">リレーショナルデータモデル（Relational Data Model）</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2021, licrum
+                Copyright &#169; 2025, licrum
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -341,5 +394,7 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>

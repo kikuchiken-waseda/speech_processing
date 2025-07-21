@@ -17,8 +17,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "音声信号処理のための備忘録"
-copyright = "2021, licrum"
+project = "データサイエンス近縁の理論ノート"
+copyright = "2025, licrum"
 author = "licrum"
 
 

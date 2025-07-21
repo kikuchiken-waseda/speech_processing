@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 =============================================
-音声信号処理のための備忘録
+データサイエンス近縁の理論ノート
 =============================================
 
 .. toctree::
@@ -22,6 +22,7 @@
    ./control_engineering/index
    ./a
    ./database/index
+   ./type_theory/index
 
 
 こんなサイトが出来たら最高だわ

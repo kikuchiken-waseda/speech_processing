@@ -1,0 +1,544 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="型無しラムダ計算（Untyped Lambda Calculus, ULC）" href="ulc.html" />
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>型付きラムダ計算（Simply Typed Lambda Calculus, STLC） - データサイエンス近縁の理論ノート documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">データサイエンス近縁の理論ノート  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">データサイエンス近縁の理論ノート  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of 書きたいものまとめ</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/symbol.html">前提となる数学知識や記号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/acoustic_wave.html">音波</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/wave_equation.html">波動方程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/acoustic_feature/index.html">音響特徴量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/spectrum.html">スペクトラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/level.html">レベル表現</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/scale.html">聴覚尺度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/filter/index.html">フィルタ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/visualization.html">音声の可視化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/convolution.html">畳み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/complex.html">複素関数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/nbsphinx.html">nbsphinx使いやすいよって話</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/statistics.html">確率</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../paper/index.html">論文まとめ</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 論文まとめ</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../paper/an_overview.html">An Overview of Voice Conversion and its Challenges: From Statistical Modeling to Deep Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/vqmivc.html">VQMIVC: Vector Quantization and Mutual Information-Based Unsupervised Speech Representation Disentanglement for One-shot Voice Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/autovc.html">AUTOVC: Zero-Shot Voice Style Transfer with Only Autoencoder Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/sscr.html">One-shot Voice Conversion by Separating Speaker and Content Representations with Instance Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/rozs.html">Training Robust Zero-Shot Voice Conversion Models with Self-supervised Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/vqvae.html">Neural Discrete Representation Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/gakkai/index.html">音響学会</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../implementation/index.html">実装</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of 実装</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../implementation/test.html">test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../implementation/test_torch.html">pytorchaudioを試す</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../implementation/cepstrum.html">cepstrum解析実装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../implementation/cepstrum.html#実際のところ">実際のところ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../logic/index.html">論理学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculus/index.html">微分積分学</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../processing/index.html">信号処理</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of 信号処理</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../processing/fourier.html">音声信号処理に向けたフーリエ変換の学び</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../processing/laplace.html">ラプラス変換</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../speech_analysis/index.html">音響解析</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of 音響解析</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../speech_analysis/cepstrum.html">ケプストラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../speech_analysis/mfcc.html">extract mfcc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../speech_analysis/mgcs.html">mel generalized cepstrum</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ml/index.html">machine learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of machine learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ml/attention.html">What is “Attention”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml/gan.html">Generative adversarial network</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../control_engineering/index.html">制御工学</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of 制御工学</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../a.html">集合と位相</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../database/index.html">データベース</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of データベース</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/fundamental.html">1. データベースの基礎</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/fundamental.html#id2">2. スキーマとインスタンス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/fundamental.html#id3">3. 抽象化の階層</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/ermodel.html">実体関連モデル (Entity-Relationship Model)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/rdmodel.html">リレーショナルデータモデル（Relational Data Model）</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">型理論</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of 型理論</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ulc.html">型無しラムダ計算（Untyped Lambda Calculus, ULC）</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">型付きラムダ計算（Simply Typed Lambda Calculus, STLC）</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/type_theory/stlc.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="simply-typed-lambda-calculus-stlc">
+<h1>型付きラムダ計算（Simply Typed Lambda Calculus, STLC）<a class="headerlink" href="#simply-typed-lambda-calculus-stlc" title="Link to this heading">¶</a></h1>
+<section id="id1">
+<h2>1. 概要<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<p>型付きラムダ計算は、型無しラムダ計算に「型」の概念を導入した体系である。
+主な目的は、 <strong>意味のない関数適用（例：数値に真偽値を適用）を構文レベルで排除</strong> し、 <strong>プログラムの安全性を保証</strong> することにある。</p>
+<p>最も基本的な型付きラムダ計算は、 <strong>単純型付きラムダ計算（Simply Typed Lambda Calculus, STLC）</strong> と呼ばれ、次の要素から構成される。</p>
+</section>
+<section id="types">
+<h2>2. 型（Types）<a class="headerlink" href="#types" title="Link to this heading">¶</a></h2>
+<p>型 <span class="math notranslate nohighlight">\(T\)</span> は、以下のように定義される。</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[T ::= \tau \mid T \rightarrow T\]</div>
+</div>
+<p>ここで:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\tau\)</span> は基本型（例：<span class="math notranslate nohighlight">\(\text{Bool}\)</span>, <span class="math notranslate nohighlight">\(\text{Nat}\)</span> など）</p></li>
+<li><p><span class="math notranslate nohighlight">\(T \rightarrow T\)</span> は関数型（引数が <span class="math notranslate nohighlight">\(T_1\)</span>、戻り値が <span class="math notranslate nohighlight">\(T_2\)</span>）</p></li>
+</ul>
+</section>
+<section id="terms">
+<h2>3. 項の構文（Terms）<a class="headerlink" href="#terms" title="Link to this heading">¶</a></h2>
+<p>項 <span class="math notranslate nohighlight">\(t\)</span> は次のように構成される。</p>
+<div class="highlight-bnf notranslate"><div class="highlight"><pre><span></span>t <span class="o">::=</span> x
+    | \lambda x:T. t
+    | t t
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span> は変数</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda x:T. t\)</span> は、型注釈付きのラムダ抽象</p></li>
+<li><p><span class="math notranslate nohighlight">\(t_1 \; t_2\)</span> は、関数適用</p></li>
+</ul>
+</section>
+<section id="context">
+<h2>4. 文脈（Context）<a class="headerlink" href="#context" title="Link to this heading">¶</a></h2>
+<p>文脈（または型環境） <span class="math notranslate nohighlight">\(\Gamma\)</span> は、変数に型を対応させる有限写像である。</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\Gamma ::= \emptyset \mid \Gamma, x : T\]</div>
+</div>
+<p>この <span class="math notranslate nohighlight">\(\Gamma\)</span> は、「どの変数がどの型を持つか」を記録する前提条件であり、
+すべての型付け判断 <span class="math notranslate nohighlight">\(\Gamma \vdash t : T\)</span> において必要となる。</p>
+<p>型無しラムダ計算では文脈は不要だったが、型付きでは変数使用に明確な型を与える必要があるため、文脈が導入される。</p>
+</section>
+<section id="typing-rules">
+<h2>5. 型付け規則（Typing Rules）<a class="headerlink" href="#typing-rules" title="Link to this heading">¶</a></h2>
+<p>型付け判断 <span class="math notranslate nohighlight">\(\Gamma \vdash t : T\)</span> は、「文脈 <span class="math notranslate nohighlight">\(\Gamma\)</span> の下で項 <span class="math notranslate nohighlight">\(t\)</span> が型 <span class="math notranslate nohighlight">\(T\)</span> を持つ」という意味である。
+この判断は以下の導出規則によって定義される。</p>
+<ul>
+<li><p><strong>変数規則（Var）</strong></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\frac{x : T \in \Gamma}{\Gamma \vdash x : T}\]</div>
+</div>
+</li>
+<li><p><strong>抽象規則（Abs）</strong></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\frac{\Gamma, x : T_1 \vdash t : T_2}{\Gamma \vdash \lambda x:T_1. t : T_1 \rightarrow T_2}\]</div>
+</div>
+</li>
+<li><p><strong>適用規則（App）</strong></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\frac{\Gamma \vdash t_1 : T_1 \rightarrow T_2 \quad \Gamma \vdash t_2 : T_1}{\Gamma \vdash t_1 \; t_2 : T_2}\]</div>
+</div>
+</li>
+</ul>
+</section>
+<section id="operational-semantics">
+<h2>6. 評価規則（Operational Semantics）<a class="headerlink" href="#operational-semantics" title="Link to this heading">¶</a></h2>
+<p>評価は型無しラムダ計算と同様、 <strong>β簡約</strong> によって定義される。</p>
+<ul>
+<li><p><strong>β簡約</strong></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[(\lambda x:T. t_1) \; t_2 \rightarrow t_1[x := t_2]\]</div>
+</div>
+</li>
+</ul>
+<p>ここで <span class="math notranslate nohighlight">\([x := t_2]\)</span> は、構文的代入（substitution）を意味する。</p>
+<p>評価戦略としては、以下の2つが代表的である：</p>
+<ul class="simple">
+<li><p><strong>正規順（call-by-name）</strong>：外側から簡約し、必要なときに引数を評価する</p></li>
+<li><p><strong>値呼び（call-by-value）</strong>：引数を先に評価してから関数に適用する</p></li>
+</ul>
+</section>
+<section id="type-safety">
+<h2>7. 型安全性（Type Safety）<a class="headerlink" href="#type-safety" title="Link to this heading">¶</a></h2>
+<p>型付きラムダ計算における中心的性質の一つが <strong>型安全性（type safety）</strong> である。</p>
+<p>これは直感的に言えば、「<strong>型が正しく付けられたプログラムは、実行中に型エラーを起こさない</strong>」という性質であり、
+形式的には <strong>進行（progress）</strong> と <strong>保存（preservation）</strong> の2つの補題により定式化される。</p>
+<section id="id2">
+<h3>7.1 型安全性の構成要素<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<p>型安全性は、以下の2つの命題の組として定義される：</p>
+<ul>
+<li><p><strong>進行（Progress）補題</strong></p>
+<p>実行中に行き詰まらないことを保証する。</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\text{If } \emptyset \vdash t : T, \text{ then either } t \text{ is a value, or there exists } t' \text{ such that } t \rightarrow t'\]</div>
+</div>
+</li>
+<li><p><strong>保存（Preservation）補題</strong></p>
+<p>評価によって型が変わらないことを保証する。</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\text{If } \Gamma \vdash t : T \text{ and } t \rightarrow t', \text{ then } \Gamma \vdash t' : T\]</div>
+</div>
+</li>
+</ul>
+<p>この2つを合わせて、「型が正しければ、評価によって型エラーや未定義状態には到達しない」ことを意味する。</p>
+</section>
+<section id="id3">
+<h3>7.2 証明の構造（スケッチ）<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>進行</strong> は、型付け済みの項 <span class="math notranslate nohighlight">\(t\)</span> が <strong>値（value）であるか</strong> 、あるいは <strong>簡約可能（stepが存在）</strong> であることを示す。
+証明は <span class="math notranslate nohighlight">\(t\)</span> の構文に対する帰納法で行われる。</p></li>
+<li><p><strong>保存</strong> は、<span class="math notranslate nohighlight">\(t \rightarrow t'\)</span> の評価ステップに対し、<span class="math notranslate nohighlight">\(\Gamma \vdash t : T\)</span> ならば <span class="math notranslate nohighlight">\(\Gamma \vdash t' : T\)</span> が成立することを示す。
+証明は評価規則（β簡約など）に対する帰納法と、型付け規則に対する帰納法の組み合わせで行う。</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>7.3 例：型安全でないコードの排除<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<p>型無しラムダ計算では、以下のような項も構文的に正しい：</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[(\lambda x. x + \text{true}) \; 5\]</div>
+</div>
+<p>この項は、<span class="math notranslate nohighlight">\(x\)</span> に数値が代入された後、<span class="math notranslate nohighlight">\(x + \text{true}\)</span> のような意味的に不正な式を評価しようとする。
+しかし、型付きラムダ計算では：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(+\)</span> は <span class="math notranslate nohighlight">\(\text{Nat} \rightarrow \text{Nat} \rightarrow \text{Nat}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{true}\)</span> は <span class="math notranslate nohighlight">\(\text{Bool}\)</span></p></li>
+</ul>
+<p>であるため、型付け段階で型不一致と判断され、<strong>文法的に拒否される</strong>。</p>
+</section>
+<section id="id5">
+<h3>7.4 意義と位置づけ<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<p>型安全性は、型付きラムダ計算のもっとも基本的な健全性条件であり：</p>
+<ul class="simple">
+<li><p><strong>プログラム実行時にエラーを起こさない保証</strong></p></li>
+<li><p><strong>型システムの設計が妥当であることの形式的根拠</strong></p></li>
+<li><p><strong>証明支援系やプログラミング言語実装の理論的基盤</strong></p></li>
+</ul>
+<p>を与える。これにより、ラムダ計算は単なる理論ではなく、 <strong>安全な計算体系</strong> としてソフトウェアの形式的基盤を提供することになる。</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="ulc.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">型無しラムダ計算（Untyped Lambda Calculus, ULC）</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, licrum
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">型付きラムダ計算（Simply Typed Lambda Calculus, STLC）</a><ul>
+<li><a class="reference internal" href="#id1">1. 概要</a></li>
+<li><a class="reference internal" href="#types">2. 型（Types）</a></li>
+<li><a class="reference internal" href="#terms">3. 項の構文（Terms）</a></li>
+<li><a class="reference internal" href="#context">4. 文脈（Context）</a></li>
+<li><a class="reference internal" href="#typing-rules">5. 型付け規則（Typing Rules）</a></li>
+<li><a class="reference internal" href="#operational-semantics">6. 評価規則（Operational Semantics）</a></li>
+<li><a class="reference internal" href="#type-safety">7. 型安全性（Type Safety）</a><ul>
+<li><a class="reference internal" href="#id2">7.1 型安全性の構成要素</a></li>
+<li><a class="reference internal" href="#id3">7.2 証明の構造（スケッチ）</a></li>
+<li><a class="reference internal" href="#id4">7.3 例：型安全でないコードの排除</a></li>
+<li><a class="reference internal" href="#id5">7.4 意義と位置づけ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>
