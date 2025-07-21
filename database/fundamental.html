@@ -1,0 +1,586 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="実体関連モデル (Entity-Relationship Model)" href="ermodel.html" /><link rel="prev" title="データベース" href="index.html" />
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>1. データベースの基礎 - データサイエンス近縁の理論ノート documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">データサイエンス近縁の理論ノート  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">データサイエンス近縁の理論ノート  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of 書きたいものまとめ</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/symbol.html">前提となる数学知識や記号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/acoustic_wave.html">音波</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/wave_equation.html">波動方程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/acoustic_feature/index.html">音響特徴量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/spectrum.html">スペクトラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/level.html">レベル表現</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/scale.html">聴覚尺度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/filter/index.html">フィルタ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/visualization.html">音声の可視化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/convolution.html">畳み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/complex.html">複素関数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/nbsphinx.html">nbsphinx使いやすいよって話</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/statistics.html">確率</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../paper/index.html">論文まとめ</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 論文まとめ</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../paper/an_overview.html">An Overview of Voice Conversion and its Challenges: From Statistical Modeling to Deep Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/vqmivc.html">VQMIVC: Vector Quantization and Mutual Information-Based Unsupervised Speech Representation Disentanglement for One-shot Voice Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/autovc.html">AUTOVC: Zero-Shot Voice Style Transfer with Only Autoencoder Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/sscr.html">One-shot Voice Conversion by Separating Speaker and Content Representations with Instance Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/rozs.html">Training Robust Zero-Shot Voice Conversion Models with Self-supervised Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/vqvae.html">Neural Discrete Representation Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/gakkai/index.html">音響学会</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../implementation/index.html">実装</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of 実装</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../implementation/test.html">test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../implementation/test_torch.html">pytorchaudioを試す</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../implementation/cepstrum.html">cepstrum解析実装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../implementation/cepstrum.html#実際のところ">実際のところ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../logic/index.html">論理学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculus/index.html">微分積分学</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../processing/index.html">信号処理</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of 信号処理</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../processing/fourier.html">音声信号処理に向けたフーリエ変換の学び</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../processing/laplace.html">ラプラス変換</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../speech_analysis/index.html">音響解析</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of 音響解析</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../speech_analysis/cepstrum.html">ケプストラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../speech_analysis/mfcc.html">extract mfcc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../speech_analysis/mgcs.html">mel generalized cepstrum</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ml/index.html">machine learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of machine learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ml/attention.html">What is “Attention”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml/gan.html">Generative adversarial network</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../control_engineering/index.html">制御工学</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of 制御工学</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../a.html">集合と位相</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">データベース</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of データベース</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">1. データベースの基礎</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2. スキーマとインスタンス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">3. 抽象化の階層</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ermodel.html">実体関連モデル (Entity-Relationship Model)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rdmodel.html">リレーショナルデータモデル（Relational Data Model）</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../type_theory/index.html">型理論</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of 型理論</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../type_theory/ulc.html">型無しラムダ計算（Untyped Lambda Calculus, ULC）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../type_theory/stlc.html">型付きラムダ計算（Simply Typed Lambda Calculus, STLC）</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/database/fundamental.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="id1">
+<h1>1. データベースの基礎<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<section id="data">
+<h2>1.1 データ（Data）<a class="headerlink" href="#data" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>データとは、事実・事象・概念などを形式化した**記号列**であり、解釈主体にとって意味を持ちうる対象である。一般にデータは、構造（形式）と意味（セマンティクス）を伴う。</p>
+<ul class="simple">
+<li><p>単独では意味を持たない可能性があり、文脈やスキーマによって解釈される。</p></li>
+<li><p>データは記録・通信・処理の対象であり、情報処理の基本単位である。</p></li>
+</ul>
+<p>例：
+- <cite>42</cite>, <cite>‘Alice’</cite>, <cite>2024-01-01</cite> はいずれもデータであるが、構造と意味づけがなければ用途は限定される。</p>
+</section>
+<section id="data-model">
+<h2>1.2 データモデル（Data Model）<a class="headerlink" href="#data-model" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>データモデルとは、データの**構造・意味・制約・操作**を記述するための抽象的枠組みである。</p>
+<ul class="simple">
+<li><p>目的は、現実世界の情報を**コンピュータ上で表現・管理・操作可能な形式**で記述すること。</p></li>
+<li><p>モデルには以下が含まれる：</p>
+<ul>
+<li><p>構造（Structure）：データがどのように構成されるか</p></li>
+<li><p>意味（Semantics）：データが何を意味するか</p></li>
+<li><p>制約（Constraints）：データが満たすべき条件</p></li>
+<li><p>操作（Operations）：データに対する演算（例：検索、更新、削除）</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>分類</strong></p>
+<ul class="simple">
+<li><p>リレーショナルモデル（Relational Model）</p></li>
+<li><p>階層モデル（Hierarchical Model）</p></li>
+<li><p>ネットワークモデル（Network Model）</p></li>
+<li><p>オブジェクト指向モデル（Object-oriented Model）</p></li>
+<li><p>ドキュメントモデル、グラフモデル、など</p></li>
+</ul>
+</section>
+<section id="database">
+<h2>1.3 データベース（Database）<a class="headerlink" href="#database" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>データベースとは、 <strong>あるデータモデル</strong> に基づき、意味的整合性と永続性をもって組織化された <strong>関連データの集合</strong> である。</p>
+<ul class="simple">
+<li><p>一貫性、一意性、再利用性、共有性を備えることが要求される。</p></li>
+<li><p>データベースは通常、 <strong>スキーマ（構造）</strong> と <strong>インスタンス（内容）</strong> の2層構造を持つ。</p></li>
+</ul>
+<p><strong>備考</strong></p>
+<ul class="simple">
+<li><p>データベースは静的なデータの集まりではなく、動的な操作（問合せ、更新）を伴う。</p></li>
+<li><p>データベース管理システム（DBMS）は、この集合を効率的かつ安全に管理するためのソフトウェアシステムである。</p></li>
+</ul>
+</section>
+<section id="dbms-database-management-system">
+<h2>1.4 データベース管理システム（DBMS: Database Management System）<a class="headerlink" href="#dbms-database-management-system" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>DBMS とは、データベースを構成・操作・保守・制御するための <strong>ソフトウェアシステム</strong> である。</p>
+<p><strong>機能的役割</strong></p>
+<p>DBMS は、次のような機能を提供する：</p>
+<ul class="simple">
+<li><p><strong>定義機能</strong>：スキーマやビューの定義</p></li>
+<li><p><strong>操作機能</strong>：データの検索（問合せ）、挿入、削除、更新</p></li>
+<li><p><strong>制御機能</strong>：
+- 整合性制約の保証
+- トランザクション管理（原子性・一貫性・独立性・永続性：ACID特性）
+- 同時実行制御
+- アクセス制御とセキュリティ
+- 障害回復（リカバリ）</p></li>
+</ul>
+<p><strong>備考</strong></p>
+<ul class="simple">
+<li><p>DBMS はデータ独立性（論理・物理の独立）を実現し、アプリケーションとデータの分離を促進する。</p></li>
+<li><p>代表的な DBMS：PostgreSQL, MySQL, Oracle Database, SQL Server など。</p></li>
+</ul>
+</section>
+<section id="dbs-database-system">
+<h2>1.5 データベースシステム（DBS: Database System）<a class="headerlink" href="#dbs-database-system" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>DBS とは、 <strong>データベース（データ）</strong> と <strong>DBMS（ソフトウェア）</strong> 、およびそれらを運用・活用するための <strong>ユーザーやアプリケーション</strong> を含めた <strong>統合的なシステム全体</strong> を指す。</p>
+<figure class="align-center" id="id4">
+<img alt="DBSの構成" src="database/dbs_structure.svg" />
+<figcaption>
+<p><span class="caption-text">データベースシステムの概念構成（DBS = データ + DBMS + 利用者）</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>構成要素</strong></p>
+<ul class="simple">
+<li><p><strong>データ</strong>：意味的に統合された構造化データの集合</p></li>
+<li><p><strong>DBMS</strong>：操作・制御機能を提供するソフトウェア</p></li>
+<li><p><strong>アプリケーション</strong>：DBMS を利用する業務プログラム群</p></li>
+<li><p><strong>ユーザー</strong>：データにアクセスする主体（エンドユーザー、DB管理者など）</p></li>
+</ul>
+<p><strong>備考</strong></p>
+<ul class="simple">
+<li><p>DBS は技術的構成だけでなく、利用環境・役割・責任も含む情報システムの一部とみなされる。</p></li>
+<li><p>「DBMS ⊂ DBS」という包含関係が成立する。</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h1>2. スキーマとインスタンス<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h1>
+<section id="schema">
+<h2>2.1 スキーマ（Schema）<a class="headerlink" href="#schema" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>スキーマとは、データの構造を定義するメタ情報であり、対象とする世界におけるデータの種類、属性、型、関係性を記述する <strong>設計仕様</strong> である。</p>
+<ul class="simple">
+<li><p>データベースにおける「スキーマ」は、構造の青写真（blueprint）として機能する。</p></li>
+<li><p>スキーマは変更されにくく、 <strong>比較的静的</strong> な構成要素である。</p></li>
+</ul>
+<p>例：
+- リレーショナルデータベースでは、各テーブルの名前、列名、列型、制約（キー制約など）からなる。</p>
+</section>
+<section id="instance">
+<h2>2.2 インスタンス（Instance）<a class="headerlink" href="#instance" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>インスタンスとは、定義されたスキーマに基づいて、 <strong>ある時点で実際に存在する具体的なデータの集合</strong> である。</p>
+<ul class="simple">
+<li><p>スキーマが構造を定義するのに対し、インスタンスはその構造に従った <strong>実体（具体値）</strong> である。</p></li>
+<li><p>インスタンスは運用中に <strong>頻繁に変化</strong> し得る動的な要素である。</p></li>
+</ul>
+<p>例：
+- スキーマで定義された「学生」テーブルにおける、ある時点の登録済みの学生レコード。</p>
+<p><strong>補足</strong>
+スキーマはインスタンスの構造や制約を定義する、高次のデータと捉えることもできる。
+このようなデータを <strong>メタデータ（Metadata）</strong> と呼ぶ。</p>
+</section>
+</section>
+<section id="id3">
+<h1>3. 抽象化の階層<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h1>
+<p>データベースシステムは、データの利用者と物理的格納構造のあいだに抽象化の階層を導入することで、柔軟な設計と保守を実現している。これは <strong>3層スキーマアーキテクチャ</strong> として定式化されており、以下の3レベルから構成される：</p>
+<ul class="simple">
+<li><p><strong>外部レベル（External Level）</strong></p></li>
+<li><p><strong>概念レベル（Conceptual Level）</strong></p></li>
+<li><p><strong>内部レベル（Internal Level）</strong></p></li>
+</ul>
+<p>この分離により、データの定義と利用がそれぞれ独立して設計・変更できるようになる。</p>
+<section id="external-level">
+<h2>3.1 外部レベル（External Level）<a class="headerlink" href="#external-level" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>利用者やアプリケーションがデータベースを参照・操作する際に用いる**論理的ビューの集合**である。</p>
+<ul class="simple">
+<li><p>各ユーザーに対し、関心のある部分構造のみを提供する。</p></li>
+<li><p>外部レベルは1つではなく、複数存在することが可能。</p></li>
+</ul>
+<p><strong>外部スキーマ（External Schema）</strong></p>
+<p>外部レベルに定義される個別の論理ビューのスキーマ。</p>
+</section>
+<section id="conceptual-level">
+<h2>3.2 概念レベル（Conceptual Level）<a class="headerlink" href="#conceptual-level" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>データベース全体の**論理的構造**を一貫して定義するレベル。</p>
+<ul class="simple">
+<li><p>エンティティ、属性、関係、制約などがこのレベルで表現される。</p></li>
+<li><p>すべての外部スキーマは、この概念スキーマの部分集合でなければならない。</p></li>
+</ul>
+<p><strong>概念スキーマ（Conceptual Schema）</strong></p>
+<p>全体の整合的なデータ構造・意味・制約を記述する中心的スキーマ。</p>
+</section>
+<section id="internal-level">
+<h2>3.3 内部レベル（Internal Level）<a class="headerlink" href="#internal-level" title="Link to this heading">¶</a></h2>
+<p><strong>定義</strong></p>
+<p>データの**物理的格納構造**とアクセスパスを定義するレベル。</p>
+<ul class="simple">
+<li><p>ストレージのフォーマット、インデックス、ファイル構造などが含まれる。</p></li>
+<li><p>利用者からは直接参照されない。</p></li>
+</ul>
+<p><strong>内部スキーマ（Internal Schema）</strong></p>
+<p>実際のデータ格納方式を記述するスキーマ。</p>
+</section>
+<section id="data-independence">
+<h2>3.4 データ独立性（Data Independence）<a class="headerlink" href="#data-independence" title="Link to this heading">¶</a></h2>
+<p>3層構造の意義は、下位層の変更が上位層に影響しないという**データ独立性**の確保にある。2種類の独立性が定義される：</p>
+<ul class="simple">
+<li><p><strong>論理的データ独立性（Logical Data Independence）</strong>
+概念スキーマの変更（例：属性の追加）が外部スキーマに影響を及ぼさない性質。</p></li>
+<li><p><strong>物理的データ独立性（Physical Data Independence）</strong>
+内部スキーマの変更（例：インデックスや格納方式の変更）が概念スキーマに影響を及ぼさない性質。</p></li>
+</ul>
+<p><strong>備考</strong></p>
+<ul class="simple">
+<li><p>論理的独立性は物理的独立性より実現が困難。</p></li>
+<li><p>データ独立性の確保により、スキーマの階層的な保守が可能となる。</p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="ermodel.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">実体関連モデル (Entity-Relationship Model)</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">データベース</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, licrum
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">1. データベースの基礎</a><ul>
+<li><a class="reference internal" href="#data">1.1 データ（Data）</a></li>
+<li><a class="reference internal" href="#data-model">1.2 データモデル（Data Model）</a></li>
+<li><a class="reference internal" href="#database">1.3 データベース（Database）</a></li>
+<li><a class="reference internal" href="#dbms-database-management-system">1.4 データベース管理システム（DBMS: Database Management System）</a></li>
+<li><a class="reference internal" href="#dbs-database-system">1.5 データベースシステム（DBS: Database System）</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">2. スキーマとインスタンス</a><ul>
+<li><a class="reference internal" href="#schema">2.1 スキーマ（Schema）</a></li>
+<li><a class="reference internal" href="#instance">2.2 インスタンス（Instance）</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">3. 抽象化の階層</a><ul>
+<li><a class="reference internal" href="#external-level">3.1 外部レベル（External Level）</a></li>
+<li><a class="reference internal" href="#conceptual-level">3.2 概念レベル（Conceptual Level）</a></li>
+<li><a class="reference internal" href="#internal-level">3.3 内部レベル（Internal Level）</a></li>
+<li><a class="reference internal" href="#data-independence">3.4 データ独立性（Data Independence）</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>

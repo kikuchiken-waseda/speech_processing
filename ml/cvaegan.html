@@ -1,0 +1,539 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" />
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>CVAE-GAN - データサイエンス近縁の理論ノート documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">データサイエンス近縁の理論ノート  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">データサイエンス近縁の理論ノート  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pachouli/index.html">書きたいものまとめ</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of 書きたいものまとめ</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/symbol.html">前提となる数学知識や記号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/acoustic_wave.html">音波</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/wave_equation.html">波動方程式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/acoustic_feature/index.html">音響特徴量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/spectrum.html">スペクトラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/level.html">レベル表現</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/scale.html">聴覚尺度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/filter/index.html">フィルタ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/visualization.html">音声の可視化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/convolution.html">畳み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/complex.html">複素関数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/nbsphinx.html">nbsphinx使いやすいよって話</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pachouli/statistics.html">確率</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../paper/index.html">論文まとめ</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 論文まとめ</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../paper/an_overview.html">An Overview of Voice Conversion and its Challenges: From Statistical Modeling to Deep Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/vqmivc.html">VQMIVC: Vector Quantization and Mutual Information-Based Unsupervised Speech Representation Disentanglement for One-shot Voice Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/autovc.html">AUTOVC: Zero-Shot Voice Style Transfer with Only Autoencoder Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/sscr.html">One-shot Voice Conversion by Separating Speaker and Content Representations with Instance Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/rozs.html">Training Robust Zero-Shot Voice Conversion Models with Self-supervised Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/vqvae.html">Neural Discrete Representation Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../paper/gakkai/index.html">音響学会</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../implementation/index.html">実装</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of 実装</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../implementation/test.html">test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../implementation/test_torch.html">pytorchaudioを試す</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../implementation/cepstrum.html">cepstrum解析実装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../implementation/cepstrum.html#実際のところ">実際のところ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../logic/index.html">論理学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calculus/index.html">微分積分学</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../processing/index.html">信号処理</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of 信号処理</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../processing/fourier.html">音声信号処理に向けたフーリエ変換の学び</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../processing/laplace.html">ラプラス変換</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../speech_analysis/index.html">音響解析</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of 音響解析</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../speech_analysis/cepstrum.html">ケプストラム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../speech_analysis/mfcc.html">extract mfcc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../speech_analysis/mgcs.html">mel generalized cepstrum</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">machine learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of machine learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="attention.html">What is “Attention”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gan.html">Generative adversarial network</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../control_engineering/index.html">制御工学</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of 制御工学</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../a.html">集合と位相</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../database/index.html">データベース</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of データベース</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/fundamental.html">1. データベースの基礎</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/fundamental.html#id2">2. スキーマとインスタンス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/fundamental.html#id3">3. 抽象化の階層</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/ermodel.html">実体関連モデル (Entity-Relationship Model)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/rdmodel.html">リレーショナルデータモデル（Relational Data Model）</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../type_theory/index.html">型理論</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of 型理論</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../type_theory/ulc.html">型無しラムダ計算（Untyped Lambda Calculus, ULC）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../type_theory/stlc.html">型付きラムダ計算（Simply Typed Lambda Calculus, STLC）</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/ml/cvaegan.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="cvae-gan">
+<h1>CVAE-GAN<a class="headerlink" href="#cvae-gan" title="Link to this heading">¶</a></h1>
+<p><a class="reference external" href="https://arxiv.org/pdf/1703.10155.pdf">https://arxiv.org/pdf/1703.10155.pdf</a></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>生成モデルで高品質かつ汎用性の高いものを作りたい</p>
+</section>
+<section id="related-work">
+<h2>Related work<a class="headerlink" href="#related-work" title="Link to this heading">¶</a></h2>
+<p>生成モデルについて、昔ながらの生成手法と勉強会で私が説明した3つの手法を紹介している。</p>
+<p><a class="reference internal" href="generativemodel.html"><span class="doc">生成モデル</span></a></p>
+<img alt="https://tips-memo.com/wp-content/uploads/2019/07/VAE_1_modify.png" src="https://tips-memo.com/wp-content/uploads/2019/07/VAE_1_modify.png" />
+<img alt="data:image/png;base64,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" src="data:image/png;base64,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" />
+</section>
+<section id="formulation-of-cvae-gan">
+<h2>Formulation of CVAE-GAN<a class="headerlink" href="#formulation-of-cvae-gan" title="Link to this heading">¶</a></h2>
+<p>この手法は4つのネットワークに分けられている。</p>
+<ol class="arabic simple">
+<li><p>Encoder network <span class="math notranslate nohighlight">\(E\)</span></p></li>
+<li><p>Generative network <span class="math notranslate nohighlight">\(G\)</span></p></li>
+<li><p>Discriminative network <span class="math notranslate nohighlight">\(D\)</span></p></li>
+<li><p>Classification network <span class="math notranslate nohighlight">\(C\)</span></p></li>
+</ol>
+<p>関数 <span class="math notranslate nohighlight">\(E,G\)</span> はCVAEのものと同じである。</p>
+<p>同様に関数 <span class="math notranslate nohighlight">\(G,D\)</span> はGANの枠組みと同じである。</p>
+<p>関数 <span class="math notranslate nohighlight">\(C\)</span> は事後確率 <span class="math notranslate nohighlight">\(p(\mathbf{c}|\mathbf{x})\)</span> を測るものである。</p>
+<p>しかし、ナイーブにVAEとGANを組み合わせただけでは不十分である。</p>
+<p>GANの学習においては関数 <span class="math notranslate nohighlight">\(G\)</span> で勾配の消失や不安定性の問題に悩まされることがわかっている。</p>
+<p>よって <span class="math notranslate nohighlight">\(E,D,C\)</span> の学習のみ、もとのVAE、GANと同じで、 <span class="math notranslate nohighlight">\(G\)</span> の新しい(mean feature objective)を提案し安定性を向上させることにした。この手法を使ったとしてもモード崩壊のリスクは存在する。</p>
+<p>そこで、<span class="math notranslate nohighlight">\(E,G\)</span> で実サンプル <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> から合成されたサンプル <span class="math notranslate nohighlight">\(\mathbf{x'}\)</span> へのマッピングを求める。(再合成誤差のことを言ってる?)</p>
+<p>By using the pixel-wise <span class="math notranslate nohighlight">\(l2\)</span> loss and pair-wise feature matching(これなに?), the generative model is enforced to emit diverse samples and generate structure-preserving samples.</p>
+<p>以下のセクションでは、まず、平均特徴マッチングに基づくGANの手法を説明する（セクション3.1）。</p>
+<p>次に、平均特徴マッチングが条件付き画像生成タスクにも利用できることを示す（セクション3.2）。</p>
+<p>その後、エンコーダネットワークを追加したペアワイズ特徴マッチングを紹介する（セクション3.3）。</p>
+<p>最後に 提案手法の目的を分析し、学習パイプラインにおける実装の詳細を示す。を分析し、学習パイプラインにおける実装の詳細を示す（セクション 3.4）。</p>
+<section id="mean-feature-matching-based-gan">
+<h3>Mean feature matching based GAN<a class="headerlink" href="#mean-feature-matching-based-gan" title="Link to this heading">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(G,D\)</span> はmin-maxゲームで計算される。</p>
+<p>この論文においてはGANの損失を2つに分けて書いている。</p>
+<p>the network <span class="math notranslate nohighlight">\(D\)</span> tries to minimize the loss function</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_D =  - \mathbb{E}_{p_r(\mathbf{x})}[\log D(\mathbf{x})] - \mathbb{E}_{p_z(\mathbf{z})}[\log (1 - D(G(\mathbf{z})))]\]</div>
+</div>
+<p>while network <span class="math notranslate nohighlight">\(G\)</span> tries minimize</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\mathcal{L}'_{GD} =  -\mathbb{E}_{p_z(\mathbf{z})}[\log (1 - D(G(\mathbf{z})))]\]</div>
+</div>
+<p>こっからモード崩壊が起こる理由の説明があるが、難しいので割愛(卒論にはまとめるべき)。
+ソフトマックス損失を使うと勾配がなくなる的な感じ</p>
+<p>この問題に対処するため、生成器に(a mean feature matching objective)を用いることを提案する。</p>
+<p>The objective requires the center of the features of the synthesized samples to match the center of the features of the real samples.(特徴のcenterとは?)
+(ミニバッチごとの平均みたい)</p>
+<p><span class="math notranslate nohighlight">\(f_D(\mathbf(x))\)</span> は <span class="math notranslate nohighlight">\(D\)</span> の中間層。</p>
+<p><span class="math notranslate nohighlight">\(G\)</span> then tries to minimize the loss function</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_{GD} = \frac{1}{2}||\mathbb{E}_{p_r(\mathbf{x})}[f_D(\mathbf{x})]-\mathbb{E}_{p_z(\mathbf{z})}[f_D(G(\mathbf{z}))]||^2_2\]</div>
+</div>
+<p>本実験では簡単なため、識別器の最終のFC層を特徴量 <span class="math notranslate nohighlight">\(f_D\)</span> として選択する。(VAE/GANではサンプルごとにランダム選択していた(ganの方のロスも使ってたけど))</p>
+<p>n the training stage, we estimate the mean feature using the data in a minibatch.</p>
+<p>We also use moving historical averages to make it more stable.(なにこれ)</p>
+<p>3つの利点がある(面倒だから後で)</p>
+<p>1.
+2.
+3.</p>
+</section>
+<section id="mean-feature-matching-for-conditional-image-generation">
+<h3>Mean Feature Matching for Conditional Image Generation<a class="headerlink" href="#mean-feature-matching-for-conditional-image-generation" title="Link to this heading">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(K\)</span> 個のカテゴリーに属するデータセットに対し、 <span class="math notranslate nohighlight">\(C\)</span> によって画像がどのカテゴリーに属するか測定する。</p>
+<p>Here we use a standard method for classification. The network C takes in x as input and outputs a K dimensional vector, which then turns into class probabilities using a softmax function.</p>
+<p>The output of each entry represents the posterior probability P(c|x). In the training stage, the network C tries to minimize the softmax loss.</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_C = -\mathbb{E}_{p_r(\mathbf{x})}[\log p(\mathbf{c}|\mathbf{x})]\]</div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mathcal{L}'_{GD}\)</span> と同様に <span class="math notranslate nohighlight">\(G\)</span> にソフトマックス損失を用いると学習が不安定になる。</p>
+<p>よって、 <span class="math notranslate nohighlight">\(G\)</span> に対し(Mean feature matching objective)を用いることを提案する。</p>
+<p>Let <span class="math notranslate nohighlight">\(f_C(\mathbf{x})\)</span> denote features on an intermediate layer of the classification, then <span class="math notranslate nohighlight">\(G\)</span> tries to minimize:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_{GC} = \frac{1}{2}\sum_\mathbf{c}||\mathbb{E}_{p_r(\mathbf{x})}[f_C(\mathbf{x})]-\mathbb{E}_{p_\mathbf{z}(\mathbf{z})}[f_C(G(\mathbf{z},\mathbf{c}))]||^2_2\]</div>
+</div>
+<p>Since there are only a few samples belonging to the same category in a minibatch, it is necessary to use moving averages of features for both real and generated samples.(大切そうだが何を言ってるのかわからん)</p>
+</section>
+<section id="pairise-feature-matching">
+<h3>Pairise Feature Matching<a class="headerlink" href="#pairise-feature-matching" title="Link to this heading">¶</a></h3>
+<p>なんかいろいろ書いてあって、モード崩壊を起こさないため、エンコーダを追加する。</p>
+<p>VAEと同じ仕組みでlossをとっている</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_{KL} = (いつものやつ)\]</div>
+</div>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_G = (各出力の二乗誤差)\]</div>
+</div>
+</section>
+<section id="objective-of-cvae-gan">
+<h3>Objective of CVAE-GAN<a class="headerlink" href="#objective-of-cvae-gan" title="Link to this heading">¶</a></h3>
+<img alt="https://media.arxiv-vanity.com/render-output/5498152/x3.png" src="https://media.arxiv-vanity.com/render-output/5498152/x3.png" />
+<p>アルゴリズムとlossについて</p>
+</section>
+</section>
+<section id="analysis-of-toy-example">
+<h2>Analysis of Toy Example<a class="headerlink" href="#analysis-of-toy-example" title="Link to this heading">¶</a></h2>
+<p>Toy Exampleとは?</p>
+<p>過去のモデルと学習を比べている。</p>
+<p>このモデルが良さそうという話。</p>
+</section>
+<section id="experiments">
+<h2>Experiments<a class="headerlink" href="#experiments" title="Link to this heading">¶</a></h2>
+<p>実験の話</p>
+<p>Encoderが学習済み?ちょっとわからない。</p>
+<p>All networks are trained from scratch.</p>
+<p>最初から学習をやってるみたい。</p>
+<section id="visualization-comparison-with-other-models">
+<h3>Visualization comparison with other models<a class="headerlink" href="#visualization-comparison-with-other-models" title="Link to this heading">¶</a></h3>
+<p>単純に見た感じの比較
+いろんなモデルで画像生成の学習させた感じ今回のモデルが良さそう</p>
+</section>
+<section id="quantitative-comparison">
+<h3>Quantitative Comparison<a class="headerlink" href="#quantitative-comparison" title="Link to this heading">¶</a></h3>
+<p>クオリティの比較</p>
+</section>
+<section id="attributes-morphing">
+<h3>Attributes Morphing<a class="headerlink" href="#attributes-morphing" title="Link to this heading">¶</a></h3>
+<p>モーフィングの比較</p>
+</section>
+<section id="image-inpainting">
+<h3>Image Inpainting<a class="headerlink" href="#image-inpainting" title="Link to this heading">¶</a></h3>
+<p>マスクした部分の追加</p>
+</section>
+<section id="comparing-different-combination-of-losses">
+<h3>Comparing Different Combination of Losses<a class="headerlink" href="#comparing-different-combination-of-losses" title="Link to this heading">¶</a></h3>
+<p>Gのlossについて比較</p>
+<p>Cから得られる二乗誤差をなくしたほうが良い結果を得られた。</p>
+</section>
+<section id="cvae-gan-for-data-augmentation">
+<h3>CVAE-GAN for Data Augmentation<a class="headerlink" href="#cvae-gan-for-data-augmentation" title="Link to this heading">¶</a></h3>
+<p>データオーギュメンテーションとして使った話</p>
+<p>ある程度良くなってる？</p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, licrum
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">CVAE-GAN</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#related-work">Related work</a></li>
+<li><a class="reference internal" href="#formulation-of-cvae-gan">Formulation of CVAE-GAN</a><ul>
+<li><a class="reference internal" href="#mean-feature-matching-based-gan">Mean feature matching based GAN</a></li>
+<li><a class="reference internal" href="#mean-feature-matching-for-conditional-image-generation">Mean Feature Matching for Conditional Image Generation</a></li>
+<li><a class="reference internal" href="#pairise-feature-matching">Pairise Feature Matching</a></li>
+<li><a class="reference internal" href="#objective-of-cvae-gan">Objective of CVAE-GAN</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#analysis-of-toy-example">Analysis of Toy Example</a></li>
+<li><a class="reference internal" href="#experiments">Experiments</a><ul>
+<li><a class="reference internal" href="#visualization-comparison-with-other-models">Visualization comparison with other models</a></li>
+<li><a class="reference internal" href="#quantitative-comparison">Quantitative Comparison</a></li>
+<li><a class="reference internal" href="#attributes-morphing">Attributes Morphing</a></li>
+<li><a class="reference internal" href="#image-inpainting">Image Inpainting</a></li>
+<li><a class="reference internal" href="#comparing-different-combination-of-losses">Comparing Different Combination of Losses</a></li>
+<li><a class="reference internal" href="#cvae-gan-for-data-augmentation">CVAE-GAN for Data Augmentation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/bussproofs"]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "packages": {"[+]": ["bussproofs"]}}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>
